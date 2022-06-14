@@ -1,4 +1,7 @@
 <?php
-$arr1 = ['name'=>"samandar","last_name"=>"azamov"];
-$arr2 = $_GET;
-print_r(array_diff($arr1,$arr2));
+
+
+if($_FILES['photo']){
+    $file = $_FILES['photo'];
+    move_uploaded_file($file['tmp_name'],"upload/img.jpg");
+}

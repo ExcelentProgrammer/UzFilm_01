@@ -6,7 +6,7 @@ class UserData extends DB
 {
     function __construct()
     {
-        $this->session=new Session();
+        $this->session = new Session();
         if (!empty($_COOKIE['UserName']) and !empty($_COOKIE['Password']) and empty($_SESSION['UserName'])) {
             $UserName = $_COOKIE['UserName'];
             $Password = $_COOKIE['Password'];
@@ -21,12 +21,16 @@ class UserData extends DB
                     $this->session->NewSession("UserName", $res['UserName']);
                     $this->session->NewSession("Email", $res['Email']);
                     $this->session->NewSession("Password", $res['Password']);
+                    $this->session->NewSession("UserRole", $res['UserRole']);
+                    $this->session->NewSession("ID", $res['ID']);
 
                     $this->FirstName = $res['FirstName'];
+                    $this->ID = $res['ID'];
                     $this->LastName = $res['LastName'];
                     $this->UserName = $res['UserName'];
                     $this->Password = $res['Email'];
                     $this->Password = $res['Password'];
+                    $this->UserRole = $res['UserRole'];
                 }
             }
         } else {
@@ -35,6 +39,8 @@ class UserData extends DB
             $this->UserName = $_SESSION['UserName'];
             $this->Password = $_SESSION['Email'];
             $this->Password = $_SESSION['Password'];
+            $this->UserRole = $_SESSION['UserRole'];
+            $this->ID = $_SESSION['ID'];
         }
     }
 }

@@ -36,14 +36,23 @@ $url = $FilmAbout['FilmUrl'];
     .modal-title {
         color: white !important;
     }
+
+    .download-button {
+        background-color: green;
+        width: 12rem;
+    }
 </style>
 
 
 
 <iframe style="padding-top: 20px; display:block;margin:0 auto;" src=<?= VideoPlayer . $url ?> id="videoPlayer" frameborder="0" allowfullscreen="allowfullscreen" width="80%" height="500"></iframe>
-<div class="row margin-top">
+<?php
+if (!empty($Serials)) {
 
-    <select onchange="document.getElementById('videoPlayer').src=this.options[this.selectedIndex].value;" style="
+?>
+    <div class="row margin-top">
+
+        <select onchange="document.getElementById('videoPlayer').src=this.options[this.selectedIndex].value;" style="
     height: 50px;
     max-width: 200px;
     color: white;
@@ -60,14 +69,14 @@ $url = $FilmAbout['FilmUrl'];
     font-size: 110%;
     
     ">
-        <option value=<?= VideoPlayer . "http://fayllar1.ru/15/Seriallar/Flesh/Flesh%20DC%20Seriali%201-qism%20O%27zbek%20tilida%20(asilmedia.net).mp4" ?>> 1-qism | O'zbek tilida</option>
-
-        <option value=<?= VideoPlayer . "http://fayllar1.ru/15/Seriallar/Flesh/Flesh%20DC%20Seriali%202-qism%20O%27zbek%20tilida%20(asilmedia.net).mp4" ?>>2-qism | O'zbek tilida</option>
-
-        <option value=<?= VideoPlayer . "http://fayllar1.ru/15/Seriallar/Flesh/Flesh%20DC%20Seriali%203-qism%20O'zbek%20tilida%20(asilmedia.net).mp4" ?>>3-qism | O'zbek tilida</option>
-
-    </select>
-</div>
+            <?php
+            foreach ($Serials as $Serial) {
+            ?>
+                <option value=<?= VideoPlayer . $Serial['FilmUrl'] ?>> <?= $Serial['FilmSection'] ?>-Qism</option>
+            <?php } ?>
+        </select>
+    </div>
+<?php } ?>
 
 <!-- Video Player End -->
 <!-- Start Main Content -->
@@ -80,7 +89,7 @@ $url = $FilmAbout['FilmUrl'];
                     <div class="row">
                         <div class="col-md-12">
                             <div class="play-thumb mb-4">
-                                <img class="img-fluid" src=<?= "Assets/images/FilmImg/" . $FilmAbout['FilmImg'] ?> alt="">
+                                <img style="width: 230px;height:300px;" class="img-fluid" src=<?= "Assets/images/FilmImg/" . $FilmAbout['FilmImg'] ?> alt="">
                                 <div class="top-badge">
                                     <div class="video-badge">
                                         <img class="img-fluid" src="Assets/images/top-movies.png" alt="">
@@ -89,11 +98,11 @@ $url = $FilmAbout['FilmUrl'];
                             </div>
                             <!-- Play Thumb End -->
                             <div class="thumb-details text-center">
-                                <span><?= $FilmAbout['FilmHeight'] . "p" ?></span>
-                                <span><?= $FilmAbout['FilmSize'] . " mb" ?></span>
+                                <span><?= $FilmAbout['FilmHeight'] ?></span>
+                                <span><?= $FilmAbout['FilmSize'] ?></span>
                                 <span>7.1</span>
                                 <div class="col-6 col-xl mb-xl-0 mb-3">
-                                    <a id="trailer" class="btn d-block hvr-sweep-to-right" tabindex="0" data-toggle="modal" data-target="#download-modal" aria-hidden="true"><i class="icofont-ui-movie mr-2" aria-hidden="true"></i>Yuklab olish</a>
+                                    <a id="trailer" class="btn d-block hvr-sweep-to-right download-button" tabindex="0" data-toggle="modal" data-target="#download-modal" aria-hidden="true"><i class="icofont-ui-movie mr-2" aria-hidden="true"></i>Yuklab olish</a>
                                 </div>
 
                                 <div class="modal fade" id="download-modal" tabindex="0" role="dialog" aria-labelledby="trailer-modal" aria-hidden="true">
@@ -110,43 +119,14 @@ $url = $FilmAbout['FilmUrl'];
                                             <!-- Modal Body -->
 
                                             <div id="download-link">
+                                                <?php
+                                                foreach ($Serials as $Serial) {
+                                                ?>
+                                                    <a href=<?= $Serial['FilmUrl'] ?>>
+                                                        <h5><?= $Serial['FilmSection'] ?>-Qism</h5>
+                                                    </a><br>
+                                                <?php } ?>
 
-                                                <a href="">
-                                                    <h5>1-qism</h5>
-                                                </a><br>
-                                                <a href="">
-                                                    <h5>2-qism</h5>
-                                                </a><br>
-                                                <a href="">
-                                                    <h5>3-qism</h5>
-                                                </a><br>
-                                                <a href="">
-                                                    <h5>4-qism</h5>
-                                                </a><br>
-                                                <a href="">
-                                                    <h5>5-qism</h5>
-                                                </a><br>
-                                                <a href="">
-                                                    <h5>6-qism</h5>
-                                                </a><br>
-                                                <a href="">
-                                                    <h5>7-qism</h5>
-                                                </a><br>
-                                                <a href="">
-                                                    <h5>8-qism</h5>
-                                                </a><br>
-                                                <a href="">
-                                                    <h5>9-qism</h5>
-                                                </a><br>
-                                                <a href="">
-                                                    <h5>10-qism</h5>
-                                                </a><br>
-                                                <a href="">
-                                                    <h5>11-qism</h5>
-                                                </a><br>
-                                                <a href="">
-                                                    <h5>12-qism</h5>
-                                                </a><br>
                                             </div>
 
                                             <!-- Modal Body -->
@@ -174,7 +154,7 @@ $url = $FilmAbout['FilmUrl'];
                         <!-- Title Block -->
                         <div class="details-info mb-4">
                             <span><i class="icofont-user mr-2" aria-hidden="true"></i><?= $FilmAbout['FilmYoung'] ?></span>
-                            <span><i class="icofont-simple-smile mr-2" aria-hidden="true"></i><?= $FilmAbout['FilmYear'] . "+" ?></span>
+                            <span><i class="icofont-simple-smile mr-2" aria-hidden="true"></i><?= $FilmAbout['FilmYear'] ?></span>
                             <span><i class="icofont-movie mr-2" aria-hidden="true"></i><?= $FilmAbout['FilmJanr'] ?></span>
                             <span><i class="icofont-world mr-2" aria-hidden="true"></i><?= $FilmAbout["FilmState"] ?></span>
 
@@ -193,8 +173,12 @@ $url = $FilmAbout['FilmUrl'];
                                     <a href="watch-movie.html" class="btn d-block hvr-sweep-to-right" tabindex="0"><i class="icofont-ui-play mr-2" aria-hidden="true"></i>Play</a>
                                 </div>
                                 <!-- Col End -->
-                                <div class="col-6 col-xl mb-xl-0 mb-3">
-                                    <a href="watch-movie.html" class="btn d-block hvr-sweep-to-right" tabindex="0"><i class="icofont-plus mr-2" aria-hidden="true"></i>MY List</a>
+                                <div class="col-6 col-xl mb-xl-0 mb-3"  >
+                                    <?php if ($MyList) { ?>
+                                        <a id="MyList" style="background-color: green;" class="btn d-block hvr-sweep-to-right" onclick="PlayList()" tabindex="0"><i class="icofont-plus mr-2" aria-hidden="true" ></i>MY List</a>
+                                    <?php } else { ?>
+                                        <a id="MyList" class="btn d-block hvr-sweep-to-right" onclick="PlayList()" tabindex="0"><i class="icofont-plus mr-2" aria-hidden="true" ></i>MY List</a>
+                                    <?php } ?>
                                 </div>
                                 <!-- Col End -->
                                 <div class="col-6 col-xl mb-xl-0 mb-3">
@@ -296,7 +280,7 @@ $url = $FilmAbout['FilmUrl'];
                     <div class="item">
                         <div class="video-block">
                             <div class="video-thumb position-relative thumb-overlay">
-                                <a href="#"><img alt="" class="img-fluid" src=<?= "Assets/images/FilmImg/" . $TopFilm['FilmImg'] ?>></a>
+                                <a href="#"><img style="height:17rem;" alt="" class="img-fluid" src=<?= "Assets/images/FilmImg/" . $TopFilm['FilmImg'] ?>></a>
                                 <div class="box-content">
                                     <ul class="icon">
                                         <li>
@@ -335,4 +319,19 @@ $url = $FilmAbout['FilmUrl'];
     </section>
     <!-- Related Movies Section End -->
 </div>
-<!-- Main Content End -->
+<script>
+    function PlayList() {
+        var Button = document.querySelector("#MyList").style.background="green";
+        var req = new XMLHttpRequest();
+        var Data = new FormData();
+        var VideoID = decodeURIComponent("<?php echo $_GET['video_id'] ?>");
+        var UserID = decodeURIComponent("<?php echo $_SESSION['ID'] ?>");
+        Data.append("VideoID", VideoID);
+        Data.append("UserID", UserID);
+        req.open("POST", "Config/Confirm.php?menu=PlayList");
+        req.send(Data);
+        req.onload = () => {
+            console.log(req.response);
+        }
+    }
+</script>

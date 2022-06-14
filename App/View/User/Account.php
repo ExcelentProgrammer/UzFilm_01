@@ -1,55 +1,146 @@
-<!-- Header End -->
+<style>
+    /*Profile Pic Start*/
+    .picture-container {
+        position: relative;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .picture {
+        width: 106px;
+        height: 106px;
+        background-color: #999999;
+        border: 4px solid #CCCCCC;
+        color: #FFFFFF;
+        border-radius: 50%;
+        margin: 0px auto;
+        overflow: hidden;
+        transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+    }
+
+    .picture:hover {
+        border-color: #2ca8ff;
+    }
+
+    .content.ct-wizard-green .picture:hover {
+        border-color: #05ae0e;
+    }
+
+    .content.ct-wizard-blue .picture:hover {
+        border-color: #3472f7;
+    }
+
+    .content.ct-wizard-orange .picture:hover {
+        border-color: #ff9500;
+    }
+
+    .content.ct-wizard-red .picture:hover {
+        border-color: #ff3b30;
+    }
+
+    .picture input[type="file"] {
+        cursor: pointer;
+        display: block;
+        height: 100%;
+        left: 0;
+        opacity: 0 !important;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    .picture-src {
+        width: 100%;
+
+    }
+
+    /*Profile Pic End*/
+</style>
+
+
+
+
 <!-- Start Main Content -->
 <div class="main-content">
     <!-- Start Account Settings Section -->
     <section class="account-settings">
         <div class="container">
             <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <div class="settings-avatar">
+                            <div class="row">
+                                <div class="container">
+                                    <div class="picture-container">
+                                        <div class="picture">
+                                            <img src=<?= "Assets/images/avatar/user.jpg" ?> class="picture-src" id="wizardPicturePreview" title="">
+                                            <input type="file" name="avatar" id="wizard-picture" class="">
+                                        </div>
+                                        <h6 class="mt-2">Avatar</h6>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Col End -->
+                <div class="col-md -10">
+                    <h2><?= $UserData['FirstName'] ?></h2>
+                </div>
+                <!-- Col End -->
+            </div>
+            <div class="row">
                 <div class="col-lg-12">
                     <div class="content-settings">
                         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" data-toggle="pill" href="#pills-profile" role="tab" aria-selected="true">Profile Settings</a>
+                                <a class="nav-link active" data-toggle="pill" href="#pills-profile" role="tab" aria-selected="true">Hisob Sozlamalari</a>
                             </li>
+
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" data-toggle="pill" href="#pills-account" role="tab" aria-selected="false">Account Settings</a>
+                                <a class="nav-link" data-toggle="pill" href="#pills-1" role="tab" aria-selected="true">Foydalanuvchi Malumotlari</a>
                             </li>
+
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" data-toggle="pill" href="#pills-2" role="tab" aria-selected="true">Parolni o'zgartirish</a>
+                            </li>
+
                         </ul>
                         <div class="tab-content" id="pills-tabContent">
+
+
+
+
+
+
+
+
+
+
                             <div id="pills-profile" class="tab-pane animated fadeInRight show active">
                                 <!-- Start Form -->
                                 <form id="profile-settings-form" action="#" method="post">
                                     <div class="error-container"></div>
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <div class="settings-avatar">
-                                                    <img src="images/avatar/user.jpg" class="img-fluid d-block mx-auto mb-3" alt="User avatar">
-                                                    <div class="change-avatar"><a href="#">Edit</a></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Col End -->
-                                        <div class="col-md-10">
-                                            <h2>John Doe</h2>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                                        </div>
-                                        <!-- Col End -->
-                                    </div>
+
+
+
+
                                     <!-- Row End -->
-                                    <h5 class="mb-3 mt-3 pb-3 section-border">General Information</h5>
+                                    <h5 class="mb-3 mt-3 pb-3 section-border">Hisob malumotlari</h5>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Username</label>
-                                                <input class="form-control form-control-name" name="username" id="username" type="text" placeholder="Enter your Username" value="John Doe">
+                                                <input class="form-control form-control-name" name="username" id="username" type="text" placeholder="UserName" value=<?= $UserData['UserName'] ?>>
                                             </div>
                                         </div>
                                         <!-- Col End -->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Email Address</label>
-                                                <input type="email" class="form-control" name="email" placeholder="Enter your email" value="contact@example.com">
+                                                <input type="email" class="form-control" name="email" placeholder="Elaktron pochta" value=<?= $UserData['Email'] ?>>
                                             </div>
                                         </div>
                                         <!-- Col End -->
@@ -58,134 +149,121 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>First Name</label>
-                                                <input class="form-control form-control-name" name="first-name" id="first-name" type="text" placeholder="Enter your First Name" value="John">
+                                                <label>Ism</label>
+                                                <input class="form-control form-control-name" name="first-name" id="first-name" type="text" placeholder="Ism" value=<?= $UserData['FirstName'] ?>>
                                             </div>
                                         </div>
                                         <!-- Col End -->
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input class="form-control form-control-name" name="last-name" id="last-name" type="text" placeholder="Enter your Last Name" value="Doe">
-                                            </div>
-                                        </div>
-                                        <!-- Col End -->
-                                    </div>
-                                    <!-- Row End -->
-                                    <h5 class="mb-3 mt-3 pb-3 section-border">Change Password</h5>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Current Password</label>
-                                                <input type="password" class="form-control" name="current-password" id="current-password" placeholder="Enter your Current Password" value="**********">
-                                            </div>
-                                        </div>
-                                        <!-- Col End -->
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>New Password</label>
-                                                <input type="password" class="form-control" name="new-password" id="new-password" placeholder="Enter your New Password" value="**********">
-                                            </div>
-                                        </div>
-                                        <!-- Col End -->
-                                    </div>
-                                    <!-- Row End -->
-                                    <h5 class="mb-3 mt-3 pb-3 section-border">Personal Information</h5>
-                                    <div id="sandbox-container" class="form-group">
-                                        <label>Date of Birth</label>
-                                        <input type="text" class="form-control" name="date-of-birth" id="date-of-birth" placeholder="Enter your Date of Birth" value="01/20/2021">
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Gender</label>
-                                                <select class="form-control" name="select-plan" aria-label="Default select example" id="select-gender">
-                                                    <option value="1" selected="selected">Male</option>
-                                                    <option value="2">Female</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!-- Col End -->
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Language</label>
-                                                <select class="form-control" name="select-plan" aria-label="Default select example" id="select-language">
-                                                    <option value="1">Arabic</option>
-                                                    <option value="2" selected="selected">English</option>
-                                                    <option value="3">German</option>
-                                                    <option value="4">Spanish</option>
-                                                    <option value="5">French</option>
-                                                    <option value="6">Italian</option>
-                                                    <option value="7">Russian</option>
-                                                    <option value="8">Japanese</option>
-                                                    <option value="9">Chinese</option>
-                                                </select>
+                                                <label>Familya</label>
+                                                <input class="form-control form-control-name" name="last-name" id="last-name" type="text" placeholder="Familya" value=<?= $UserData['LastName'] ?>>
                                             </div>
                                         </div>
                                         <!-- Col End -->
                                     </div>
                                     <!-- Row End -->
                                     <div class="form-group d-flex align-items-center mt-3">
-                                        <a href="#" class="hvr-sweep-to-right btn btn-primary">Save</a>
-                                        <a href="#" class="hvr-sweep-to-right btn btn-primary ml-3">Cancel</a>
+                                        <a href="#" class="hvr-sweep-to-right btn btn-primary">Saqlash</a>
+                                        <a href="#" class="hvr-sweep-to-right btn btn-primary ml-3">Bekor Qilish</a>
                                     </div>
                                 </form>
                                 <!-- Form End -->
                             </div>
-                            <!-- Tap pane 1 End -->
-                            <div id="pills-account" class="tab-pane animated fadeInRight">
+
+
+
+                            <div id="pills-1" class="tab-pane animated fadeInRight">
                                 <!-- Start Form -->
-                                <form id="account-settings-form" action="#" method="post">
-                                    <h5 class="mb-3 mt-3 pb-3 section-border">Change Plan</h5>
+                                <form id="profile-settings-form" action="#" method="post">
+                                    <div class="error-container"></div>
+
+
+
+
+                                    <h5 class="mb-3 mt-3 pb-3 section-border">foydalanuvchi Malumotlari</h5>
+                                    <div id="sandbox-container" class="form-group">
+                                        <label>Tug'ulgan Kun</label>
+                                        <input type="text" class="form-control" name="date-of-birth" id="date-of-birth" placeholder="Tug'ulgan yilingizni tanlang" value="01/01/2022">
+                                    </div>
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group mb-3">
-                                                <label>Change Plan</label>
-                                                <select class="form-control" name="select-plan" aria-label="Default select example" id="select-plan">
-                                                    <option value="1">STANDARD - Free</option>
-                                                    <option value="2">Platinum - $79/mo</option>
-                                                    <option value="3">Premium - $120/mo</option>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Jins</label>
+                                                <select class="form-control" name="select-plan" aria-label="Default select example" id="select-gender">
+                                                    <option value="1" selected="selected">O'g'il bola</option>
+                                                    <option value="2">Qiz bola</option>
                                                 </select>
                                             </div>
-                                            <div class="form-group mb-3">
-                                                <button class="btn btn-info hvr-sweep-to-right" type="button">Cancel Membership</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Till</label>
+                                                <select class="form-control" name="select-plan" aria-label="Default select example" id="select-language">
+                                                    <option value="1">English</option>
+                                                    <option value="2" selected="selected">O'zbek</option>
+                                                </select>
                                             </div>
                                         </div>
-                                        <!-- Col End -->
                                     </div>
-                                    <!-- Row End -->
-                                    <h5 class="mb-3 mt-3 pb-3 section-border">Payment Method</h5>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group mb-4">
-                                                <label class="d-block mb-0">Payment Method</label>
-                                                <div class="small text-muted mb-3">You have not added a payment method</div>
-                                                <button class="btn btn-info hvr-sweep-to-right" type="button">Add Payment Method</button>
-                                            </div>
-                                        </div>
-                                        <!-- Col End -->
-                                    </div>
-                                    <!-- Row End -->
-                                    <h5 class="mb-3 mt-3 pb-3 section-border">Payment History</h5>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group mb-4">
-                                                <label class="d-block">Payment History</label>
-                                                <div class="border border-gray-500 bg-gray-200 p-3 text-center font-size-sm">You have not made any payment.</div>
-                                            </div>
-                                        </div>
-                                        <!-- Col End -->
-                                    </div>
+
                                     <!-- Row End -->
                                     <div class="form-group d-flex align-items-center mt-3">
-                                        <a href="#" class="btn hvr-sweep-to-right">Save</a>
-                                        <a href="#" class="btn hvr-sweep-to-right ml-3">Cancel</a>
+                                        <a href="#" class="hvr-sweep-to-right btn btn-primary">Saqlash</a>
+                                        <a href="#" class="hvr-sweep-to-right btn btn-primary ml-3">Bekor Qilish</a>
                                     </div>
                                 </form>
                                 <!-- Form End -->
                             </div>
-                            <!-- Tap Pane 2 End -->
+
+
+
+
+
+
+
+                            <div id="pills-2" class="tab-pane animated fadeInRight">
+                                <!-- Start Form -->
+                                <form id="profile-settings-form" action="#" method="post">
+                                    <div class="error-container"></div>
+
+
+                                    <h5 class="mb-3 mt-3 pb-3 section-border">Parolni o'zgartirish</h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Joriy Parol</label>
+                                                <input type="password" class="form-control" name="current-password" id="current-password" placeholder="Joriy parol" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Yangi Parol</label>
+                                                <input type="password" class="form-control" name="new-password" id="new-password" placeholder="Yangi Parol" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Row End -->
+                                    <div class="form-group d-flex align-items-center mt-3">
+                                        <a href="#" class="hvr-sweep-to-right btn btn-primary">Saqlash</a>
+                                        <a href="#" class="hvr-sweep-to-right btn btn-primary ml-3">Bekor Qilish</a>
+                                    </div>
+                                </form>
+                                <!-- Form End -->
+                            </div>
+
+
+
+
+
+
+
+
+
+
                         </div>
                     </div>
                     <!-- Content Settings End -->
@@ -198,3 +276,24 @@
     </section>
     <!-- Account Settings Section End -->
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Prepare the preview for profile picture
+        $("#wizard-picture").change(function() {
+            readURL(this);
+        });
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

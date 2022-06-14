@@ -44,6 +44,16 @@
           <script src="js/html5shiv.js"></script>
           <script src="js/respond.min.js"></script>
         <![endif]-->
+    <style>
+        .close-btn {
+            background-color: green !important;
+            width: 100%;
+        }
+
+        .ok-btn {
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -189,42 +199,47 @@
                             <?php
                             if (empty($_SESSION['UserName'])) {
                             ?>
-                               
+
 
                                 <li class="nav-item">
                                     <div class="nav-filter">
-                                    <a class="btn hvr-sweep-to-right" href=<?= menu(MenuSignup) ?>>Kirish</a>
+                                        <a class="btn hvr-sweep-to-right" href=<?= menu(MenuLogin) ?>>Kirish</a>
 
 
                                     </div>
 
                                 </li>
-                            <?php }else{ ?>
-                            <!-- Nav Item 2 End -->
-                            <li class="nav-item">
-                                <div class="nav-account ml-2">
-                                    <div class="dropdown">
-                                        <div aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" id="dropdown-account" role="button"><img alt="" class="img-fluid user-icon rounded-circle" src="Assets/images/avatar/user.jpg"></div>
-                                        <ul class="dropdown-menu dropdown-menu-right fade-up">
-                                            <li>
-                                                <a class="dropdown-item" href="account-settings.html">Account Settings</a>
-                                            </li>
-                                            <!-- Li 1 end -->
-                                            <li>
-                                                <a class="dropdown-item" href="pricing-plan.html">pricing plans</a>
-                                            </li>
-                                            <!-- Li 2 end -->
-                                            <li>
-                                                <a class="dropdown-item" href=<?= menu(MenuLogout) ?>>Logout</a>
-                                            </li>
-                                            <!-- Li 3 end -->
-                                        </ul>
-                                        <!-- Account List End -->
+                                <?php } else {
+                                if ($_SESSION["UserRole"] == RoleAdmin) { ?>
+                                    <a class="btn hvr-sweep-to-right ml-5" href=<?= AdminMenu(Dashboard) ?>>Admin</a>
+                                <?php } ?>
+                                <!-- Nav Item 2 End -->
+                                <li class="nav-item">
+                                    <div class="nav-account ml-2">
+                                        <div class="dropdown">
+                                            <div aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" id="dropdown-account" role="button"><img alt="" class="img-fluid user-icon rounded-circle" src="Assets/images/avatar/user.jpg"></div>
+                                            <ul class="dropdown-menu dropdown-menu-right fade-up">
+                                                <li>
+                                                    <a class="dropdown-item" href=<?= menu(MenuAccount) ?>>Sozlamalar</a>
+                                                </li>
+                                                <!-- Li 1 end -->
+                                                <li>
+                                                    <a class="dropdown-item" href=<?= menu(MenuPlayList) ?>>Play List</a>
+                                                </li>
+                                                <!-- Li 2 end -->
+                                                <li>
+                                                    <a style="cursor:pointer;" id="trailer" class="dropdown-item" tabindex="0" data-toggle="modal" data-target="#logout-tab" aria-hidden="true">Chiqish</a>
+
+                                                </li>
+                                                <!-- Li 3 end -->
+                                            </ul>
+                                            <!-- Account List End -->
+                                        </div>
+                                        <!-- Account Drop Down End -->
                                     </div>
-                                    <!-- Account Drop Down End -->
-                                </div>
-                                <!-- Account Menu End -->
-                            </li>
+                                    <!-- Account Menu End -->
+                                </li>
+
                             <?php } ?>
                             <!-- Nav Item 3 End -->
                         </ul>
@@ -242,6 +257,43 @@
         <?php
         (new Rout())->route();
         ?>
+
+        <!-- Modal Trailer -->
+        <div class="modal fade" id="logout-tab" tabindex="0" role="dialog" aria-labelledby="trailer-modal" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document" id="trailerModal">
+                <!-- Modal Content -->
+                <div class="modal-content">
+                    <!-- modal header -->
+                    <div class="modal-header">
+                        <h5 class="modal-title">Chiqish</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                        </button>
+
+                    </div>
+                    <!-- Modal Body -->
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times">Accountdan chiqish</i></span>
+                    </button> -->
+                    <div class="row">
+                        <div class="col-6">
+                            <a data-dismiss="modal" aria-label="Close" class="btn close-btn hvr-sweep-to-right" tabindex="0"><i aria-hidden="true" class="fa fa-play mr-2"></i>Bekor Qilish</a>
+                        </div>
+                        <div class="col-6">
+                            <a class="btn hvr-sweep-to-right ok-btn" href=<?= menu(MenuLogout) ?> tabindex="0"><i aria-hidden="true" class="fa fa-play mr-2"></i>Chiqish</a>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal Body -->
+                </div>
+                <!-- Modal Content -->
+            </div>
+            <!-- Modal Dialog -->
+        </div>
+
+
+
 
 
         <!-- Start Footer Section -->

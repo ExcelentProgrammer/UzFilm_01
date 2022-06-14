@@ -1,5 +1,6 @@
 <?php
 require_once ROOT_PATH."App/Model/HomeModel.php";
+require_once ROOT_PATH."App/Model/AccountModel.php";
 class HomeController extends HomeModel{    
     /**
      * home
@@ -9,6 +10,7 @@ class HomeController extends HomeModel{
      */
     public function home(){
         $TopFilms = $this->TopFilm();
+        $ScaryFilms = $this->ScaryFilm();
         require_once ROOT_PATH."App/View/User/Home.php";
     }    
     /**
@@ -20,6 +22,8 @@ class HomeController extends HomeModel{
     public function watch(){
         $FilmAbout = $this->FilmAbout($_GET['video_id']);
         $TopFilms = $this->TopFilm();
+        $Serials = $this->GetSerial($_GET['video_id']);
+        $MyList = $this->GetFilmMyListInfo($_GET['video_id']);
         require_once ROOT_PATH."App/View/User/watch.php";
 
     }
@@ -44,6 +48,12 @@ class HomeController extends HomeModel{
     public function about(){
         require_once ROOT_PATH."/App/View/User/About.php";
     }    
+
+    public function account(){
+        $AccountModel = new AccountModel();
+        $UserData = $AccountModel->UserData();
+        require_once ROOT_PATH."/App/View/User/Account.php";
+    }
     /**
      * contacts
      *
@@ -70,6 +80,9 @@ class HomeController extends HomeModel{
      */
     public function help(){
         require_once ROOT_PATH."/App/View/User/Help.php";
+    }
+    public function MyPlayList(){
+        require_once ROOT_PATH."/App/View/User/PlayList.php";
     }
         
     /**
