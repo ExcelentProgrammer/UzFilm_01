@@ -87,7 +87,8 @@
                 </div>
                 <!-- Col End -->
                 <div class="col-md -10">
-                    <h2><?= $UserData['FirstName'] ?></h2>
+                    <h2><?= /** @var array $UserData */
+                        $UserData['FirstName'] ?></h2>
                 </div>
                 <!-- Col End -->
             </div>
@@ -130,19 +131,13 @@
                                     <!-- Row End -->
                                     <h5 class="mb-3 mt-3 pb-3 section-border">Hisob malumotlari</h5>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Username</label>
-                                                <input class="form-control form-control-name" name="username" id="username" type="text" placeholder="UserName" value=<?= $UserData['UserName'] ?>>
+                                                <input class="form-control form-control-name" name="UserName" id="username" type="text" placeholder="UserName" value=<?= $UserData['UserName'] ?>>
                                             </div>
                                         </div>
-                                        <!-- Col End -->
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Email Address</label>
-                                                <input type="email" class="form-control" name="email" placeholder="Elaktron pochta" value=<?= $UserData['Email'] ?>>
-                                            </div>
-                                        </div>
+
                                         <!-- Col End -->
                                     </div>
                                     <!-- Row End -->
@@ -150,7 +145,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Ism</label>
-                                                <input class="form-control form-control-name" name="first-name" id="first-name" type="text" placeholder="Ism" value=<?= $UserData['FirstName'] ?>>
+                                                <input class="form-control form-control-name" name="FirstName" id="first-name" type="text" placeholder="Ism" value=<?= $UserData['FirstName'] ?>>
                                             </div>
                                         </div>
                                         <!-- Col End -->
@@ -158,14 +153,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Familya</label>
-                                                <input class="form-control form-control-name" name="last-name" id="last-name" type="text" placeholder="Familya" value=<?= $UserData['LastName'] ?>>
+                                                <input class="form-control form-control-name" name="LastName" id="last-name" type="text" placeholder="Familya" value=<?= $UserData['LastName'] ?>>
                                             </div>
                                         </div>
                                         <!-- Col End -->
                                     </div>
                                     <!-- Row End -->
                                     <div class="form-group d-flex align-items-center mt-3">
-                                        <a href="#" class="hvr-sweep-to-right btn btn-primary">Saqlash</a>
+                                        <a onclick="EditAccountData()" class="hvr-sweep-to-right btn btn-primary">Saqlash</a>
                                         <a href="#" class="hvr-sweep-to-right btn btn-primary ml-3">Bekor Qilish</a>
                                     </div>
                                 </form>
@@ -279,6 +274,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
+    function EditAccountData() {
+        var req = new XMLHttpRequest();
+        var Data = new FormData();
+
+        var UserName = document.querySelector("input[name='UserName']").value;
+        var LastName = document.querySelector("input[name='LastName']").value;
+        var FirstName = document.querySelector("input[name='FirstName']").value;
+        var ID = decodeURIComponent("<?php echo $UserData['ID'] ?>");
+        Data.append("ID",ID);
+        Data.append("UserName",UserName);
+        Data.append("LastName",LastName);
+        Data.append("FirstName",FirstName);
+        req.open("POST",'Config/Confirm.php?menu=EditAccountData');
+        req.send(Data);
+        req.onload=()=>{
+            console.log(req.response);
+        };
+    }
+
     $(document).ready(function() {
         // Prepare the preview for profile picture
         $("#wizard-picture").change(function() {

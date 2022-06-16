@@ -72,7 +72,7 @@ if (!empty($Serials)) {
             <?php
             foreach ($Serials as $Serial) {
             ?>
-                <option value=<?= VideoPlayer . $Serial['FilmUrl'] ?>> <?= $Serial['FilmSection'] ?>-Qism</option>
+                <option value=<?= VideoPlayer . $Serial['FilmUrl'] ?>> <?= $Serial['FilmSection']."-Qism || ".$FilmAbout['FilmLanguage']?></option>
             <?php } ?>
         </select>
     </div>
@@ -149,7 +149,7 @@ if (!empty($Serials)) {
                 <div class="col-md-9">
                     <div class="play-details-content">
                         <div class="title-block d-flex align-items-center justify-content-between">
-                            <h2 class="play-title"><?= $FilmAbout['FilmName'] ?></h2>
+                            <h3 style="font-size: 20px;" class="play-title"><?= $FilmAbout['FilmName'] ?></h3>
                         </div>
                         <!-- Title Block -->
                         <div class="details-info mb-4">
@@ -320,18 +320,20 @@ if (!empty($Serials)) {
     <!-- Related Movies Section End -->
 </div>
 <script>
-    function PlayList() {
-        var Button = document.querySelector("#MyList").style.background="green";
-        var req = new XMLHttpRequest();
-        var Data = new FormData();
-        var VideoID = decodeURIComponent("<?php echo $_GET['video_id'] ?>");
-        var UserID = decodeURIComponent("<?php echo $_SESSION['ID'] ?>");
-        Data.append("VideoID", VideoID);
-        Data.append("UserID", UserID);
-        req.open("POST", "Config/Confirm.php?menu=PlayList");
-        req.send(Data);
-        req.onload = () => {
-            console.log(req.response);
+        function PlayList(VideoID = false) {
+            var Button = document.querySelector("#MyList").style.background = "green";
+            var req = new XMLHttpRequest();
+            var Data = new FormData();
+            if (!VideoID) {
+                var VideoID = decodeURIComponent("<?php echo $_GET['video_id'] ?>");
+            }
+            var UserID = decodeURIComponent("<?php echo $_SESSION['ID'] ?>");
+            Data.append("VideoID", VideoID);
+            Data.append("UserID", UserID);
+            req.open("POST", "Config/Confirm.php?menu=PlayList");
+            req.send(Data);
+            req.onload = () => {
+                console.log(req.response);
+            }
         }
-    }
-</script>
+    </script>

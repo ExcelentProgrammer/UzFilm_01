@@ -25,9 +25,28 @@
                 <div class="tab-content pt-3" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label">Film Rasmi</label>
-                            <input name="FilmImg" class="form-control bg-dark" type="file" id="formFile">
+
+
+                        <div class="row">
+                            <!-- select  -->
+                            <div class="col-6">
+                                <select id="FilmHeight" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                                    <option selected>Film Sifati</option>
+                                    <option value="240p">240p</option>
+                                    <option value="320p">320p</option>
+                                    <option value="480p">480p</option>
+                                    <option value="720p">720p</option>
+                                    <option value="1080p">1080p</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <select id="FilmLanguage" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                                    <option selected>Film Tili</option>
+                                    <option value="O'zbek Tilida">O'zbek Tilida</option>
+                                    <option value="Ingliz Tilida">Ingliz Tilida</option>
+                                    <option value="Rus Tilida">Rus Tilida</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="row">
@@ -71,13 +90,19 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <input name="FilmImg" class="form-control bg-dark h-100" type="file" id="formFile">
+                            </div>
+                          
+                        </div>
 
 
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="FilmHeight" id="floatingInput" placeholder="Flesh | O'zbek Tilida">
-                                    <label for="floatingInput">Film Sifati (720p || HD || FullHD)</label>
+                                    <input type="number" class="form-control" name="FilmDate" id="floatingInput" placeholder="Flesh | O'zbek Tilida">
+                                    <label for="floatingInput">Film Davomiyligi (45 || 60 || 40)</label>
                                 </div>
                             </div>
 
@@ -186,7 +211,7 @@
                 ErrorContainer.style.background = "pink";
                 ErrorContainer.style.color = "red";
             } else {
-                var SerialUrl = document.querySelector("input[name='SerialUrl']").value="";
+                var SerialUrl = document.querySelector("input[name='SerialUrl']").value = "";
 
                 ErrorContainer.style.display = "flex";
                 ErrorContainer.style.background = "green";
@@ -204,7 +229,7 @@
     function NewFilm() {
         var FilmUrl = document.querySelector("input[name='FilmUrl']").value;
         var FilmImg = document.querySelector("input[name='FilmImg']").files[0];
-        var FilmHeight = document.querySelector("input[name='FilmHeight']").value;
+        var FilmHeight = document.querySelector("#FilmHeight").value;
         var FilmYear = document.querySelector("input[name='FilmYear']").value;
         var FilmName = document.querySelector("input[name='FilmName']").value;
         var FilmCaption = document.querySelector("textarea[name='FilmCaption']").value;
@@ -212,6 +237,10 @@
         var FilmState = document.querySelector("#FilmState").value;
         var FilmJanr = document.querySelector("#FilmJanr").value;
         var FilmRating = document.querySelector("#FilmRating").value;
+        var FilmDate = document.querySelector("input[name='FilmDate']").value;
+        var FilmLanguage = document.querySelector("#FilmLanguage").value;
+
+
         let req = new XMLHttpRequest();
         let formData = new FormData();
         var ErrorContainer = document.querySelector("#ErrorContainer");
@@ -227,6 +256,8 @@
         formData.append("FilmState", FilmState);
         formData.append("FilmJanr", FilmJanr);
         formData.append("FilmRating", FilmRating);
+        formData.append("FilmDate", FilmDate);
+        formData.append("FilmLanguage", FilmLanguage);
         req.open("POST", 'Config/Confirm.php?menu=NewFilm');
         req.send(formData);
         req.onload = () => {
@@ -238,7 +269,7 @@
             } else {
                 var FilmUrl = document.querySelector("input[name='FilmUrl']").value = "";
                 var FilmImg = document.querySelector("input[name='FilmImg']").files[0] = "";
-                var FilmHeight = document.querySelector("input[name='FilmHeight']").value = "";
+                var FilmHeight = document.querySelector("#FilmHeight").value = "Film Sifati";
                 var FilmYear = document.querySelector("input[name='FilmYear']").value = "";
                 var FilmName = document.querySelector("input[name='FilmName']").value = "";
                 var FilmCaption = document.querySelector("textarea[name='FilmCaption']").value = '';
@@ -246,6 +277,8 @@
                 var FilmState = document.querySelector("#FilmState").value = "Film Olingan davlatni tanlang";
                 var FilmJanr = document.querySelector("#FilmJanr").value = "Film Janrini Tanlang";
                 var FilmRating = document.querySelector("#FilmRating").value = "Film Rating darajasini tanlang";
+                var FilmDate = document.querySelector("input[name='FilmDate']").value="";
+                var FilmLanguage = document.querySelector("#FilmLanguage").value = "Film Tili";
 
                 ErrorContainer.style.display = "inline-block";
                 ErrorContainer.style.background = "green";

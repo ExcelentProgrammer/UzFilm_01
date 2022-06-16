@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 require_once "../App/Class/Func.php";
 require_once "../vendor/autoload.php";
 $dotenv = Dotenv\Dotenv::createImmutable("../");
@@ -31,7 +32,9 @@ class Confirm extends DB
             case 'PlayList':
                 $this->PlayList();
                 break;
-
+            case 'EditAccountData':
+                $this->EditAccountData();
+                break;
 
 
             default:
@@ -39,6 +42,26 @@ class Confirm extends DB
                 break;
         }
     }
+    function EditAccountData(){
+        $con = $this->con();
+        $UserName = $_POST['UserName'];
+        $LastName = $_POST['LastName'];
+        $FirstName = $_POST['FirstName'];
+        $ID = $_POST['ID'];
+        $res = mysqli_query($con,"SELECT * FROM users WHERE UserName='$UserName'");
+        $DbUserName = mysqli_fetch_all($res,MYSQLI_ASSOC)[0]['UserName'];
+        if(mysqli_num_rows($res) != 0 and $UserName != $DbUserName)
+            echo "UserName Ooldin ishlatilgan";
+        else{
+            $res = mysqli_query($con,"UPDATE users SET Username='$UserName',LastName='$LastName',FirstName='$FirstName' WHERE ID='$ID'");
+            if($res)
+                echo "ok";
+            else
+                print_r(mysqli_error($con));
+        }
+
+    }
+
     function Signup()
     {
         $con = $this->con();
@@ -73,7 +96,7 @@ class Confirm extends DB
                         $this->session->NewSession("UserRole", $UserData['UserRole']);
                         $this->session->NewSession("Password", $UserData['Password']);
                         $this->session->NewSession("ID", $UserData['ID']);
-                        $this->cookie->NewCookie("UserName", $UserData['UserName']);
+                        $this->cookie->NewCookie("ID", $UserData['ID']);
                         $this->cookie->NewCookie("Password", $UserData['Password']);
                         echo "signup_ok";
                     }
@@ -81,6 +104,7 @@ class Confirm extends DB
             }
         }
     }
+
     function Login()
     {
         $con = $this->con();
@@ -102,7 +126,7 @@ class Confirm extends DB
                 $this->session->NewSession("UserRole", $UserData['UserRole']);
                 $this->session->NewSession("ID", $UserData['ID']);
                 if ($_POST['SavePassword'] == "on") {
-                    $this->cookie->NewCookie("UserName", $UserData['UserName']);
+                    $this->cookie->NewCookie("ID", $UserData['ID']);
                     $this->cookie->NewCookie("Password", $UserData['Password']);
                 }
                 echo "login_ok";
@@ -124,6 +148,9 @@ class Confirm extends DB
         $FilmJanr = mysqli_real_escape_string($con, $_POST['FilmJanr']);
         $FilmRating = mysqli_real_escape_string($con, $_POST['FilmRating']);
 
+        $FilmDate = mysqli_real_escape_string($con, $_POST['FilmDate']);
+        $Filmlanguage = mysqli_real_escape_string($con, $_POST['FilmLanguage']);
+
 
         $ImgTypes = ['jpg', "png", "jpeg", "ico"];
         $FilmImg = $_FILES['FilmImg'];
@@ -131,47 +158,70 @@ class Confirm extends DB
         $FileType = explode("/", $FilmImg['type'])[1];
         $FileError = $FilmImg['error'];
         $FileTmpName = $FilmImg['tmp_name'];
-        if (!in_array($FileType, $ImgTypes)) {
-            echo "Kechirasiz Rasim Turi jpg, png, jpeg bo'lishi zarur";
+        if (empty($FilmImg)) {
+            echo "Kechirasiz Film Rasmini Yuklamadinggiz";
         } else {
             if ($FileError != 0) {
                 echo "Film Rasmini yuklashda xatolik yuz berdi boshqa risim bilan urunib ko'rish";
             } else {
-                if (empty($FilmName)) {
-                    echo "Film Nomini kiritmadinggiz";
+                if (!in_array($FileType, $ImgTypes)) {
+                    echo "Kechirasiz Rasim Turi jpg, png, jpeg bo'lishi zarur";
                 } else {
-                    if (empty($FilmSize)) {
-                        echo "Film url manzilini kiritmadinggiz";
+                    if ($Filmlanguage == "Film Tili") {
+                        echo "film Tilini tanlamadinggiz";
                     } else {
-                        $FilmSize = GetFileSize($FilmSize);
-                        if ($FilmSize == "not") {
-                            echo "Film Topilmadi Url manzilni tekshirib qayta urinib ko'ring";
+                        if (empty($FilmYear)) {
+                            echo "Film Chiqarilgan Yilni kiritmadinggiz";
                         } else {
-                            if (empty($FilmHeight)) {
-                                echo "Film Sifatini kiritmadinggiz";
+                            if (empty($FilmName)) {
+                                echo "Film Nomini kiritmadinggiz";
                             } else {
-                                if (empty($FilmCaption)) {
-                                    echo "Film Haqida Malumot bermadinggiz";
+                                if (empty($FilmSize)) {
+                                    echo "Film url manzilini kiritmadinggiz";
                                 } else {
-                                    if ($FilmJanr == "Film Janrini Tanlang") {
-                                        echo "Film Janrini Tanlamadinggiz";
+                                    $FilmSize = GetFileSize($FilmSize);
+                                    if ($FilmSize == "not") {
+                                        echo "Film Topilmadi Url manzilni tekshirib qayta urinib ko'ring";
                                     } else {
-                                        if ($FilmYoung == "Film Yosh chagarasini tanlang") {
-                                            echo "Film Yosh chegarasini Tanlamadinggiz";
+                                        if (empty($FilmDate)) {
+                                            echo "Film Davomiyligini kiritmadinggiz";
                                         } else {
-                                            if ($FilmRating == "Film Rating darajasini tanlang") {
-                                                echo "Film Rating darajasini tanlamadinggiz";
+                                            if ($FilmHeight == "Film Sifati") {
+                                                echo "Film Sifatini kiritmadinggiz";
                                             } else {
-                                                if ($FilmState == "Film Olingan davlatni tanlang") {
-                                                    echo "Film Suratga olingan davlatni tanlamadinggiz";
+                                                if (empty($FilmCaption)) {
+                                                    echo "Film Haqida Malumot bermadinggiz";
                                                 } else {
-                                                    move_uploaded_file($FileTmpName, "../Assets/images/FilmImg/" . $FilmImgName);
-
-                                                    $res = mysqli_query($con, "INSERT INTO `films`(`FilmName`, `FilmUrl`, `FilmImg`, `FilmCaption`, `FilmHeight`, `FilmSize`, `FilmYear`, `FilmJanr`, `FilmState`, `FilmYoung`, `FilmRating`) VALUES('$FilmName','$FilmUrl','$FilmImgName','$FilmCaption','$FilmHeight','$FilmSize','$FilmYear','$FilmJanr','$FilmState','$FilmYoung','$FilmRating');");
-                                                    if (mysqli_error($con)) {
-                                                        echo mysqli_error($con);
+                                                    if ($FilmJanr == "Film Janrini Tanlang") {
+                                                        echo "Film Janrini Tanlamadinggiz";
                                                     } else {
-                                                        echo "ok";
+                                                        if ($FilmYoung == "Film Yosh chagarasini tanlang") {
+                                                            echo "Film Yosh chegarasini Tanlamadinggiz";
+                                                        } else {
+                                                            if ($FilmRating == "Film Rating darajasini tanlang") {
+                                                                echo "Film Rating darajasini tanlamadinggiz";
+                                                            } else {
+                                                                if ($FilmState == "Film Olingan davlatni tanlang") {
+                                                                    echo "Film Suratga olingan davlatni tanlamadinggiz";
+                                                                } else {
+                                                                    $url = $_POST['FilmUrl'];
+                                                                    $res = mysqli_query($con, "SELECT * FROM films WHERE FilmUrl='$url'");
+                                                                    if (mysqli_num_rows($res) != 0) {
+                                                                        echo "Film Avval Yuklangan";
+                                                                    } else {
+                                                                        move_uploaded_file($FileTmpName, "../Assets/images/FilmImg/" . $FilmImgName);
+
+
+                                                                        $res = mysqli_query($con, "INSERT INTO `films`(`FilmName`, `FilmUrl`, `FilmImg`, `FilmCaption`, `FilmHeight`, `FilmSize`, `FilmYear`, `FilmJanr`, `FilmState`, `FilmYoung`, `FilmRating`,`FilmLanguage`,`FilmDate`) VALUES('$FilmName','$FilmUrl','$FilmImgName','$FilmCaption','$FilmHeight','$FilmSize','$FilmYear','$FilmJanr','$FilmState','$FilmYoung','$FilmRating','$Filmlanguage','$FilmDate');");
+                                                                        if (mysqli_error($con)) {
+                                                                            echo mysqli_error($con);
+                                                                        } else {
+                                                                            echo "ok";
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
@@ -185,12 +235,13 @@ class Confirm extends DB
             }
         }
     }
+
     function NewSerial()
     {
         $con = $this->con();
         $SerialUrl = mysqli_real_escape_string($con, $_POST['SerialUrl']);
         $SerialSection = mysqli_real_escape_string($con, $_POST['SerialSection']);
-        
+
         $SerialID = $_POST["SerialID"];
         $SerialSize = $_POST['SerialUrl'];
         if (empty($SerialID)) {
@@ -227,12 +278,16 @@ class Confirm extends DB
                                 echo "Serial oldin Yuklangan";
                             } else {
                                 $Section = $SerialSection;
-
-                                $res = mysqli_query($con, "INSERT INTO `serial`(`FilmUrl`, `FilmSize`, `FilmSection`,`FilmID`) VALUES ('$SerialUrl','$SerialSize','$Section','$SerialID');");
-                                if (mysqli_error($con)) {
-                                    echo mysqli_error($con);
+                                $res = mysqli_query($con, "SELECT * FROM `serial` WHERE FilmID='$SerialID' AND FilmSection='$Section'");
+                                if (mysqli_num_rows($res) != 0) {
+                                    echo "Filmning Bu Qismi Avvalroq Yuklangan";
                                 } else {
-                                    echo "ok";
+                                    $res = mysqli_query($con, "INSERT INTO `serial`(`FilmUrl`, `FilmSize`, `FilmSection`,`FilmID`) VALUES ('$SerialUrl','$SerialSize','$Section','$SerialID');");
+                                    if (mysqli_error($con)) {
+                                        echo mysqli_error($con);
+                                    } else {
+                                        echo "ok";
+                                    }
                                 }
                             }
                         }
@@ -241,16 +296,17 @@ class Confirm extends DB
             }
         }
     }
-    function PlayList(){
+
+    function PlayList()
+    {
         $con = $this->con();
         $UserID = $_POST['UserID'];
         $VideoID = $_POST['VideoID'];
-        $res = mysqli_query($con,"SELECT * FROM playlist WHERE UserID = '$UserID' AND VideoID='$VideoID'");
-        if(mysqli_num_rows($res) == 0){
-            $res = mysqli_query($con,"INSERT INTO playlist(UserID,VideoID) VALUES('$UserID','$VideoID')");
+        $res = mysqli_query($con, "SELECT * FROM playlist WHERE UserID = '$UserID' AND VideoID='$VideoID'");
+        if (mysqli_num_rows($res) == 0) {
+            $res = mysqli_query($con, "INSERT INTO playlist(UserID,VideoID) VALUES('$UserID','$VideoID')");
             echo "ok";
         }
-        
     }
 }
 

@@ -102,33 +102,18 @@
                                         </li>
                                         <!-- Nav Item 1 End -->
                                         <li class="nav-item">
-                                            <a class="nav-link" href=<?= menu(MenuFilms) ?>>Kinolar</a>
+                                            <a class="nav-link active" href=<?= menu(MenuContcts) ?>>Xabar Qoldirish</a>
                                         </li>
-                                        <!-- Nav Item 2 End -->
+                                        <!-- Nav Item 1 End -->
                                         <li class="nav-item">
-                                            <a class="nav-link" href=<?= menu(MenuShows) ?>>Eng Ko'p Ko'rilgan</a>
+                                            <a class="nav-link active" href=<?= menu(MenuAbout) ?>>Biz Haqimizda</a>
                                         </li>
-
-                                        <!-- Nav Item 3 End -->
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link menu-dropdown" data-toggle="dropdown" href="#">Malumot <i class="fa fa-angle-down"></i></a>
-                                            <ul class="dropdown-menu fade-up" role="menu">
-                                                <li>
-                                                    <a class="dropdown-item" href=<?= menu(MenuContcts) ?>>Xabab qoldirish</a>
-                                                </li>
-                                                <!-- Sub Nav Item 1 End -->
-                                                <li>
-                                                    <a class="dropdown-item" href=<?= menu(MenuAbout) ?>>Biz Haqimizda</a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href=<?= menu(MenuHelp) ?>>Yordam</a>
-                                                </li>
-                                                <!-- Sub Nav Item 2 End -->
-
-                                            </ul>
-                                            <!-- Dropdown End -->
+                                        <!-- Nav Item 1 End -->
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href=<?= menu(MenuHelp) ?>>Yordam</a>
                                         </li>
-                                        <!-- Nav Item 4 End -->
+                                        <!-- Nav Item 1 End -->
+
                                     </ul>
                                     <!-- Nav UL End -->
                                 </div>
@@ -197,7 +182,7 @@
                             </li>
                             <!-- Nav Item 4 End -->
                             <?php
-                            if (empty($_SESSION['UserName'])) {
+                            if (empty($_SESSION['ID'])) {
                             ?>
 
 

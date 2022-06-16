@@ -4,7 +4,7 @@ namespace App;
 
 if ($_GET['menu'] == "logout") {
     session_destroy();
-    setcookie("UserName", "", time() - 1, "/");
+    setcookie("ID", "", time() - 1, "/");
     setcookie("Password", "", time() - 1, "/");
     header("location: /");
 }

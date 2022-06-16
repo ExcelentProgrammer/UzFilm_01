@@ -7,11 +7,11 @@ class UserData extends DB
     function __construct()
     {
         $this->session = new Session();
-        if (!empty($_COOKIE['UserName']) and !empty($_COOKIE['Password']) and empty($_SESSION['UserName'])) {
-            $UserName = $_COOKIE['UserName'];
+        if (!empty($_COOKIE['ID']) and !empty($_COOKIE['Password']) and empty($_SESSION['ID'])) {
+            $ID = $_COOKIE['ID'];
             $Password = $_COOKIE['Password'];
             $con = $this->con();
-            $res = mysqli_query($con, "SELECT * FROM users WHERE UserName='$UserName'");
+            $res = mysqli_query($con, "SELECT * FROM users WHERE ID='$ID'");
             if (mysqli_num_rows($res) > 0) {
                 $res = mysqli_fetch_all($res, MYSQLI_ASSOC)[0];
                 $PasswordDataBase = $res['Password'];
