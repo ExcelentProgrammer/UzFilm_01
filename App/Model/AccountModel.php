@@ -1,6 +1,6 @@
 <?php
 
-
+/** account malumolarini olish uchun class*/
 class AccountModel extends DB
 {
 

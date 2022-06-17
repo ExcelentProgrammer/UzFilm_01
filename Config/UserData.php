@@ -1,7 +1,7 @@
 <?php
 
 
-
+/** Foydalanuvchi haqida malumotlarni olish uchun class*/
 class UserData extends DB
 {
     function __construct()

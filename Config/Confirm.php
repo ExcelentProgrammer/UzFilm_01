@@ -7,8 +7,12 @@ $dotenv->load();
 require_once "./Session.php";
 require_once "./Cookie.php";
 
-require_once "./Connect.php";
+require_once "./DB.php";
 
+
+/**
+ * sahifani Yangilamasdan malumotlarni tekshirish uchun class
+*/
 class Confirm extends DB
 {
     function __construct()
@@ -42,19 +46,25 @@ class Confirm extends DB
                 break;
         }
     }
-    function EditAccountData(){
+
+    /**
+     * @author  Azamov Samandar
+     * Account malumotlarini o'zgartirish
+     */
+    function EditAccountData()
+    {
         $con = $this->con();
         $UserName = $_POST['UserName'];
         $LastName = $_POST['LastName'];
         $FirstName = $_POST['FirstName'];
         $ID = $_POST['ID'];
-        $res = mysqli_query($con,"SELECT * FROM users WHERE UserName='$UserName'");
-        $DbUserName = mysqli_fetch_all($res,MYSQLI_ASSOC)[0]['UserName'];
-        if(mysqli_num_rows($res) != 0 and $UserName != $DbUserName)
+        $res = mysqli_query($con, "SELECT * FROM users WHERE UserName='$UserName'");
+        $DbUserName = mysqli_fetch_all($res, MYSQLI_ASSOC)[0]['UserName'];
+        if (mysqli_num_rows($res) != 0 and $UserName != $DbUserName)
             echo "UserName Ooldin ishlatilgan";
-        else{
-            $res = mysqli_query($con,"UPDATE users SET Username='$UserName',LastName='$LastName',FirstName='$FirstName' WHERE ID='$ID'");
-            if($res)
+        else {
+            $res = mysqli_query($con, "UPDATE users SET Username='$UserName',LastName='$LastName',FirstName='$FirstName' WHERE ID='$ID'");
+            if ($res)
                 echo "ok";
             else
                 print_r(mysqli_error($con));
@@ -62,6 +72,10 @@ class Confirm extends DB
 
     }
 
+    /**
+     * @author Azamov Samandar
+     * Yangi Foydalanuvchilarni ro'yhatga olish
+     */
     function Signup()
     {
         $con = $this->con();
@@ -105,6 +119,10 @@ class Confirm extends DB
         }
     }
 
+    /**
+     * @author  Azamov Samandar
+     * Foydalanuvchilar Accountga kirishi || login
+     */
     function Login()
     {
         $con = $this->con();
@@ -134,6 +152,10 @@ class Confirm extends DB
         }
     }
 
+    /**
+     * @author Azamov Samandar
+     * Yangi Film Qo'shish
+     */
     function NewFilm()
     {
         $con = $this->con();
@@ -147,6 +169,9 @@ class Confirm extends DB
         $FilmState = mysqli_real_escape_string($con, $_POST['FilmState']);
         $FilmJanr = mysqli_real_escape_string($con, $_POST['FilmJanr']);
         $FilmRating = mysqli_real_escape_string($con, $_POST['FilmRating']);
+
+        $NewFilmAbout = $_POST['NewFilmAbout'];
+        $FilmType = $_POST['FilmType'];
 
         $FilmDate = mysqli_real_escape_string($con, $_POST['FilmDate']);
         $Filmlanguage = mysqli_real_escape_string($con, $_POST['FilmLanguage']);
@@ -167,56 +192,64 @@ class Confirm extends DB
                 if (!in_array($FileType, $ImgTypes)) {
                     echo "Kechirasiz Rasim Turi jpg, png, jpeg bo'lishi zarur";
                 } else {
-                    if ($Filmlanguage == "Film Tili") {
-                        echo "film Tilini tanlamadinggiz";
-                    } else {
-                        if (empty($FilmYear)) {
-                            echo "Film Chiqarilgan Yilni kiritmadinggiz";
-                        } else {
-                            if (empty($FilmName)) {
-                                echo "Film Nomini kiritmadinggiz";
+                    if ($NewFilmAbout == "Yangi Film Haqida Hammaga Habar Berish")
+                        echo "Yangi Film Haqida Hammaga Xabar Berishni Tasdiqlamadinggiz";
+                    else {
+                        if ($FilmType == "Video Turi")
+                            echo "Video turini tanlamadinggiz";
+                        else {
+                            if ($Filmlanguage == "Film Tili") {
+                                echo "film Tilini tanlamadinggiz";
                             } else {
-                                if (empty($FilmSize)) {
-                                    echo "Film url manzilini kiritmadinggiz";
+                                if (empty($FilmYear)) {
+                                    echo "Film Chiqarilgan Yilni kiritmadinggiz";
                                 } else {
-                                    $FilmSize = GetFileSize($FilmSize);
-                                    if ($FilmSize == "not") {
-                                        echo "Film Topilmadi Url manzilni tekshirib qayta urinib ko'ring";
+                                    if (empty($FilmName)) {
+                                        echo "Film Nomini kiritmadinggiz";
                                     } else {
-                                        if (empty($FilmDate)) {
-                                            echo "Film Davomiyligini kiritmadinggiz";
+                                        if (empty($FilmSize)) {
+                                            echo "Film url manzilini kiritmadinggiz";
                                         } else {
-                                            if ($FilmHeight == "Film Sifati") {
-                                                echo "Film Sifatini kiritmadinggiz";
+                                            $FilmSize = GetFileSize($FilmSize);
+                                            if ($FilmSize == "not") {
+                                                echo "Film Topilmadi Url manzilni tekshirib qayta urinib ko'ring";
                                             } else {
-                                                if (empty($FilmCaption)) {
-                                                    echo "Film Haqida Malumot bermadinggiz";
+                                                if (empty($FilmDate)) {
+                                                    echo "Film Davomiyligini kiritmadinggiz";
                                                 } else {
-                                                    if ($FilmJanr == "Film Janrini Tanlang") {
-                                                        echo "Film Janrini Tanlamadinggiz";
+                                                    if ($FilmHeight == "Film Sifati") {
+                                                        echo "Film Sifatini kiritmadinggiz";
                                                     } else {
-                                                        if ($FilmYoung == "Film Yosh chagarasini tanlang") {
-                                                            echo "Film Yosh chegarasini Tanlamadinggiz";
+                                                        if (empty($FilmCaption)) {
+                                                            echo "Film Haqida Malumot bermadinggiz";
                                                         } else {
-                                                            if ($FilmRating == "Film Rating darajasini tanlang") {
-                                                                echo "Film Rating darajasini tanlamadinggiz";
+                                                            if ($FilmJanr == "Film Janrini Tanlang") {
+                                                                echo "Film Janrini Tanlamadinggiz";
                                                             } else {
-                                                                if ($FilmState == "Film Olingan davlatni tanlang") {
-                                                                    echo "Film Suratga olingan davlatni tanlamadinggiz";
+                                                                if ($FilmYoung == "Film Yosh chagarasini tanlang") {
+                                                                    echo "Film Yosh chegarasini Tanlamadinggiz";
                                                                 } else {
-                                                                    $url = $_POST['FilmUrl'];
-                                                                    $res = mysqli_query($con, "SELECT * FROM films WHERE FilmUrl='$url'");
-                                                                    if (mysqli_num_rows($res) != 0) {
-                                                                        echo "Film Avval Yuklangan";
+                                                                    if ($FilmRating == "Film Rating darajasini tanlang") {
+                                                                        echo "Film Rating darajasini tanlamadinggiz";
                                                                     } else {
-                                                                        move_uploaded_file($FileTmpName, "../Assets/images/FilmImg/" . $FilmImgName);
-
-
-                                                                        $res = mysqli_query($con, "INSERT INTO `films`(`FilmName`, `FilmUrl`, `FilmImg`, `FilmCaption`, `FilmHeight`, `FilmSize`, `FilmYear`, `FilmJanr`, `FilmState`, `FilmYoung`, `FilmRating`,`FilmLanguage`,`FilmDate`) VALUES('$FilmName','$FilmUrl','$FilmImgName','$FilmCaption','$FilmHeight','$FilmSize','$FilmYear','$FilmJanr','$FilmState','$FilmYoung','$FilmRating','$Filmlanguage','$FilmDate');");
-                                                                        if (mysqli_error($con)) {
-                                                                            echo mysqli_error($con);
+                                                                        if ($FilmState == "Film Olingan davlatni tanlang") {
+                                                                            echo "Film Suratga olingan davlatni tanlamadinggiz";
                                                                         } else {
-                                                                            echo "ok";
+                                                                            $url = $_POST['FilmUrl'];
+                                                                            $res = mysqli_query($con, "SELECT * FROM films WHERE FilmUrl='$url'");
+                                                                            if (mysqli_num_rows($res) != 0) {
+                                                                                echo "Film Avval Yuklangan";
+                                                                            } else {
+                                                                                move_uploaded_file($FileTmpName, "../Assets/images/FilmImg/" . $FilmImgName);
+
+
+                                                                                $res = mysqli_query($con, "INSERT INTO `films`(`FilmName`, `FilmUrl`, `FilmImg`, `FilmCaption`, `FilmHeight`, `FilmSize`, `FilmYear`, `FilmJanr`, `FilmState`, `FilmYoung`, `FilmRating`,`FilmLanguage`,`FilmDate`,`FilmType`) VALUES('$FilmName','$FilmUrl','$FilmImgName','$FilmCaption','$FilmHeight','$FilmSize','$FilmYear','$FilmJanr','$FilmState','$FilmYoung','$FilmRating','$Filmlanguage','$FilmDate','$FilmType');");
+                                                                                if (mysqli_error($con)) {
+                                                                                    echo mysqli_error($con);
+                                                                                } else {
+                                                                                    echo "ok";
+                                                                                }
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
@@ -236,6 +269,9 @@ class Confirm extends DB
         }
     }
 
+/**
+ * yangi serial qo'shish
+ */
     function NewSerial()
     {
         $con = $this->con();
@@ -297,6 +333,9 @@ class Confirm extends DB
         }
     }
 
+/**
+ *yangi serial qo'shish
+ */
     function PlayList()
     {
         $con = $this->con();

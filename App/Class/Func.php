@@ -1,6 +1,13 @@
 <?php
 
 
+/**
+ * @param $url
+ * @param bool $formatSize
+ * @param bool $useHead
+ * @return int|mixed|string
+ * Online File o'lchamini aniqlash uchun function
+ */
 function GetFileSize($url, $formatSize = true, $useHead = true)
 {
     if (false !== $useHead) {
@@ -34,6 +41,11 @@ function GetFileSize($url, $formatSize = true, $useHead = true)
     return $size; // return formatted size
 }
 
+/**
+ * @param int $length
+ * @return string
+ * text ni random qilish uchun funcsion
+ */
 function RandString($length = 50) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);

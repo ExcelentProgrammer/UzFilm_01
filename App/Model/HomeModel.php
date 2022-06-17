@@ -74,6 +74,11 @@ class HomeModel extends DB
         }
         return mysqli_fetch_all($res, MYSQLI_ASSOC);
     }
+
+    /**
+     * @return array
+     * o'zbekcha filmlarni olish
+     */
     function GetUzbekFilm()
     {
         $res = mysqli_query($this->con(), "SELECT * FROM films WHERE FilmLanguage='O\'zbek Tilida' ORDER BY ID DESC");
@@ -82,6 +87,10 @@ class HomeModel extends DB
         }
         return mysqli_fetch_all($res, MYSQLI_ASSOC);
     }
+    /**
+     * @return array
+     * qanday janrda ekanligi haqida malumot yo'q bo'lgan filmlar
+     */
     function NotJanr()
     {
         $res = mysqli_query($this->con(), "SELECT * FROM films WHERE FilmJanr='Nomalum' ORDER BY ID DESC");
@@ -90,6 +99,12 @@ class HomeModel extends DB
         }
         return mysqli_fetch_all($res, MYSQLI_ASSOC);
     }
+
+
+    /**
+     * @return array
+     * eng ko'p ko'rilgan filmlarni olish
+     */
     function WatchFilm()
     {
         $res = mysqli_query($this->con(), "SELECT * FROM films ORDER BY FilmWatch DESC");
@@ -114,6 +129,13 @@ class HomeModel extends DB
         mysqli_query($this->con(), "UPDATE films SET FilmWatch='$Watch' WHERE ID='$id';");
         return $res;
     }
+
+
+    /**
+     * @param $id
+     * @return array
+     * Seriallarni olish
+     */
     function GetSerial($id)
     {
         $res = mysqli_query($this->con(), "SELECT * FROM serial WHERE FilmID='$id' ORDER BY FilmSection");
@@ -122,6 +144,12 @@ class HomeModel extends DB
         }
         return mysqli_fetch_all($res, MYSQLI_ASSOC);
     }
+
+    /**
+     * @param $VideoID
+     * @return bool
+     * Film play listga qo'shilganligini aniqlash uchun
+     */
     function GetFilmMyListInfo($VideoID)
     {
         $con = $this->con();
@@ -132,6 +160,12 @@ class HomeModel extends DB
         }
         return false;
     }
+
+
+    /**
+     * @return array
+     * play listdagi filmlarni olish uchun
+     */
     function GetPlayList()
     {
         $con = $this->con();

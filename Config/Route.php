@@ -10,9 +10,12 @@ function AdminMenu($x)
     return "?menu=admin" . "&page=" . $x;
 }
 
-
+/** router tizimini boshqarish uchun class*/
 class Rout extends App\Route
 {
+    /**
+     * router tizimini boshqarish uchun function
+     */
     public function route()
     {
         $UserRole = !empty($_SESSION['UserRole']) ? $_SESSION['UserRole'] : "User";

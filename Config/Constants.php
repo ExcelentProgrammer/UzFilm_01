@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Foydalanuvchi
+ * menu o'zgartirish uchun constantalar
  */
 const MenuHome = "home";
 const MenuWatch = "watch";
@@ -19,7 +19,7 @@ const RoleUser = "User";
 
 
 /**
- * Admin
+ * Admin Menularni o'zgartirish uchun constantalar
  */
 const HomeAdmin = "home";
 const AdminMenu = "admin";
