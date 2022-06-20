@@ -49,7 +49,9 @@
             background-color: green !important;
             width: 100%;
         }
-
+        .img-h{
+            height:17rem !important;
+        }
         .ok-btn {
             width: 100%;
         }

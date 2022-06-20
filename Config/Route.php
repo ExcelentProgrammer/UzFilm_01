@@ -16,11 +16,9 @@ class Rout extends App\Route
         $this->get(["menu" => MenuWatch, "video_id","type"=>"video"], ['VideoController', "VideoWatch"]);
         $this->get(["menu" => MenuWatch, "video_id"], ['HomeController', "watch"]);
         $this->get(MenuHome, ['HomeController', "home"]);
-        $this->get(MenuFilms, ['HomeController', "films"]);
         $this->get(MenuHelp, ['HomeController', "help"]);
-        $this->get(MenuShows, ['HomeController', "shows"]);
         $this->get(MenuContcts, ['HomeController', "contacts"]);
-        $this->get(MenuInfo, ['HomeController', "FilmInfo"]);
+        $this->get(MenuFilmInfo, ['HomeController', "FilmInfo"]);
         $this->get(MenuAccount, ['HomeController', "account"]);
         $this->get(MenuAbout, ['HomeController', "about"]);
         $this->get(MenuPlayList, ['HomeController', "MyPlayList"]);

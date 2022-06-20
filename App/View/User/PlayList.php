@@ -38,7 +38,7 @@
                             <!-- Video Thumb End -->
                             <div class="video-content">
                                 <h2 class="video-title"><a
-                                            href=<?= menu(MenuWatch) . "&video_id=" . $Film['ID'] ?>><?= implode(" ", array_slice(explode(" ", $Film["FilmName"]), 0, 10)) ?></a>
+                                            href=<?= menu(MenuWatch) . "&video_id=" . $Film['ID'] ?>><?= __Short($Film['FilmName'],10) ?></a>
                                 </h2>
                                 <div class="video-info d-flex align-items-center">
                                     <span class="video-year"><?= $Film['FilmYear'] ?></span>
@@ -102,7 +102,7 @@
                             <!-- Video Thumb End -->
                             <div class="video-content">
                                 <h2 class="video-title"><a
-                                            href=<?= MultfilmToWatch($Film['ID']) ?>><?= implode(" ", array_slice(explode(" ", $Film["FilmName"]), 0, 10)) ?></a>
+                                            href=<?= MultfilmToWatch($Film['ID']) ?>><?= __Short($Film['FilmName'],10) ?></a>
                                 </h2>
                                 <div class="video-info d-flex align-items-center">
                                     <span class="video-year"><?= $Film['FilmYear'] ?></span>
@@ -165,7 +165,7 @@
                             <!-- Video Thumb End -->
                             <div class="video-content">
                                 <h2 class="video-title"><a
-                                            href=<?= menu(MenuWatch) . "&video_id=" . $Film['ID'] ?>><?= implode(" ", array_slice(explode(" ", $Film["FilmName"]), 0, 10)) ?></a>
+                                            href=<?= menu(MenuWatch) . "&video_id=" . $Film['ID'] ?>><?= __Short($Film['FilmName'],10) ?></a>
                                 </h2>
                                 <div class="video-info d-flex align-items-center">
                                     <span class="video-year"><?= $Film['FilmYear'] ?></span>

@@ -5,8 +5,6 @@
  */
 const MenuHome = "home";
 const MenuWatch = "watch";
-const MenuFilms = "films";
-const MenuShows = "shows";
 const MenuAbout = "about";
 const MenuLogin = "login";
 const MenuLogout = "logout";
@@ -16,7 +14,7 @@ const MenuAccount = "account";
 const MenuContcts = "contacts";
 const MenuPlayList = "playlist";
 const RoleUser = "User";
-const FilmInfo = "FilmInfo";
+const MenuFilmInfo = "MenuFilmInfo";
 
 
 /**

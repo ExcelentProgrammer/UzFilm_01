@@ -125,6 +125,16 @@ function __PlayList($id, $p = "", $type = "")
 }
 
 function __Info($id){
-    return '<a href="'.menu(MenuInfo)."&video_id=".$id.'"><i class="fas fa-info"></i></a>';
+    return '<a href="'.menu(MenuFilmInfo)."&video_id=".$id.'"><i class="fas fa-info"></i></a>';
 
+}
+
+/**
+ * @param $text
+ * @param int $size
+ * @return string
+ * matinni qisqartirish uchun || kino nomidan boshidagi X ta so'zni olish uchun
+ */
+function __Short($text, $size=10){
+    return implode(" ", array_slice(explode(" ",$text), 0, $size));
 }

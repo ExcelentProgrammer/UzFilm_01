@@ -307,7 +307,7 @@ if (!empty($Serials)) {
                     <div class="item">
                         <div class="video-block">
                             <div class="video-thumb position-relative thumb-overlay">
-                                <a href="#"><img style="height:17rem;" alt="" class="img-fluid"
+                                <a href="#"><img alt="" class="img-fluid img-h"
                                                  src=<?= "Assets/images/FilmImg/" . $TopFilm['FilmImg'] ?>></a>
                                 <div class="box-content">
                                     <ul class="icon">
@@ -328,7 +328,7 @@ if (!empty($Serials)) {
                             <!-- Video Thumb End -->
                             <div class="video-content">
                                 <h2 class="video-title"><a
-                                            href=<?php if ($_GET['type'] == "multfilm") MultfilmToWatch($TopFilm['ID']); elseif ($_GET['type'] == "video") VideoToWatch($TopFilm['ID']); else FilmToWatch($TopFilm['ID']) ?>><?= implode(" ", array_slice(explode(" ", $TopFilm["FilmName"]), 0, 10)) ?></a>
+                                            href=<?php if ($_GET['type'] == "multfilm") MultfilmToWatch($TopFilm['ID']); elseif ($_GET['type'] == "video") VideoToWatch($TopFilm['ID']); else FilmToWatch($TopFilm['ID']) ?>><?= 1 ?></a>
                                 </h2>
                                 <div class="video-info d-flex align-items-center">
                                     <span class="video-year"><?= $TopFilm['FilmYear'] ?></span> <span

@@ -1,11 +1,16 @@
-
+<?php
+/**
+ * @var array $FilmAbout
+ * @var array $NewFilms
+ * */
+?>
     <div class="banner-single banner-wrap banner-bg movie-bg">
         <div class="container-fluid">
             <div class="banner-content">
                 <div class="transparent-block">
                     <div class="banner-caption">
                         <div class="position-relative mb-4">
-                            <a href="watch-movie.html" class="d-flex align-items-center">
+                            <a href=<?= FilmToWatch($_GET['video_id']) ?> class="d-flex align-items-center">
                                 <div class="play-icon">
                                     <div class="circle pulse"></div>
                                     <div class="circle">
@@ -14,7 +19,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <h2 class="banner-name text-white font-weight-700">Play The Dark Knight Rises</h2>
+                                <h2 class="banner-name text-white font-weight-700">Filmni online ko'rish</h2>
                             </a>
                         </div>
                     </div>
@@ -37,7 +42,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="play-thumb mb-4">
-                                    <img class="img-fluid" src="images/play-page/01.jpg" alt="">
+                                    <img class="img-fluid img-h" src=<?= "Assets/images/FilmImg/".$FilmAbout['FilmImg'] ?> alt="">
                                     <div class="top-badge">
                                         <div class="video-badge">
                                             <img class="img-fluid" src="images/top-movies.png" alt="">
@@ -61,7 +66,7 @@
                     <div class="col-md-9">
                         <div class="play-details-content">
                             <div class="title-block d-flex align-items-center justify-content-between">
-                                <h2 class="play-title">The Dark Knight Rises</h2>
+                                <h2 class="play-title"><?= __Short($FilmAbout['FilmName'],10) ?></h2>
                             </div>
                             <!-- Title Block -->
                             <div class="details-info mb-4">
@@ -73,7 +78,7 @@
                             </div>
                             <!-- Details Info -->
                             <div class="details-desc">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                <p><?= $FilmAbout['FilmCaption'] ?></p>
                             </div>
                             <!-- Details Desc -->
                             <div class="movie-persons mb-4">
@@ -195,7 +200,7 @@
                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                         <div class="video-block">
                             <div class="video-thumb position-relative thumb-overlay">
-                                <a href="#"><img class="img-fluid" src="images/popular/01.jpg" alt=""></a>
+                                <a href="#"><img class="img-fluid" src="" alt=""></a>
                                 <div class="box-content">
                                     <ul class="icon">
                                         <li><a href="watch-movie.html"><i class="fas fa-play"></i></a></li>

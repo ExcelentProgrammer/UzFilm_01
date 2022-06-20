@@ -24,8 +24,7 @@ require_once ROOT_PATH . "/Config/DB.php"; //malumotlar bazasiga ulanish uchun c
 require_once ROOT_PATH."/Config/UserData.php"; //Sayitga kirgan Foryalanuvchi malumotlarini olish uchun class Username || FirstName || LastName || Role || ID
 
 require_once ROOT_PATH."/App/Class/Func.php"; //Yordamchi Funcsiyalar
-__Info(40);
-die();
+
 require_once ROOT_PATH."Config/Route.php"; //Route tizimini boshqarish uchun class
 
 

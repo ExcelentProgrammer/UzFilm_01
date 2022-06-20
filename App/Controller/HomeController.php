@@ -55,11 +55,7 @@ class HomeController extends HomeModel
      * @return void
      * barcha filmlar
      */
-    public function films()
-    {
-        $TopFilms = $this->TopFilm();
-        require_once ROOT_PATH . "/App/View/User/Films.php";
-    }
+
 
     /**
      * about
@@ -96,10 +92,7 @@ class HomeController extends HomeModel
      * @return void
      * eng ko'p ko'rilgan Filmlar
      */
-    public function shows()
-    {
-        require_once ROOT_PATH . "/App/View/User/Shows.php";
-    }
+
 
     /**
      * help
@@ -133,9 +126,11 @@ class HomeController extends HomeModel
     {
         echo "<script>location.href='" . menu(MenuHome) . "'</script>";
     }
-    public function FilmInfo(){
+
+    public function FilmInfo()
+    {
         $NewFilms = $this->TopFilm();
-        $FilmAbout = $this->FilmAbout($_GET['video_id']);        
+        $FilmAbout = $this->FilmAbout($_GET['video_id']);
         require_once ROOT_PATH."/App/View/User/Info.php";
     }
 }

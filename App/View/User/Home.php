@@ -39,13 +39,13 @@
                         <div class="row align-items-center h-100">
                             <div class="col-xl-6 col-lg-12 col-md-12">
                                 <h3 data-animation-in="fadeInUp"
-                                    data-delay-in="1"><?= implode(" ", array_slice(explode(" ", $TopFilm["FilmName"]), 0, 10)) ?></h3>
+                                    data-delay-in="1"><?= __Short($TopFilm['FilmName'],10) ?></h3>
                                 <div class="slide-info" data-animation-in="fadeInUp" data-delay-in="1">
                                     <span><?= $TopFilm['FilmYear'] ?></span> <span
                                             class="radius"><?= $TopFilm['FilmYoung'] . "+" ?></span><span><?= $TopFilm['FilmJanr'] ?></span>
                                 </div>
                                 <p data-animation-in="fadeInUp"
-                                   data-delay-in="1"><?= implode(" ", array_slice(explode(" ", $TopFilm["FilmCaption"]), 0, 10)) ?></p>
+                                   data-delay-in="1"><?= __Short($TopFilm['FilmCaption'],10) ?></p>
                                 <div class="slider-buttons d-flex align-items-center" data-animation-in="fadeInUp"
                                      data-delay-in="1">
                                     <a class="btn hvr-sweep-to-right"
@@ -104,7 +104,7 @@
                                     </div>
                                     <div class="video-content">
                                         <h2 class="video-title"><a
-                                                    href=<?= FilmToWatch($AllFilm['ID']) ?>><?= implode(" ", array_slice(explode(" ", $AllFilm["FilmName"]), 0, 10)) ?></a>
+                                                    href=<?= FilmToWatch($AllFilm['ID']) ?>><?= __Short($AllFilm['FilmName'],10) ?></a>
                                         </h2>
                                         <div class="video-info d-flex align-items-center">
                                             <span class="video-year"><?= $AllFilm['FilmYear'] ?></span> <span
@@ -172,7 +172,7 @@
                                             <!-- Video Thumb End -->
                                             <div class="video-content">
                                                 <h2 class="video-title"><a
-                                                            href=<?= FilmToWatch($FantasticFilm["ID"]) ?>><?= implode(" ", array_slice(explode(" ", $FantasticFilm["FilmName"]), 0, 10)) ?></a>
+                                                            href=<?= FilmToWatch($FantasticFilm["ID"]) ?>><?= __Short($FantasticFilm['FilmName'],10) ?></a>
                                                 </h2>
                                                 <div class="video-info d-flex align-items-center">
                                                     <span class="video-year"><?= $FantasticFilm['FilmYear'] ?></span>
@@ -220,7 +220,7 @@
                                             <!-- Video Thumb End -->
                                             <div class="video-content">
                                                 <h2 class="video-title"><a
-                                                            href=<?= FilmToWatch($ScaryFilm['ID']) ?>><?= implode(" ", array_slice(explode(" ", $ScaryFilm["FilmName"]), 0, 10)) ?></a>
+                                                            href=<?= FilmToWatch($ScaryFilm['ID']) ?>><?= __Short($ScaryFilm['FilmName'],10) ?></a>
                                                 </h2>
                                                 <div class="video-info d-flex align-items-center">
                                                     <span class="video-year"><?= $ScaryFilm['FilmYear'] ?></span> <span
@@ -268,7 +268,7 @@
                                             <!-- Video Thumb End -->
                                             <div class="video-content">
                                                 <h2 class="video-title"><a
-                                                            href=<?= FilmToWatch($FunnyFilm['ID']) ?>><?= implode(" ", array_slice(explode(" ", $FunnyFilm["FilmName"]), 0, 10)) ?></a>
+                                                            href=<?= FilmToWatch($FunnyFilm['ID']) ?>><?= __Short($FunnyFilm['FilmName'],10) ?></a>
                                                 </h2>
                                                 <div class="video-info d-flex align-items-center">
                                                     <span class="video-year"><?= $FunnyFilm['FilmYear'] ?></span> <span
@@ -327,9 +327,9 @@
                                     </div>
                                     <div class="content">
                                         <p class="title" data-swiper-parallax="-30%" data-swiper-parallax-scale=".7">
-                                        <p style="font-size: 20px;"><?= implode(" ", array_slice(explode(" ", $TopFilm['FilmName']), 0, 10)) ?></p>
+                                        <p style="font-size: 20px;"><?= __Short($TopFilm['FilmName'],10) ?></p>
                                         </p><span class="caption mb-4"
-                                                  data-swiper-parallax="-20%"><?= implode(" ", array_slice(explode(" ", $TopFilm['FilmCaption']), 0, 20)) ?></span>
+                                                  data-swiper-parallax="-20%"><?= __Short($TopFilm['FilmCaption'],20) ?></span>
                                         <div class="slider-buttons d-flex align-items-center"
                                              data-swiper-parallax="-30%" data-swiper-parallax-scale=".7">
                                             <a class="btn hvr-sweep-to-right"
@@ -395,7 +395,7 @@
                                     <!-- Video Thumb End -->
                                     <div class="video-content">
                                         <h2 class="video-title"><a
-                                                    href=<?= FilmToWatch($WatchFilm['ID']) ?>><?= implode(" ", array_slice(explode(" ", $WatchFilm['FilmName']), 0, 10)) ?></a>
+                                                    href=<?= FilmToWatch($WatchFilm['ID']) ?>><?= __Short($WatchFilm['FilmName'],10) ?></a>
                                         </h2>
                                         <div class="video-info d-flex align-items-center">
                                             <span class="video-year"><?= $WatchFilm['FilmYear'] ?></span> <span
@@ -473,7 +473,7 @@
                                             <!-- Video Thumb End -->
                                             <div class="video-content">
                                                 <h2 class="video-title"><a
-                                                            href=<?= FilmToWatch($UzbekFilm['ID']) ?>><?= implode(" ", array_slice(explode(" ", $UzbekFilm["FilmName"]), 0, 10)) ?></a>
+                                                            href=<?= FilmToWatch($UzbekFilm['ID']) ?>><?= __Short($UzbekFilm['FilmName'],10) ?></a>
                                                 </h2>
                                                 <div class="video-info d-flex align-items-center">
                                                     <span class="video-year"><?= $UzbekFilm['FilmYear'] ?></span> <span
@@ -884,7 +884,7 @@
                                         <!-- Video Thumb End -->
                                         <div class="video-content">
                                             <h2 class="video-title"><a
-                                                        href=<?= MultfilmToWatch($Multfilm['ID']) ?>><?= implode(" ", array_slice(explode(" ", $Multfilm["FilmName"]), 0, 10)) ?></a>
+                                                        href=<?= MultfilmToWatch($Multfilm['ID']) ?>><?= __Short($Multfilm['FilmName'],10) ?></a>
                                             </h2>
                                             <div class="video-info d-flex align-items-center">
                                                 <span class="video-year"><?= $Multfilm['FilmYear'] ?></span> <span
@@ -1377,7 +1377,7 @@
                                         <!-- Video Thumb End -->
                                         <div class="video-content">
                                             <h2 class="video-title"><a
-                                                        href=<?= VideoToWatch($Video['ID']) ?>><?= implode(" ", array_slice(explode(" ", $Video["FilmName"]), 0, 10)) ?></a>
+                                                        href=<?= VideoToWatch($Video['ID']) ?>><?= __Short($Video['FilmName'],10) ?></a>
                                             </h2>
                                             <div class="video-info d-flex align-items-center">
                                                 <span class="video-year"><?= $Video['FilmYear'] ?></span> <span

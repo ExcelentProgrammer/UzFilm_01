@@ -12,6 +12,7 @@ class Route
 {
     function __construct()
     {
+
         $this->routeInfo = false;
         if (empty($_GET)) {
             echo "<script>location.href='/?menu=home'</script>";
@@ -20,6 +21,7 @@ class Route
 
     public function get($page, array $code)
     {
+
 
         $menu = !empty($_GET['menu']) ? $_GET['menu'] : "";
         if (is_array($page)) {
@@ -51,6 +53,7 @@ class Route
                 $this->routeInfo = true;
             }
         }
+
     }
     public function default($code)
     {
@@ -58,5 +61,6 @@ class Route
             require_once ROOT_PATH . "App/Controller/" . $code[0] . ".php";
             ((new $code[0]())->{$code[1]}());
         }
+
     }
 }
