@@ -1,7 +1,6 @@
 <?php
 /** malumotlar bazasiga ulanish uchun class*/
 class DB{
-    public $con;
 
     /**
      * @return false|mysqli|null
@@ -9,10 +8,9 @@ class DB{
      */
     public function con()
     {
-        $con = mysqli_connect($_ENV['DB_HOST'],$_ENV["DB_USERNAME"],$_ENV["DB_PASSWORD"],$_ENV["DB_NAME"]);
-        $this->con=$con;
+        $this->con = mysqli_connect($_ENV['DB_HOST'],$_ENV["DB_USERNAME"],$_ENV["DB_PASSWORD"],$_ENV["DB_NAME"]);
 
-        return $con;
+        return $this->con;
         
     }
   

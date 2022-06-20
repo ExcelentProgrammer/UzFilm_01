@@ -12,7 +12,7 @@ require_once "./DB.php";
 
 /**
  * sahifani Yangilamasdan malumotlarni tekshirish uchun class
-*/
+ */
 class Confirm extends DB
 {
     function __construct()
@@ -241,9 +241,13 @@ class Confirm extends DB
                                                                                 echo "Film Avval Yuklangan";
                                                                             } else {
                                                                                 move_uploaded_file($FileTmpName, "../Assets/images/FilmImg/" . $FilmImgName);
+                                                                                if ($FilmType == "Film")
+                                                                                    $res = mysqli_query($con, "INSERT INTO `films`(`FilmName`, `FilmUrl`, `FilmImg`, `FilmCaption`, `FilmHeight`, `FilmSize`, `FilmYear`, `FilmJanr`, `FilmState`, `FilmYoung`, `FilmRating`,`FilmLanguage`,`FilmDate`) VALUES('$FilmName','$FilmUrl','$FilmImgName','$FilmCaption','$FilmHeight','$FilmSize','$FilmYear','$FilmJanr','$FilmState','$FilmYoung','$FilmRating','$Filmlanguage','$FilmDate');");
+                                                                                elseif ($FilmType == "Video")
+                                                                                    $res = mysqli_query($con, "INSERT INTO `video`(`FilmName`, `FilmUrl`, `FilmImg`, `FilmCaption`, `FilmHeight`, `FilmSize`, `FilmYear`, `FilmJanr`, `FilmState`, `FilmYoung`, `FilmRating`,`FilmLanguage`,`FilmDate`) VALUES('$FilmName','$FilmUrl','$FilmImgName','$FilmCaption','$FilmHeight','$FilmSize','$FilmYear','$FilmJanr','$FilmState','$FilmYoung','$FilmRating','$Filmlanguage','$FilmDate');");
+                                                                                elseif ($FilmType == "MultFilm")
+                                                                                    $res = mysqli_query($con, "INSERT INTO `multfilm`(`FilmName`, `FilmUrl`, `FilmImg`, `FilmCaption`, `FilmHeight`, `FilmSize`, `FilmYear`, `FilmJanr`, `FilmState`, `FilmYoung`, `FilmRating`,`FilmLanguage`,`FilmDate`) VALUES('$FilmName','$FilmUrl','$FilmImgName','$FilmCaption','$FilmHeight','$FilmSize','$FilmYear','$FilmJanr','$FilmState','$FilmYoung','$FilmRating','$Filmlanguage','$FilmDate');");
 
-
-                                                                                $res = mysqli_query($con, "INSERT INTO `films`(`FilmName`, `FilmUrl`, `FilmImg`, `FilmCaption`, `FilmHeight`, `FilmSize`, `FilmYear`, `FilmJanr`, `FilmState`, `FilmYoung`, `FilmRating`,`FilmLanguage`,`FilmDate`,`FilmType`) VALUES('$FilmName','$FilmUrl','$FilmImgName','$FilmCaption','$FilmHeight','$FilmSize','$FilmYear','$FilmJanr','$FilmState','$FilmYoung','$FilmRating','$Filmlanguage','$FilmDate','$FilmType');");
                                                                                 if (mysqli_error($con)) {
                                                                                     echo mysqli_error($con);
                                                                                 } else {
@@ -269,9 +273,9 @@ class Confirm extends DB
         }
     }
 
-/**
- * yangi serial qo'shish
- */
+    /**
+     * yangi serial qo'shish
+     */
     function NewSerial()
     {
         $con = $this->con();
@@ -333,17 +337,18 @@ class Confirm extends DB
         }
     }
 
-/**
- *yangi serial qo'shish
- */
+    /**
+     *yangi serial qo'shish
+     */
     function PlayList()
     {
         $con = $this->con();
         $UserID = $_POST['UserID'];
         $VideoID = $_POST['VideoID'];
-        $res = mysqli_query($con, "SELECT * FROM playlist WHERE UserID = '$UserID' AND VideoID='$VideoID'");
+        $Type = $_POST['Type'];
+        $res = mysqli_query($con, "SELECT * FROM playlist WHERE UserID = '$UserID' AND VideoID='$VideoID' AND Type='$Type'");
         if (mysqli_num_rows($res) == 0) {
-            $res = mysqli_query($con, "INSERT INTO playlist(UserID,VideoID) VALUES('$UserID','$VideoID')");
+            $res = mysqli_query($con, "INSERT INTO playlist(UserID,VideoID,Type) VALUES('$UserID','$VideoID','$Type')");
             echo "ok";
         }
     }

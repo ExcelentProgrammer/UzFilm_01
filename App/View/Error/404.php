@@ -16,7 +16,7 @@
                         <p>
                             Try using the button below to go to main page of the site
                         </p>
-                        <a href="index-2.html" class="btn hvr-sweep-to-right">Back to Home Page</a>
+                        <a href=<?= menu(MenuHome) ?> class="btn hvr-sweep-to-right">Back to Home Page</a>
                     </div>
                     <!-- Error Body end -->
                 </div>

@@ -313,7 +313,7 @@
                 ErrorContainer.style.color = "red";
             } else {
                 document.querySelector("input[name='FilmUrl']").value = "";
-                document.querySelector("input[name='FilmImg']").files[0] = "";
+                document.querySelector("input[name='FilmImg']").value = "";
                 document.querySelector("#FilmHeight").value = "Film Sifati";
                 document.querySelector("input[name='FilmName']").value = "";
                 document.querySelector("textarea[name='FilmCaption']").value = '';
@@ -323,6 +323,10 @@
                 document.querySelector("#FilmRating").value = "Film Rating darajasini tanlang";
                 document.querySelector("input[name='FilmDate']").value = "";
                 document.querySelector("#FilmLanguage").value = "Film Tili";
+                document.querySelector("#NewFilmAbout").value = "Yangi Film Haqida Hammaga Habar Berish";
+                document.querySelector("#FilmType").value = "Video Turi";
+                document.querySelector("input[name='FilmYear']").value="";
+
 
                 ErrorContainer.style.display = "inline-block";
                 ErrorContainer.style.background = "green";

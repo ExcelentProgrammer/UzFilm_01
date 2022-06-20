@@ -14,7 +14,7 @@ class Route
     {
         $this->routeInfo = false;
         if (empty($_GET)) {
-            echo "<script>location.href='?menu=home'</script>";
+            echo "<script>location.href='/?menu=home'</script>";
         }
     }
 

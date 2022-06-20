@@ -12,10 +12,7 @@ require_once ROOT_PATH."/Config/Cookie.php"; //cookie larni boshqarish uchun cla
 require_once ROOT_PATH."/Config/Session.php"; //Sessiyalarni Boshqarish uchun class
 
 
-require_once ROOT_PATH."/Config/Constants.php"; //constantalarni asosiy fayilga chaqirib olish
-
-
-require_once ROOT_PATH."/App/Class/Func.php"; //Yordamchi Funcsiyalar
+require_once ROOT_PATH."/Config/Constants.php"; //constantalar Sayt o'zgarmas sozlamalar
 
 
 require_once ROOT_PATH."/Config/Config.php"; //sayt Sozlamalari domen || Video player || ...
@@ -26,7 +23,9 @@ require_once ROOT_PATH . "/Config/DB.php"; //malumotlar bazasiga ulanish uchun c
 
 require_once ROOT_PATH."/Config/UserData.php"; //Sayitga kirgan Foryalanuvchi malumotlarini olish uchun class Username || FirstName || LastName || Role || ID
 
-
+require_once ROOT_PATH."/App/Class/Func.php"; //Yordamchi Funcsiyalar
+__Info(40);
+die();
 require_once ROOT_PATH."Config/Route.php"; //Route tizimini boshqarish uchun class
 
 

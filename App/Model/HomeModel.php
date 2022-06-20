@@ -123,10 +123,13 @@ class HomeModel extends DB
     function FilmAbout($id)
     {
         $res = mysqli_query($this->con(), "SELECT * FROM films WHERE ID='$id'");
+        $row = $res;
         $res = mysqli_fetch_all($res, MYSQLI_ASSOC)[0];
         $Watch = $res['FilmWatch'];
         $Watch++;
         mysqli_query($this->con(), "UPDATE films SET FilmWatch='$Watch' WHERE ID='$id';");
+        if(mysqli_num_rows($row) == 0)
+            echo "<script>location.href='".menu(Menu404)."'</script>";
         return $res;
     }
 
@@ -170,18 +173,49 @@ class HomeModel extends DB
     {
         $con = $this->con();
         $UserID = $_SESSION['ID'];
-        $res = mysqli_query($con, "SELECT * FROM playlist WHERE UserID='$UserID'");
+        $Films = [];
+        $Multfilm = [];
+        $video = [];
+/**
+ * Foydalanuvchi saqlab qo'ygan Filmlarni malumotlar bazasidan olish
+ * */
+        $res = mysqli_query($con, "SELECT * FROM playlist WHERE UserID='$UserID' AND Type='Film'");
         if (mysqli_num_rows($res) != 0) {
             $VideoIDs = mysqli_fetch_all($res, MYSQLI_ASSOC);
-            $Films = [];
             foreach ($VideoIDs as $VideoID) {
                 $ID = $VideoID['VideoID'];
                 $res = mysqli_query($con, "SELECT * FROM films WHERE ID='$ID'");
                 $res =  mysqli_fetch_all($res, MYSQLI_ASSOC)[0];
                 $Films[] = $res;
             }
-            return $Films;
         }
-        return [];
+        /**
+         * Foydalanuvchi saqlab qo'ygan Multfilmlarni malumotlar bazasidan olish
+         * */
+        $res = mysqli_query($con, "SELECT * FROM playlist WHERE UserID='$UserID' AND Type='Multfilm'");
+        if (mysqli_num_rows($res) != 0) {
+            $VideoIDs = mysqli_fetch_all($res, MYSQLI_ASSOC);
+            foreach ($VideoIDs as $VideoID) {
+                $ID = $VideoID['VideoID'];
+                $res = mysqli_query($con, "SELECT * FROM multfilm WHERE ID='$ID'");
+                $res =  mysqli_fetch_all($res, MYSQLI_ASSOC)[0];
+                $Multfilm[] = $res;
+            }
+        }
+        /**
+         * Foydalanuvchi saqlab qo'ygan Video || konsertlarni malumotlar bazasidan olish
+         * */
+        $res = mysqli_query($con, "SELECT * FROM playlist WHERE UserID='$UserID' AND Type='Video'");
+        if (mysqli_num_rows($res) != 0) {
+            $VideoIDs = mysqli_fetch_all($res, MYSQLI_ASSOC);
+            foreach ($VideoIDs as $VideoID) {
+                $ID = $VideoID['VideoID'];
+                $res = mysqli_query($con, "SELECT * FROM video WHERE ID='$ID'");
+                $res =  mysqli_fetch_all($res, MYSQLI_ASSOC)[0];
+                $video[] = $res;
+            }
+        }
+        $r = ["Film"=>$Films,"Multfilm"=>$Multfilm,"Video"=>$video];
+        return $r;
     }
 }
