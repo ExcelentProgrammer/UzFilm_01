@@ -318,9 +318,7 @@ if (!empty($Serials)) {
                                         <li>
                                             <a href="#"><i class="fas fa-plus"></i></a>
                                         </li>
-                                        <li>
-                                            <a href="movie-single.html"><i class="fas fa-info"></i></a>
-                                        </li>
+                                      
                                     </ul>
                                 </div>
                                 <!-- Box Content End -->
@@ -328,7 +326,7 @@ if (!empty($Serials)) {
                             <!-- Video Thumb End -->
                             <div class="video-content">
                                 <h2 class="video-title"><a
-                                            href=<?php if ($_GET['type'] == "multfilm") MultfilmToWatch($TopFilm['ID']); elseif ($_GET['type'] == "video") VideoToWatch($TopFilm['ID']); else FilmToWatch($TopFilm['ID']) ?>><?= 1 ?></a>
+                                            href=<?php if ($_GET['type'] == "multfilm") MultfilmToWatch($TopFilm['ID']); elseif ($_GET['type'] == "video") VideoToWatch($TopFilm['ID']); else FilmToWatch($TopFilm['ID']) ?>><?= $TopFilm['FilmName'] ?></a>
                                 </h2>
                                 <div class="video-info d-flex align-items-center">
                                     <span class="video-year"><?= $TopFilm['FilmYear'] ?></span> <span

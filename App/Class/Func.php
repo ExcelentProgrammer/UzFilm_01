@@ -124,10 +124,7 @@ function __PlayList($id, $p = "", $type = "")
     return '<a href=' . menu(MenuLogin) . '><i class="fas fa-plus"></i></a>';
 }
 
-function __Info($id){
-    return '<a href="'.menu(MenuFilmInfo)."&video_id=".$id.'"><i class="fas fa-info"></i></a>';
 
-}
 
 /**
  * @param $text
@@ -137,4 +134,8 @@ function __Info($id){
  */
 function __Short($text, $size=10){
     return implode(" ", array_slice(explode(" ",$text), 0, $size));
+}
+
+function __AllGo($type,$p){
+    return menu(MenuAllFilms)."&type=".$type."&p=".$p."";
 }

@@ -77,6 +77,9 @@
             border-radius: 20px !important;
             background-color: green !important;
         }
+        .y-center{
+            margin: 0rem 40%;
+        }
     </style>
 </head>
 
