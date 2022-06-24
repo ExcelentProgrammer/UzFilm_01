@@ -804,7 +804,7 @@
                             <!-- Col End -->
 
                         </div>
-                        <a class="hvr-sweep-to-right y-center btn" href="#" tabindex="0">Barchasi</a>
+                        <a class="hvr-sweep-to-right y-center btn" href=<?= menu(MenuAllFilms)."&type=Multfilm&p=1" ?> tabindex="0">Barchasi</a>
 
                         <!-- Row End -->
                     </div>
@@ -1255,7 +1255,7 @@
                             <!-- Col End -->
 
                         </div>
-                        <a class="hvr-sweep-to-right y-center btn" href="#" tabindex="0">Barchasi</a>
+                        <a class="hvr-sweep-to-right y-center btn" href=<?= menu(MenuAllFilms)."&type=Video&p=1" ?> tabindex="0">Barchasi</a>
 
                         <!-- Row End -->
                     </div>

@@ -1,10 +1,15 @@
 <?php
+require_once ROOT_PATH."/App/Model/AdminModel.php";
 
-class AdminController{
+class AdminController extends AdminModel{
     /**
      * Dashboard sahifasi
      */
     function Dashboard(){
+        $NumberOfUsers = $this->NumberOfUsers();
+        $NumberOfFilms = $this->NumberOfFilms();
+        $NumberOfMultfilms = $this->NumberOfMultfilms();
+        $NumberOfVideos = $this->NumberOfVideos();
         require_once ROOT_PATH."/App/View/Admin/Dashboard.php";
     }
     function Buttons(){

@@ -125,35 +125,48 @@ class HomeController extends HomeModel
 	public function DefaultPage()
 	{
 		echo "<script>location.href='" . menu(MenuHome) . "'</script>";
-	}
+	}	
+	/**
+	 * All
+	 *
+	 * @return void
+	 * 
+	 * Barcha filmlarni ko'rish sahifasi
+	 */
 	public function All()
 	{
 		$PageFilms = 18;
-		$AllFilms = $this->AllFilm()[0];
-		$a = [];
-		for ($i = 0; $i <= 500; $i++) {
-			$a[] = $AllFilms;
+		$type = $_GET['type'];
+		$PP = ($_GET['p']-1)*$PageFilms;
+		if ($type == "Film"){
+			$a = $this->AllFilm();
+			$AllFilms = array_slice($a,$PP,18);
+		}elseif ($type == "Multfilm"){
+			$a = $this->MultfilmModel->GetAllMultfilm();
+			$AllFilms = array_slice($a,$PP,18);
+		}elseif ($type == "Video"){
+			$a = $this->VideoModel->GetAllVideo();
+			$AllFilms = array_slice($a,$PP,18);
 		}
-		$AllFilms = array_slice($a, 0, $PageFilms);
 		$pages = ceil(count($a) / $PageFilms);
 		$apages = $pages;
 		$page = $_GET['p'];
-		if($page+2 <= $pages){
-			$pages = $page+2;
-		}elseif($page+1 <= $pages){
-			$pages = $page+1;
-		}else{
+		if ($page + 2 <= $pages) {
+			$pages = $page + 2;
+		} elseif ($page + 1 <= $pages) {
+			$pages = $page + 1;
+		} else {
 			$page = $pages;
 		}
-		if($page <= 3){
+		if ($page <= 3) {
 			$start = 1;
-			if($pages == 3){
+			if ($pages == 3) {
 				$pages += 2;
-			}elseif($pages == 4){
+			} elseif ($pages == 4) {
 				$pages += 1;
 			}
-		}elseif($page > 3){
-			$start = $page-2;	
+		} elseif ($page > 3) {
+			$start = $page - 2;
 		}
 		require_once ROOT_PATH . "/App/View/User/All.php";
 	}

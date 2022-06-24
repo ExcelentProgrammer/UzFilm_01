@@ -5,8 +5,8 @@
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                 <i class="fa fa-chart-line fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">Today Sale</p>
-                    <h6 class="mb-0">$1234</h6>
+                    <p class="mb-2">Foydalanuvchilar</p>
+                    <h6 class="mb-0"><?= $NumberOfUsers ?></h6>
                 </div>
             </div>
         </div>
@@ -14,8 +14,8 @@
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                 <i class="fa fa-chart-bar fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">Total Sale</p>
-                    <h6 class="mb-0">$1234</h6>
+                    <p class="mb-2">Filmlar</p>
+                    <h6 class="mb-0"><?= $NumberOfFilms ?></h6>
                 </div>
             </div>
         </div>
@@ -23,8 +23,8 @@
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                 <i class="fa fa-chart-area fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">Today Revenue</p>
-                    <h6 class="mb-0">$1234</h6>
+                    <p class="mb-2">Multfilmlar</p>
+                    <h6 class="mb-0"><?= $NumberOfMultfilms ?></h6>
                 </div>
             </div>
         </div>
@@ -32,8 +32,8 @@
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                 <i class="fa fa-chart-pie fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">Total Revenue</p>
-                    <h6 class="mb-0">$1234</h6>
+                    <p class="mb-2">Videolar</p>
+                    <h6 class="mb-0"><?= $NumberOfVideos ?></h6>
                 </div>
             </div>
         </div>
