@@ -15,6 +15,7 @@ const MenuContcts = "contacts";
 const MenuPlayList = "playlist";
 const RoleUser = "User";
 const MenuAllFilms = "AllFilms";
+const MenuRemovePlayList = "RemovePlayList";
 
 
 /**

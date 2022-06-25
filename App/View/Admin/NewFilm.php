@@ -134,7 +134,7 @@
                                 <div class="form-floating mb-3">
                                     <input type="number" class="form-control" name="FilmDate" id="floatingInput"
                                            placeholder="Flesh | O'zbek Tilida">
-                                    <label for="floatingInput">Film Davomiyligi (45 || 60 || 40)</label>
+                                    <label for="floatingInput">Film Davomiyligi</label>
                                 </div>
                             </div>
 
@@ -142,7 +142,7 @@
                                 <div class="form-floating mb-3">
                                     <input type="number" class="form-control" name="FilmYear" id="floatingInput"
                                            placeholder="Flesh | O'zbek Tilida">
-                                    <label for="floatingInput">Film Chiqarilgan yil (2022)</label>
+                                    <label for="floatingInput">Film Chiqarilgan</label>
                                 </div>
                             </div>
                         </div>

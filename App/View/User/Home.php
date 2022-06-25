@@ -1,25 +1,5 @@
 <!-- data-toggle="modal" data-target="#PlayListOk" -->
-<div class="col-6 col-xl mb-xl-0 mb-3 ">
-    <div class="modal fade" id="PlayListOk" tabindex="0" role="dialog" aria-labelledby="trailer-modal" aria-hidden="true">
-        <div class="modal-dialog modal-lg " role="document" id="trailerModal">
-            <div class="modal-content border-radius-10">
-                <div class="modal-header bg-black border-radius-10">
-                    <div class="col-8">
-                        <h4 style="color:white;">Film Shaxsiy Play listginggiga qo'shildi</h4>
-                    </div>
-                    <div class="col-3">
-                        <a class="btn  MyPlayList" href=<?= menu(MenuPlayList) ?> tabindex="0"><i aria-hidden="true" class="fa fa-play mr-1"></i></a>
-                    </div>
-                    <div class="col-1">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <div class="main-slider" id="main-slider">
     <div class="slider big-slider slider-wrap">

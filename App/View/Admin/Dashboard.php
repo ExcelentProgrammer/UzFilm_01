@@ -5,8 +5,8 @@
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                 <i class="fa fa-chart-line fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">Foydalanuvchilar</p>
-                    <h6 class="mb-0"><?= $NumberOfUsers ?></h6>
+                    <p class="mb-2">Seriallar</p>
+                    <h6 class="mb-0"><?= $NumberOfSerial ?></h6>
                 </div>
             </div>
         </div>
@@ -33,6 +33,48 @@
                 <i class="fa fa-chart-pie fa-3x text-primary"></i>
                 <div class="ms-3">
                     <p class="mb-2">Videolar</p>
+                    <h6 class="mb-0"><?= $NumberOfVideos ?></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- users -->
+    <div class="row g-4 mt-3">
+        <div class="col-sm-6 col-xl-3" >
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4 height-100">
+                <i class="fa fa-chart-line fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-1 font-size-15">Ro'yhatdan o'tganlar</p>
+                    <h6 class="mb-0"><?= $NumberOfUsers ?></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4 height-100">
+                <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2 font-size-15">Ro'yhatdan o'tmaganlar</p>
+                    <h6 class="mb-0"><?= $NumberOfFilms ?></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4 height-100">
+                <i class="fa fa-chart-area fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2 font-size-15">Bugun Qo'shilganlar</p>
+                    <h6 class="mb-0"><?= $NumberOfMultfilms ?></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4 height-100">
+                <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2 font-size-15">Jami</p>
                     <h6 class="mb-0"><?= $NumberOfVideos ?></h6>
                 </div>
             </div>

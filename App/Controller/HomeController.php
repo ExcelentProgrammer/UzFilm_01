@@ -3,6 +3,7 @@ require_once ROOT_PATH . "App/Model/HomeModel.php";
 require_once ROOT_PATH . "App/Model/AccountModel.php";
 require_once ROOT_PATH . "App/Model/MultfilmModel.php";
 require_once ROOT_PATH . "App/Model/VideoModel.php";
+require_once ROOT_PATH . "App/Model/AdminModel.php";
 
 class HomeController extends HomeModel
 {
@@ -10,6 +11,7 @@ class HomeController extends HomeModel
 	{
 		$this->MultfilmModel = new MultfilmModel();
 		$this->VideoModel = new VideoModel();
+		$this->AdminModel = new AdminModel();
 	}
 
 	/**
@@ -65,6 +67,12 @@ class HomeController extends HomeModel
 	 */
 	public function about()
 	{
+		$NumberOfUsers = $this->AdminModel->NumberOfUsers();
+        $NumberOfFilms = $this->AdminModel->NumberOfFilms();
+        $NumberOfMultfilms = $this->AdminModel->NumberOfMultfilms();
+        $NumberOfVideos = $this->AdminModel->NumberOfVideos();
+        $NumberOfSerial = $this->AdminModel->NumberOfSerial();
+		$Shows = $this->Shows();
 		require_once ROOT_PATH . "/App/View/User/About.php";
 	}
 
@@ -169,5 +177,12 @@ class HomeController extends HomeModel
 			$start = $page - 2;
 		}
 		require_once ROOT_PATH . "/App/View/User/All.php";
+	}
+	function RemovePlayList(){
+		$FilmID = $_GET['video_id'];
+		$UserID = $_SESSION['ID'];
+		$Type = $_GET['type'];
+		$this->RemovePlayListFilm($UserID,$FilmID,$Type);
+		__location(menu(MenuPlayList));
 	}
 }

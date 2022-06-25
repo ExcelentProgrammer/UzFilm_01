@@ -139,3 +139,10 @@ function __Short($text, $size=10){
 function __AllGo($type,$p){
     return menu(MenuAllFilms)."&type=".$type."&p=".$p."";
 }
+function __location($menu){
+    echo "<script>location.href='".$menu."'</script>";
+}
+
+function __RemoveList($ID,$Type){
+    return menu(MenuRemovePlayList)."&video_id=".$ID."&type=".$Type;
+}

@@ -218,4 +218,11 @@ class HomeModel extends DB
         $r = ["Film"=>$Films,"Multfilm"=>$Multfilm,"Video"=>$video];
         return $r;
     }
+    function Shows(){
+        $res = mysqli_query($this->con(),"SELECT SUM(FilmWatch) as Watchs FROM films");
+        return mysqli_fetch_all($res,MYSQLI_ASSOC)['0']['Watchs'];
+    }
+    function RemovePlayListFilm($UserID,$VideoID,$Type){
+        $res = mysqli_query($this->con(),"DELETE FROM playlist WHERE UserID='$UserID' AND VideoID='$VideoID' AND Type='$Type'");
+    }
 }

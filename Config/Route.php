@@ -13,6 +13,7 @@ class Rout extends App\Route
     {
         $UserRole = !empty($_SESSION['UserRole']) ? $_SESSION['UserRole'] : "";
         $this->get(['menu'=>MenuAllFilms,"type","p"],['HomeController',"All"]);
+        $this->get(['menu'=>MenuRemovePlayList,"video_id","type"],['HomeController',"RemovePlayList"]);
         $this->get(["menu" => MenuWatch, "video_id","type"=>"multfilm"], ['VideoController', "MultfilmWatch"]);
         $this->get(["menu" => MenuWatch, "video_id","type"=>"video"], ['VideoController', "VideoWatch"]);
         $this->get(["menu" => MenuWatch, "video_id"], ['HomeController', "watch"]);

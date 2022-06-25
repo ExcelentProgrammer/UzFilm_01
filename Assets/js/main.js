@@ -137,19 +137,19 @@ jQuery(function ($) {
 
 
     $('.count1').jQuerySimpleCounter({
-        end: 12,
+        end: FilmsStop,
         duration: 3000
     });
     $('.count2').jQuerySimpleCounter({
-        end: 55,
+        end: ShowsStop,
         duration: 3000
     });
     $('.count3').jQuerySimpleCounter({
-        end: 359,
+        end: UsersStop,
         duration: 2000
     });
     $('.count4').jQuerySimpleCounter({
-        end: 246,
+        end: SerialsStop,
         duration: 2500
     });
 

@@ -20,7 +20,7 @@
                                                         <a href=<?= FilmToWatch($AllFilm['ID']) ?>><i class="fas fa-play"></i></a>
                                                     </li>
                                                     <li>
-                                                        <?= __PlayList($AllFilm['ID']) ?>
+                                                        <?= __PlayList($AllFilm['ID'],'',$_GET['type']) ?>
                                                     </li>
 
                                                 </ul>

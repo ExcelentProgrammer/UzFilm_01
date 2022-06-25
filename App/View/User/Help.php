@@ -36,16 +36,45 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <h5>1. Filmlarga like yoki dislike bo'sishinggiz mumkun</h5>
-                    <h5>2. Filmlarga komentariya qoldirishingiz mumkun</h5>
-                    <h5>3. Sizga yoqgan Filmni Shaxsiy kalleksiyangizga saqlashinggiz mumkun</h5>
-                    <h5>4. UzFilmning Rasmiy Chatidan foydalanishinggiz mumkun</h5>
+                    <p> <strong> 1.</strong> Filmlarga like yoki dislike bo'sishinggiz mumkun</p>
+                    <p> <strong> 2.</strong> Filmlarga komentariya qoldirishingiz mumkun</p>
+                    <p> <strong> 3.</strong> Sizga yoqgan Filmni Shaxsiy kalleksiyangizga saqlashinggiz mumkun</p>
+                    <p> <strong> 4.</strong> UzFilmning Rasmiy Chatidan foydalanishinggiz mumkun</p>
                 </div>
-                <!-- Col End -->
             </div>
-            <!-- Row End -->
         </div>
-        <!-- Container End -->
+        <div class="container mt-5">
+            <div class="row text-center intro">
+                <div class="col-12">
+                    <h2>Adminga Xabar Yuborish?</h2>
+                    <p class="text-max-800">Qanday qilib adminga xabar yuborishim mumkun?</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p> <strong> 1.</strong> <a href=<?= menu(MenuContcts) ?>>Xabar Qoldirish </a> Sahifasiga o'ring</p>
+                    <p> <strong> 2.</strong> Ism, Familya, Elektron Pochta manzilinggiz va xabar matnini kiriting</p>
+                    <p> <strong> 3.</strong> Yurorish tugmasini bo'sing</p>
+                    <p> <strong> 4.</strong> Kuting admin tez orada javob yozadi</p>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-5">
+            <div class="row text-center intro">
+                <div class="col-12">
+                    <h2>Nima uchun Biz?</h2>
+                    <p class="text-max-800">nima uchun aynan Bizning sayitni tanlashinggiz kerak?</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p> <strong> 1.</strong> Eng sifatli tarjima Film va Seriallar</p>
+                    <p> <strong> 2.</strong> Barcha Mashxur Dublaj Sayitlardan To'plangan eng sifatli Filmlar</p>
+                    <p> <strong> 3.</strong> Filmlarni Qotmasdan Tomosha qilish imkoniyati</p>
+                    <p> <strong> 4.</strong> 7/24 Qo'llab <a href='https://t.me/ExcelentProgrammer'>Quvvatlash Markazi</a></p>
+                </div>
+            </div>
+        </div>
     </section>
     <!-- Contact Us Section End -->
 </div>

@@ -20,7 +20,7 @@
                                 <div class="box-content">
                                     <ul class="icon">
                                         <li><a href=<?= menu(MenuWatch) . "&video_id=" . $Film['ID'] ?>><i class="fas fa-play"></i></a></li>
-                                        <li><a href="#">
+                                        <li><a href=<?= __RemoveList($Film['ID'],"Film") ?>>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" style="background-color: white" height="8" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
                                                 </svg>
@@ -79,7 +79,7 @@
                                         <li>
                                             <a href=<?= menu(MenuWatch) . "&video_id=" . $Film['ID'] . "&type=multfilm" ?>><i class="fas fa-play"></i></a>
                                         </li>
-                                        <li><a href="#">
+                                        <li><a href=<?= __RemoveList($Film['ID'],"Multfilm") ?>>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" style="background-color: white" height="8" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
                                                 </svg>
@@ -136,7 +136,7 @@
                                 <div class="box-content">
                                     <ul class="icon">
                                         <li><a href=<?= menu(MenuWatch) . "&video_id=" . $Film['ID'] . "&type=video" ?>><i class="fas fa-play"></i></a></li>
-                                        <li><a href="#">
+                                        <li><a href=<?= __RemoveList($Film['ID'],"Video") ?>>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" style="background-color: white" height="8" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
                                                 </svg>

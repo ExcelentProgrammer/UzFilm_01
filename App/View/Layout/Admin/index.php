@@ -29,6 +29,14 @@
 
   <!-- Template Stylesheet -->
   <link href="Assets/Admin/css/style.css" rel="stylesheet">
+  <style>
+    .font-size-15{
+      font-size: 15px !important;
+    }
+    .height-100{
+      height: 100px !important;
+    }
+  </style>
 </head>
 
 <body>
