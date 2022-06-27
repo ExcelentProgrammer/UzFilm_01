@@ -1,11 +1,12 @@
 <?php
 
 namespace App;
-
 if ($_GET['menu'] == "logout") {
+    $db = new \DB();
     session_destroy();
-    setcookie("ID", "", time() - 1, "/");
-    setcookie("Password", "", time() - 1, "/");
+    $token = $_COOKIE['Token'];
+    setcookie("Token", "", time() - 1, "/");
+    mysqli_query($db->con(),"DELETE FROM token WHERE Token='$token'");
     header("location: /");
 }
 class Route

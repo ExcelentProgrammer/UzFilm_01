@@ -7,31 +7,29 @@ class UserData extends DB
     function __construct()
     {
         $this->session = new Session();
-        if (!empty($_COOKIE['ID']) and !empty($_COOKIE['Password']) and empty($_SESSION['ID'])) {
-            $ID = $_COOKIE['ID'];
-            $Password = $_COOKIE['Password'];
+        if (!empty($_COOKIE['Token']) and empty($_SESSION['ID'])) {
+            $token = $_COOKIE['Token'];
             $con = $this->con();
-            $res = mysqli_query($con, "SELECT * FROM users WHERE ID='$ID'");
+            $res = mysqli_query($con, "SELECT * FROM token WHERE Token='$token'");
+            $res = mysqli_fetch_all($res, MYSQLI_ASSOC)['0']['UserID'];
+            $res = mysqli_query($con, "SELECT * FROM users WHERE ID='$res'");
             if (mysqli_num_rows($res) > 0) {
                 $res = mysqli_fetch_all($res, MYSQLI_ASSOC)[0];
-                $PasswordDataBase = $res['Password'];
-                if ($Password == $PasswordDataBase) {
-                    $this->session->NewSession("FirstName", $res['FirstName']);
-                    $this->session->NewSession("LastName", $res['LastName']);
-                    $this->session->NewSession("UserName", $res['UserName']);
-                    $this->session->NewSession("Email", $res['Email']);
-                    $this->session->NewSession("Password", $res['Password']);
-                    $this->session->NewSession("UserRole", $res['UserRole']);
-                    $this->session->NewSession("ID", $res['ID']);
+                $this->session->NewSession("FirstName", $res['FirstName']);
+                $this->session->NewSession("LastName", $res['LastName']);
+                $this->session->NewSession("UserName", $res['UserName']);
+                $this->session->NewSession("Email", $res['Email']);
+                $this->session->NewSession("Password", $res['Password']);
+                $this->session->NewSession("UserRole", $res['UserRole']);
+                $this->session->NewSession("ID", $res['ID']);
 
-                    $this->FirstName = $res['FirstName'];
-                    $this->ID = $res['ID'];
-                    $this->LastName = $res['LastName'];
-                    $this->UserName = $res['UserName'];
-                    $this->Password = $res['Email'];
-                    $this->Password = $res['Password'];
-                    $this->UserRole = $res['UserRole'];
-                }
+                $this->FirstName = $res['FirstName'];
+                $this->ID = $res['ID'];
+                $this->LastName = $res['LastName'];
+                $this->UserName = $res['UserName'];
+                $this->Password = $res['Email'];
+                $this->Password = $res['Password'];
+                $this->UserRole = $res['UserRole'];
             }
         } else {
             $this->FirstName = $_SESSION['FirstName'];

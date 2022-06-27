@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="Assets/css/Seans.css">
+<script src="Assets/js/seans.js"></script>
 <style>
     /*Profile Pic Start*/
     .picture-container {
@@ -87,7 +89,8 @@
                 </div>
                 <!-- Col End -->
                 <div class="col-md -10">
-                    <h2><?= /** @var array $UserData */
+                    <h2><?=
+                        /** @var array $UserData */
                         $UserData['FirstName'] ?></h2>
                 </div>
                 <!-- Col End -->
@@ -107,27 +110,17 @@
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link" data-toggle="pill" href="#pills-2" role="tab" aria-selected="true">Parolni o'zgartirish</a>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" data-toggle="pill" href="#pills-3" role="tab" aria-selected="true">Faol Seanslar</a>
+                            </li>
 
                         </ul>
                         <div class="tab-content" id="pills-tabContent">
-
-
-
-
-
-
-
-
-
 
                             <div id="pills-profile" class="tab-pane animated fadeInRight show active">
                                 <!-- Start Form -->
                                 <form id="profile-settings-form" action="#" method="post">
                                     <div class="error-container"></div>
-
-
-
-
                                     <!-- Row End -->
                                     <h5 class="mb-3 mt-3 pb-3 section-border">Hisob malumotlari</h5>
                                     <div class="row">
@@ -166,8 +159,6 @@
                                 </form>
                                 <!-- Form End -->
                             </div>
-
-
 
                             <div id="pills-1" class="tab-pane animated fadeInRight">
                                 <!-- Start Form -->
@@ -212,12 +203,6 @@
                                 <!-- Form End -->
                             </div>
 
-
-
-
-
-
-
                             <div id="pills-2" class="tab-pane animated fadeInRight">
                                 <!-- Start Form -->
                                 <form id="profile-settings-form" action="#" method="post">
@@ -250,6 +235,39 @@
                                 <!-- Form End -->
                             </div>
 
+                            <div id="pills-3" class="tab-pane animated fadeInRight">
+                                <!-- Start Form -->
+                                <h5 class="mb-3 mt-3 pb-3 section-border">Faol Seanslar</h5>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Qurilma
+                                            </th>
+                                            <th>
+                                                Vaqt
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($Seanslar as $Seans) { ?>
+                                            <tr>
+                                                <td data-title='Qurilma' >
+                                                    <?= $Seans['UserAgent'] ?>
+                                                </td>
+                                                <td data-title='Vaqt'>
+                                                    <?= $Seans['Date'] ?>
+                                                </td>
+                                                <td class='select'>
+                                                    <a class='button' href='#'>
+                                                        Select
+                                                    </a>
+                                                </td>
+                                            <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
 
 
 
@@ -282,13 +300,13 @@
         var LastName = document.querySelector("input[name='LastName']").value;
         var FirstName = document.querySelector("input[name='FirstName']").value;
         var ID = decodeURIComponent("<?php echo $UserData['ID'] ?>");
-        Data.append("ID",ID);
-        Data.append("UserName",UserName);
-        Data.append("LastName",LastName);
-        Data.append("FirstName",FirstName);
-        req.open("POST",'Config/Confirm.php?menu=EditAccountData');
+        Data.append("ID", ID);
+        Data.append("UserName", UserName);
+        Data.append("LastName", LastName);
+        Data.append("FirstName", FirstName);
+        req.open("POST", 'Config/Confirm.php?menu=EditAccountData');
         req.send(Data);
-        req.onload=()=>{
+        req.onload = () => {
             console.log(req.response);
         };
     }

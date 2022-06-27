@@ -15,4 +15,8 @@ class AccountModel extends DB
         }
 
     }
+    function Seans($ID){
+        $res = mysqli_query($this->con(),"SELECT * FROM token WHERE UserID='$ID'");
+        return mysqli_fetch_all($res,MYSQLI_ASSOC);
+    }
 }

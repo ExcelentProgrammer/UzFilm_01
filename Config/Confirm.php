@@ -101,7 +101,11 @@ class Confirm extends DB
                     mysqli_query($con, "INSERT INTO `users` (`FirstName`, `LastName`, `UserName`, `Email`, `Password`) VALUES ('$FirstName', '$LastName', '$UserName', '$Email', '$Password');");
                     $res = mysqli_query($con, "SELECT * FROM `users` WHERE `ID` = '" . mysqli_insert_id($con) . "'");
                     if (mysqli_num_rows($res) > 0) {
+                        $UserAgent = $_SERVER["HTTP_USER_AGENT"];
+                        $token = sha1($UserName.time());
                         $UserData = mysqli_fetch_all($res, MYSQLI_ASSOC)[0];
+                        $ID = $UserData['ID'];
+                        mysqli_query($con,"INSERT INTO token(Token,UserID,UserAgent,Date) VALUES('$token','$ID','$UserAgent',NOW());");
                         $this->session->NewSession("FirstName", $UserData['FirstName']);
                         $this->session->NewSession("LastName", $UserData['LastName']);
                         $this->session->NewSession("UserName", $UserData['UserName']);
@@ -109,8 +113,7 @@ class Confirm extends DB
                         $this->session->NewSession("UserRole", $UserData['UserRole']);
                         $this->session->NewSession("Password", $UserData['Password']);
                         $this->session->NewSession("ID", $UserData['ID']);
-                        $this->cookie->NewCookie("ID", $UserData['ID']);
-                        $this->cookie->NewCookie("Password", $UserData['Password']);
+                        $this->cookie->NewCookie("Token", $token);
                         echo "signup_ok";
                     }
                 }
@@ -143,8 +146,11 @@ class Confirm extends DB
                 $this->session->NewSession("UserRole", $UserData['UserRole']);
                 $this->session->NewSession("ID", $UserData['ID']);
                 if ($_POST['SavePassword'] == "on") {
-                    $this->cookie->NewCookie("ID", $UserData['ID']);
-                    $this->cookie->NewCookie("Password", $UserData['Password']);
+                    $UserAgent = $_SERVER["HTTP_USER_AGENT"];
+                    $ID = $UserData['ID'];
+                    $token = sha1($UserData['UserName'].time());
+                    mysqli_query($con,"INSERT INTO token(Token,UserID,UserAgent,Date) VALUES('$token','$ID','$UserAgent',NOW());");
+                    $this->cookie->NewCookie("Token", $token);
                 }
                 echo "login_ok";
             }

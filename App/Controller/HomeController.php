@@ -80,6 +80,7 @@ class HomeController extends HomeModel
 	{
 		$AccountModel = new AccountModel();
 		$UserData = $AccountModel->UserData();
+		$Seanslar = $AccountModel->Seans($_SESSION['ID']);
 		require_once ROOT_PATH . "/App/View/User/Account.php";
 	}
 
