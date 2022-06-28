@@ -42,7 +42,7 @@ $url = $FilmAbout['FilmUrl'];
 </style>
 
 
-<iframe style="padding-top: 20px; display:block;margin:0 auto;" src=<?= VideoPlayer . $url ?> id="videoPlayer"
+<iframe style="padding-top: 20px; display:block;margin:0 auto;" src="<?= VideoPlayer . $url ?>" id="videoPlayer"
         frameborder="0" allowfullscreen="allowfullscreen" width="80%" height="500"></iframe>
 <?php
 if (!empty($Serials)) {

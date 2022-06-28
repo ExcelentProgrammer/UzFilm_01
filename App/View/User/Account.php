@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="Assets/css/Seans.css">
-<script src="Assets/js/seans.js"></script>
 <style>
     /*Profile Pic Start*/
     .picture-container {
@@ -260,8 +259,8 @@
                                                     <?= $Seans['Date'] ?>
                                                 </td>
                                                 <td class='select'>
-                                                    <a class='button' href='#'>
-                                                        Select
+                                                    <a class='button pointer' onclick=<?= "this.innerHTML='O\'chirildi';this.classList.add('remove-btn-click');RemoveSeans(".$Seans['ID'].")" ?>>
+                                                        O'chirish
                                                     </a>
                                                 </td>
                                             <?php } ?>
@@ -327,5 +326,10 @@
             }
             reader.readAsDataURL(input.files[0]);
         }
+    }
+    function RemoveSeans(ID){
+        var req = new XMLHttpRequest();
+        req.open("GET","Config/Confirm.php?menu=RemoveSeans&ID="+ID+"");
+        req.send();
     }
 </script>

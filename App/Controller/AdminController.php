@@ -11,6 +11,7 @@ class AdminController extends AdminModel{
         $NumberOfMultfilms = $this->NumberOfMultfilms();
         $NumberOfVideos = $this->NumberOfVideos();
         $NumberOfSerial = $this->NumberOfSerial();
+        $guests = $this->guests();
         require_once ROOT_PATH."/App/View/Admin/Dashboard.php";
     }
     function Buttons(){

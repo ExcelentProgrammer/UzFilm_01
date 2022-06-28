@@ -39,6 +39,9 @@ class Confirm extends DB
             case 'EditAccountData':
                 $this->EditAccountData();
                 break;
+            case 'RemoveSeans':
+                $this->RemoveSeans();
+                break;
 
 
             default:
@@ -362,6 +365,10 @@ class Confirm extends DB
             $res = mysqli_query($con, "INSERT INTO playlist(UserID,VideoID,Type) VALUES('$UserID','$VideoID','$Type')");
             echo "ok";
         }
+    }
+    function RemoveSeans(){
+        $ID = $_GET['ID'];
+        mysqli_query($this->con(),"DELETE FROM token WHERE ID='$ID'");
     }
 }
 

@@ -2,7 +2,7 @@
 <script>
     var ShowsStop = decodeURIComponent("<?php echo $Shows ?>");
     var FilmsStop = decodeURIComponent("<?php echo $NumberOfFilms ?>");
-    var UsersStop = decodeURIComponent("<?php echo $NumberOfUsers ?>");
+    var UsersStop = decodeURIComponent("<?php echo $guests ?>");
     var SerialsStop = decodeURIComponent("<?php echo $NumberOfSerial ?>");
 </script>
 <div class="sub-header">

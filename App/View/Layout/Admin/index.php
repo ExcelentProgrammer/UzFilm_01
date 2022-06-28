@@ -30,11 +30,39 @@
   <!-- Template Stylesheet -->
   <link href="Assets/Admin/css/style.css" rel="stylesheet">
   <style>
-    .font-size-15{
+    .font-size-15 {
       font-size: 15px !important;
     }
-    .height-100{
+
+    .height-100 {
       height: 100px !important;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 20px;
+      background-color: black;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px grey;
+      border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: red;
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #b30000;
+    }
+
+    html {
+      width: 99%;
     }
   </style>
 </head>

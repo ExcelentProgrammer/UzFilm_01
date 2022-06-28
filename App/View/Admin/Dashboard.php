@@ -57,7 +57,7 @@
                 <i class="fa fa-chart-bar fa-3x text-primary"></i>
                 <div class="ms-3">
                     <p class="mb-2 font-size-15">Ro'yhatdan o'tmaganlar</p>
-                    <h6 class="mb-0"><?= $NumberOfFilms ?></h6>
+                    <h6 class="mb-0"><?= $guests ?></h6>
                 </div>
             </div>
         </div>

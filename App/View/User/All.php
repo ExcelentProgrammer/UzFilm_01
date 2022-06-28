@@ -13,11 +13,11 @@
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                     <div class="video-block">
                                         <div class="video-thumb position-relative thumb-overlay">
-                                            <a href=<?= FilmToWatch($AllFilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $AllFilm['FilmImg'] ?>></a>
+                                            <a href=<?= __Watch($AllFilm['ID'],$type) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $AllFilm['FilmImg'] ?>></a>
                                             <div class="box-content">
                                                 <ul class="icon">
                                                     <li>
-                                                        <a href=<?= FilmToWatch($AllFilm['ID']) ?>><i class="fas fa-play"></i></a>
+                                                        <a href=<?= __Watch($AllFilm['ID'],$type) ?>><i class="fas fa-play"></i></a>
                                                     </li>
                                                     <li>
                                                         <?= __PlayList($AllFilm['ID'],'',$_GET['type']) ?>

@@ -146,3 +146,7 @@ function __location($menu){
 function __RemoveList($ID,$Type){
     return menu(MenuRemovePlayList)."&video_id=".$ID."&type=".$Type;
 }
+function __Watch($id,$type)
+{
+    return menu(MenuWatch) . "&type=$type&video_id=" . $id . "";
+}

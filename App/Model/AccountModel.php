@@ -19,4 +19,5 @@ class AccountModel extends DB
         $res = mysqli_query($this->con(),"SELECT * FROM token WHERE UserID='$ID'");
         return mysqli_fetch_all($res,MYSQLI_ASSOC);
     }
+   
 }

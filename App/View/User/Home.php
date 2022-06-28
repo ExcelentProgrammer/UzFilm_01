@@ -15,7 +15,7 @@
                             <div class="col-xl-6 col-lg-12 col-md-12">
                                 <h3 data-animation-in="fadeInUp" data-delay-in="1"><?= __Short($TopFilm['FilmName'], 10) ?></h3>
                                 <div class="slide-info" data-animation-in="fadeInUp" data-delay-in="1">
-                                    <span><?= $TopFilm['FilmYear'] ?></span> <span class="radius"><?= $TopFilm['FilmYoung'] . "+" ?></span><span><?= $TopFilm['FilmJanr'] ?></span>
+                                    <span><?= $TopFilm['FilmYear'] ?></span> <span class="radius"><?= $TopFilm['FilmYoung']?></span><span><?= $TopFilm['FilmJanr'] ?></span>
                                 </div>
                                 <p data-animation-in="fadeInUp" data-delay-in="1"><?= __Short($TopFilm['FilmCaption'], 10) ?></p>
                                 <div class="slider-buttons d-flex align-items-center" data-animation-in="fadeInUp" data-delay-in="1">

@@ -7,7 +7,7 @@ class UserData extends DB
     function __construct()
     {
         $this->session = new Session();
-        if (!empty($_COOKIE['Token']) and empty($_SESSION['ID'])) {
+        if (!empty($_COOKIE['Token'])) {
             $token = $_COOKIE['Token'];
             $con = $this->con();
             $res = mysqli_query($con, "SELECT * FROM token WHERE Token='$token'");
@@ -30,15 +30,17 @@ class UserData extends DB
                 $this->Password = $res['Email'];
                 $this->Password = $res['Password'];
                 $this->UserRole = $res['UserRole'];
+            }else{
+                session_destroy();
             }
-        } else {
-            $this->FirstName = $_SESSION['FirstName'];
-            $this->LastName = $_SESSION['LastName'];
-            $this->UserName = $_SESSION['UserName'];
-            $this->Password = $_SESSION['Email'];
-            $this->Password = $_SESSION['Password'];
-            $this->UserRole = $_SESSION['UserRole'];
-            $this->ID = $_SESSION['ID'];
+        }elseif(empty($_COOKIE['ONCE'])){
+            $con = $this->con();
+            $UserAgent = $_SERVER['HTTP_USER_AGENT'];
+            mysqli_query($con,"INSERT INTO guest(UserAgent) VALUES('$UserAgent');");
+            $ID = mysqli_insert_id($con);
+            $C = new Cookie();
+            $C->NewCookie("ID",$ID);
+            $C->NewCookie("ONCE","false");
         }
     }
 }

@@ -72,6 +72,7 @@ class HomeController extends HomeModel
         $NumberOfMultfilms = $this->AdminModel->NumberOfMultfilms();
         $NumberOfVideos = $this->AdminModel->NumberOfVideos();
         $NumberOfSerial = $this->AdminModel->NumberOfSerial();
+		$guests = $this->AdminModel->guests();
 		$Shows = $this->Shows();
 		require_once ROOT_PATH . "/App/View/User/About.php";
 	}
@@ -168,7 +169,7 @@ class HomeController extends HomeModel
 			$page = $pages;
 		}
 		if ($page <= 3) {
-			$start = 1;
+			$start = 1 ;
 			if ($pages == 3) {
 				$pages += 2;
 			} elseif ($pages == 4) {
@@ -177,6 +178,7 @@ class HomeController extends HomeModel
 		} elseif ($page > 3) {
 			$start = $page - 2;
 		}
+		$type = strtolower($type);
 		require_once ROOT_PATH . "/App/View/User/All.php";
 	}
 	function RemovePlayList(){

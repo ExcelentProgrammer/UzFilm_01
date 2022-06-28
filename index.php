@@ -36,3 +36,4 @@ if($_GET['menu'] == AdminMenu and $_SESSION['UserRole'] == RoleAdmin){
 }else{
   require_once ROOT_PATH."/App/View/Layout/User/index.php"; //User Temlpate
 }
+

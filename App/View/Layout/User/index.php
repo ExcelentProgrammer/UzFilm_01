@@ -5,7 +5,7 @@
 <head>
     <!-- Basic Page -->
     <meta charset="UTF-8">
-    <title>Ava Stream - Movies & Tv Shows Bootstrap 4 Template</title>
+    <title>UzFilm Eng So'ngi va Qiziqarli Filmlar </title>
     <!-- Mobile Specific -->
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <!-- <meta content="width=device-width,  initial-scale=1.0" name="viewport"> -->
@@ -59,7 +59,7 @@
         }
 
         .img-tab {
-            height: 230px !important;
+            cursor:pointer;
         }
 
         .bg-black {
@@ -83,6 +83,40 @@
         .y-center {
             margin: 0rem 40%;
         }
+
+        .pointer {
+            cursor: pointer;
+        }
+
+        .remove-btn-click {
+            color: red !important;
+            background-color: rgba(0, 0, 0, 0) !important;
+        }
+
+        /* width */
+        ::-webkit-scrollbar {
+            width: 20px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 10px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: red;
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b30000;
+        }
+        html{
+            width: 98%;
+        }
     </style>
 </head>
 
@@ -94,7 +128,7 @@
         <div class="loader-section section-right"></div>
     </div>
     <!-- Preloader End -->
-    <div class="main" id="main">
+    <div class="main" id ="main">
         <!-- Start Mobile Header -->
         <header class="mobile-header">
             <div class="mobile-header-content">

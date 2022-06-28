@@ -225,4 +225,6 @@ class HomeModel extends DB
     function RemovePlayListFilm($UserID,$VideoID,$Type){
         $res = mysqli_query($this->con(),"DELETE FROM playlist WHERE UserID='$UserID' AND VideoID='$VideoID' AND Type='$Type'");
     }
+   
+
 }
