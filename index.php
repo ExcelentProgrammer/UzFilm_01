@@ -21,9 +21,9 @@ require_once ROOT_PATH."/Config/Config.php"; //sayt Sozlamalari domen || Video p
 require_once ROOT_PATH . "/Config/DB.php"; //malumotlar bazasiga ulanish uchun class
 
 
-require_once ROOT_PATH."/Config/UserData.php"; //Sayitga kirgan Foryalanuvchi malumotlarini olish uchun class Username || FirstName || LastName || Role || ID
-
 require_once ROOT_PATH."/App/Class/Func.php"; //Yordamchi Funcsiyalar
+
+require_once ROOT_PATH."/Config/UserData.php"; //Sayitga kirgan Foryalanuvchi malumotlarini olish uchun class Username || FirstName || LastName || Role || ID
 
 require_once ROOT_PATH."Config/Route.php"; //Route tizimini boshqarish uchun class
 

@@ -3,24 +3,31 @@
 
 $url = $FilmAbout['FilmUrl'];
 $S = "";
-foreach ($Serials as $Serial) {
-    $Language = str_replace("'","\'",$FilmAbout['FilmLanguage']);
-    $Url = str_replace("'","\'",$Serial['FilmUrl']);
-    $S .= '{"title":"' . $Serial['FilmSection'] . " - Qism || " . $Language . '","file":"' . $Url . '"}';
-    if(end($Serials)['FilmSection'] != $Serial['FilmSection']){
-        $S .= ",";
+if (!empty($Serials)) {
+    foreach ($Serials as $Serial) {
+        $Language = str_replace("'", "\'", $FilmAbout['FilmLanguage']);
+        $Url = str_replace("'", "\'", $Serial['FilmUrl']);
+        $S .= '{"title":"' . $Serial['FilmSection'] . " - Qism || " . $Language . '","file":"' . $Url . '"}';
+        if (end($Serials)['FilmSection'] != $Serial['FilmSection']) {
+            $S .= ",";
+        }
     }
-
-
+    $S = "[" . $S . "]";
+} else {
+    $S = $FilmAbout['FilmUrl'];
 }
-$S = "[" . $S . "]";
+
 
 ?>
-
-<script>
-    var S = decodeURIComponent('<?php echo $S ?>');
-</script>
-
+<?php if (!empty($Serials)) { ?>
+    <script>
+        var S = decodeURIComponent('<?php echo $S ?>');
+    </script>
+<?php } else { ?>
+    <script>
+        var S = decodeURIComponent("<?php echo $S ?>");
+    </script>
+<?php } ?>
 <style>
     .margin-top {
         margin-top: 10px;
@@ -124,12 +131,15 @@ $S = "[" . $S . "]";
 
                                             <div id="download-link">
                                                 <?php
-                                                foreach ($Serials as $Serial) {
+                                                if (!empty($Serials)) {
+                                                    foreach ($Serials as $Serial) {
                                                 ?>
-
-                                                    <a id="MyList" style="background-color: #5f665f;" class="btn d-block hvr-sweep-to-right" href=<?= $Serial['FilmUrl'] ?> tabindex="0"><i class="icofont-plus mr-2" aria-hidden="true"></i><?= $Serial['FilmSection'] ?>
-                                                        - Qism</a>
-                                                    <br>
+                                                        <a id="MyList" style="background-color: #5f665f;" class="btn d-block hvr-sweep-to-right" href=<?= $Serial['FilmUrl'] ?> tabindex="0"><i class="icofont-plus mr-2" aria-hidden="true"></i><?= $Serial['FilmSection'] ?>
+                                                            - Qism</a>
+                                                        <br>
+                                                    <?php }
+                                                } else { ?>
+                                                    <a id="MyList" style="background-color: #5f665f;" class="btn d-block hvr-sweep-to-right" href=<?= $FilmAbout['FilmUrl'] ?> tabindex="0"><i class="icofont-plus mr-2" aria-hidden="true"></i><?= $FilmAbout['FilmHeight'] ?></a>
                                                 <?php } ?>
 
                                             </div>
@@ -265,65 +275,46 @@ $S = "[" . $S . "]";
     </section>
     <!-- Play Details Section End -->
     <!-- Start Related Movies Section -->
-    <section class="related-movies">
+    <section class="pupular">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="block-title">Yangi</h2>
-                </div>
-                <!-- Col End -->
-            </div>
-            <!-- Row End -->
-            <!-- Start Pupular Slider -->
-            <div class="owl-carousel owl-theme" id="pupular-slider">
+                    <h2 class="block-title">Yangi Filmlar</h2>
+                    <div class="owl-carousel owl-theme" id="pupular-slider">
+                        <?php /** @var array $AllFilms */
+                        foreach (array_slice($TopFilms, 0, 30) as $AllFilm) { ?>
 
-                <?php
-                foreach ($TopFilms as $TopFilm) {
+                            <div class="item">
+                                <div class="video-block">
+                                    <div class="video-thumb position-relative thumb-overlay">
+                                        <a href="#"><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $AllFilm['FilmImg'] ?>></a>
+                                        <div class="box-content">
+                                            <ul class="icon">
+                                                <li>
+                                                    <a href=<?= FilmToWatch($AllFilm['ID']) ?>><i class="fas fa-play"></i></a>
+                                                </li>
+                                                <li>
+                                                    <?= __PlayList($AllFilm['ID']) ?>
+                                                </li>
 
-                ?>
-
-                    <div class="item">
-                        <div class="video-block">
-                            <div class="video-thumb position-relative thumb-overlay">
-                                <a href="#"><img alt="" class="img-fluid img-h" src=<?= "Assets/images/FilmImg/" . $TopFilm['FilmImg'] ?>></a>
-                                <div class="box-content">
-                                    <ul class="icon">
-                                        <li>
-                                            <a href=<?php if ($_GET['type'] == "multfilm") MultfilmToWatch($TopFilm['ID']);
-                                                    elseif ($_GET['type'] == "video") VideoToWatch($TopFilm['ID']);
-                                                    else FilmToWatch($TopFilm['ID']) ?>><i class="fas fa-play"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fas fa-plus"></i></a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <!-- Box Content End -->
-                            </div>
-                            <!-- Video Thumb End -->
-                            <div class="video-content">
-                                <h2 class="video-title"><a href=<?php if ($_GET['type'] == "multfilm") MultfilmToWatch($TopFilm['ID']);
-                                                                elseif ($_GET['type'] == "video") VideoToWatch($TopFilm['ID']);
-                                                                else FilmToWatch($TopFilm['ID']) ?>><?= $TopFilm['FilmName'] ?></a>
-                                </h2>
-                                <div class="video-info d-flex align-items-center">
-                                    <span class="video-year"><?= $TopFilm['FilmYear'] ?></span> <span class="video-age"><?= $TopFilm['FilmYoung'] . "+" ?></span> <span class="video-type"><?= $TopFilm['FilmJanr'] ?></span>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="video-content">
+                                        <h2 class="video-title"><a href=<?= FilmToWatch($AllFilm['ID']) ?>><?= __Short($AllFilm['FilmName'], 10) ?></a>
+                                        </h2>
+                                        <div class="video-info d-flex align-items-center">
+                                            <span class="video-year"><?= $AllFilm['FilmYear'] ?></span> <span class="video-age"><?= $AllFilm['FilmYoung'] ?></span> <span class="video-type"><?= $AllFilm['FilmJanr'] ?></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- video Content End -->
-                        </div>
-                        <!-- video Block End -->
+                        <?php } ?>
+
                     </div>
-
-                <?php } ?>
-
+                </div>
             </div>
-
-
-            <!-- Row End -->
         </div>
-        <!-- Container End -->
     </section>
     <!-- Related Movies Section End -->
 </div>

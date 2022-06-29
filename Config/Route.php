@@ -12,20 +12,21 @@ class Rout extends App\Route
     public function route()
     {
         $UserRole = !empty($_SESSION['UserRole']) ? $_SESSION['UserRole'] : "";
-        $this->get(['menu'=>MenuAllFilms,"type","p"],['HomeController',"All"]);
-        $this->get(['menu'=>MenuRemovePlayList,"video_id","type"],['HomeController',"RemovePlayList"]);
-        $this->get(["menu" => MenuWatch, "video_id","type"=>"multfilm"], ['VideoController', "MultfilmWatch"]);
-        $this->get(["menu" => MenuWatch, "video_id","type"=>"video"], ['VideoController', "VideoWatch"]);
+        $this->get(['menu' => MenuAllFilms, "type", "p"], ['HomeController', "All"]);
+        $this->get(["menu" => MenuWatch, "video_id", "type" => "multfilm"], ['VideoController', "MultfilmWatch"]);
+        $this->get(["menu" => MenuWatch, "video_id", "type" => "video"], ['VideoController', "VideoWatch"]);
         $this->get(["menu" => MenuWatch, "video_id"], ['HomeController', "watch"]);
         $this->get(MenuHome, ['HomeController', "home"]);
         $this->get(MenuHelp, ['HomeController', "help"]);
         $this->get(MenuContcts, ['HomeController', "contacts"]);
-        $this->get(MenuAccount, ['HomeController', "account"]);
         $this->get(MenuAbout, ['HomeController', "about"]);
-        $this->get(MenuPlayList, ['HomeController', "MyPlayList"]);
         $this->get(Menu404, ['ErrorController', "error_404"]);
         $this->get(MenuLogin, ['RegisterController', "login"]);
-
+        if ($_SESSION['ID']) {
+            $this->get(MenuAccount, ['HomeController', "account"]);
+            $this->get(MenuPlayList, ['HomeController', "MyPlayList"]);
+            $this->get(['menu' => MenuRemovePlayList, "video_id", "type"], ['HomeController', "RemovePlayList"]);
+        }
 
         if ($UserRole == RoleAdmin) {
             $this->get(['menu' => AdminMenu, "page" => Dashboard], ['AdminController', "Dashboard"]);

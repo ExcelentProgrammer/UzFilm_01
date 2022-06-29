@@ -1,1 +1,2 @@
 ErrorDocument 404 http://uzfilm.uz?menu=404
+php_value display_errors on

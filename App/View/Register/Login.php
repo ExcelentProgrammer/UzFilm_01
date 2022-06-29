@@ -134,9 +134,13 @@
 </div>
 <!-- Main Content End -->
 <script>
+    function SignUpError(msg) {
+        var ErrorContainer = document.querySelector("#signup-error");
+        ErrorContainer.innerHTML = '<h3 style="padding:10px;color: white;background-color: red;border-radius: 10px;">' + msg + '</h3>';
+
+    }
     // ,"","","","",""
     function signup() {
-        var ErrorContainer = document.querySelector("#signup-error");
         var data = new FormData(document.querySelector("#signup-form"));
         var FirstName = data.get("FirstName");
         var LastName = data.get("LastName");
@@ -144,22 +148,38 @@
         var ConfirmPassword = data.get("ConfirmPassword");
         var Email = data.get("Email");
         var UserName = data.get("UserName");
-        if (Password != ConfirmPassword) {
-            ErrorContainer.innerHTML = '<h3 style="padding:10px;color: white;background-color: red;border-radius: 10px;">Parol birxil emas</h3>';
+
+        if (Password.length < 8) {
+            SignUpError("Parol Eng kamida 8 ta belgidan iborat bo'lishi Kerak");
         } else {
-            if (Password.length < 8) {
-                ErrorContainer.innerHTML = '<h3 style="padding:10px;color: white;background-color: red;border-radius: 10px;">Parol 8 ta Belgidan kam bo\'lmasligi kerak</h3>';
+            if (Password != ConfirmPassword) {
+                SignUpError("Parol birxil emas");
             } else {
-                ErrorContainer.innerHTML = "";
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", "Config/Confirm.php?menu=signup&FirstName=" + FirstName + "&LastName=" + LastName + "&Password=" + Password + "&Email=" + Email + "&UserName=" + UserName);
-                xhr.send();
-                xhr.onload = () => {
-                    var res = xhr.response;
-                    if (res == "signup_ok") {
-                        location.href = "?menu=home";
+                if (UserName == "") {
+                    SignUpError("UserName kiritmadinggiz")
+                } else {
+                    if (FirstName == "") {
+                        SignUpError("Ismingizni kiritmadinggiz");
                     } else {
-                        ErrorContainer.innerHTML = '<h3 style="padding:10px;color: white;background-color: red;border-radius: 10px;">' + res + '</h3>';
+                        if (LastName == "") {
+                            SignUpError("Familyangizni kiritmadinggiz");
+                        } else {
+                            if (Email == "") {
+                                SignUpError("Elektron Pochta manzilinggizni kiritmadinggiz");
+                            } else {
+                                var xhr = new XMLHttpRequest();
+                                xhr.open("GET", "Config/Confirm.php?menu=signup&FirstName=" + FirstName + "&LastName=" + LastName + "&Password=" + Password + "&Email=" + Email + "&UserName=" + UserName);
+                                xhr.send();
+                                xhr.onload = () => {
+                                    var res = xhr.response;
+                                    if (res == "signup_ok") {
+                                        location.href = "?menu=home";
+                                    } else {
+                                        SignUpError(res);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -181,13 +201,13 @@
                 ErrorContainer.innerHTML = '<h3 style="padding:10px;color: white;background-color: red;border-radius: 10px;">Parol 8 ta belgidan kam bo\'lmasligi kerak</h3>';
             } else {
                 var x = new XMLHttpRequest();
-                x.open("POST","Config/Confirm.php?menu=login");
-                x.onload=()=>{
+                x.open("POST", "Config/Confirm.php?menu=login");
+                x.onload = () => {
                     var res = x.response;
-                    if(res == "login_ok"){
-                        location.href="?menu=home";
-                    }else{
-                        ErrorContainer.innerHTML = '<h3 style="padding:10px;color: white;background-color: red;border-radius: 10px;">'+res+'</h3>';
+                    if (res == "login_ok") {
+                        location.href = "?menu=home";
+                    } else {
+                        ErrorContainer.innerHTML = '<h3 style="padding:10px;color: white;background-color: red;border-radius: 10px;">' + res + '</h3>';
 
                     }
                 }

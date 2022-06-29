@@ -32,6 +32,8 @@ class UserData extends DB
                 $this->UserRole = $res['UserRole'];
             }else{
                 session_destroy();
+                setcookie("Token","",time()-1);
+                echo "<script>location.href='".menu(MenuHome)."'</script>";
             }
         }elseif(empty($_COOKIE['ONCE'])){
             $con = $this->con();
@@ -46,3 +48,5 @@ class UserData extends DB
 }
 
 (new UserData());
+?>
+
