@@ -55,12 +55,30 @@
         width: 100%;
 
     }
+    .close-edit{
+        background-color: #202020;
+    }
 
     /*Profile Pic End*/
 </style>
 
 
+<div class="col-6 col-xl mb-xl-0 mb-3 ">
+    <div class="modal fade" id="EditUserData" tabindex="0" role="dialog" aria-labelledby="trailer-modal" aria-hidden="true">
+        <div class="modal-dialog modal-lg " role="document" id="trailerModal">
+            <div class="modal-content border-radius-10">
+                <div class="modal-header bg-black border-radius-10">
+                    <h4 style="color:white;">Hisob malumotlari O'zgartirildi</h4>
+                    <button type="button" class="close-edit" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- data-toggle="modal" data-target="#PlayListOk" -->
 
 <!-- Start Main Content -->
 <div class="main-content">
@@ -75,7 +93,7 @@
                                 <div class="container">
                                     <div class="picture-container">
                                         <div class="picture">
-                                            <img src=<?= "Assets/images/avatar/user.jpg" ?> class="picture-src" id="wizardPicturePreview" title="">
+                                            <img src=<?= "Assets/images/avatar/" . $UserData['Avatar'] ?> class="picture-src" id="wizardPicturePreview" title="">
                                             <input type="file" name="avatar" id="wizard-picture" class="">
                                         </div>
                                         <h6 class="mt-2">Avatar</h6>
@@ -102,9 +120,7 @@
                                 <a class="nav-link active" data-toggle="pill" href="#pills-profile" role="tab" aria-selected="true">Hisob Sozlamalari</a>
                             </li>
 
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" data-toggle="pill" href="#pills-1" role="tab" aria-selected="true">Foydalanuvchi Malumotlari</a>
-                            </li>
+
 
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link" data-toggle="pill" href="#pills-2" role="tab" aria-selected="true">Parolni o'zgartirish</a>
@@ -159,48 +175,6 @@
                                 <!-- Form End -->
                             </div>
 
-                            <div id="pills-1" class="tab-pane animated fadeInRight">
-                                <!-- Start Form -->
-                                <form id="profile-settings-form" action="#" method="post">
-                                    <div class="error-container"></div>
-
-
-
-
-                                    <h5 class="mb-3 mt-3 pb-3 section-border">foydalanuvchi Malumotlari</h5>
-                                    <div id="sandbox-container" class="form-group">
-                                        <label>Tug'ulgan Kun</label>
-                                        <input type="text" class="form-control" name="date-of-birth" id="date-of-birth" placeholder="Tug'ulgan yilingizni tanlang" value="01/01/2022">
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Jins</label>
-                                                <select class="form-control" name="select-plan" aria-label="Default select example" id="select-gender">
-                                                    <option value="1" selected="selected">O'g'il bola</option>
-                                                    <option value="2">Qiz bola</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Till</label>
-                                                <select class="form-control" name="select-plan" aria-label="Default select example" id="select-language">
-                                                    <option value="1">English</option>
-                                                    <option value="2" selected="selected">O'zbek</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Row End -->
-                                    <div class="form-group d-flex align-items-center mt-3">
-                                        <a href="#" class="hvr-sweep-to-right btn btn-primary">Saqlash</a>
-                                        <a href="#" class="hvr-sweep-to-right btn btn-primary ml-3">Bekor Qilish</a>
-                                    </div>
-                                </form>
-                                <!-- Form End -->
-                            </div>
 
                             <div id="pills-2" class="tab-pane animated fadeInRight">
                                 <!-- Start Form -->
@@ -252,14 +226,14 @@
                                     <tbody>
                                         <?php foreach ($Seanslar as $Seans) { ?>
                                             <tr>
-                                                <td data-title='Qurilma' >
+                                                <td data-title='Qurilma'>
                                                     <?= $Seans['UserAgent'] ?>
                                                 </td>
                                                 <td data-title='Vaqt'>
                                                     <?= $Seans['Date'] ?>
                                                 </td>
                                                 <td class='select'>
-                                                    <a class='button pointer' onclick=<?= "this.innerHTML='O\'chirildi';this.classList.add('remove-btn-click');RemoveSeans(".$Seans['ID'].")" ?>>
+                                                    <a class='button pointer' onclick=<?= "this.innerHTML='O\'chirildi';this.classList.add('remove-btn-click');RemoveSeans(" . $Seans['ID'] . ")" ?>>
                                                         O'chirish
                                                     </a>
                                                 </td>
@@ -298,15 +272,22 @@
         var UserName = document.querySelector("input[name='UserName']").value;
         var LastName = document.querySelector("input[name='LastName']").value;
         var FirstName = document.querySelector("input[name='FirstName']").value;
+        var avatar = document.querySelector("input[name='avatar']").files[0];
         var ID = decodeURIComponent("<?php echo $UserData['ID'] ?>");
         Data.append("ID", ID);
         Data.append("UserName", UserName);
         Data.append("LastName", LastName);
         Data.append("FirstName", FirstName);
+        Data.append("avatar", avatar);
         req.open("POST", 'Config/Confirm.php?menu=EditAccountData');
         req.send(Data);
         req.onload = () => {
-            console.log(req.response);
+            res = req.response;
+            if (res == "ok") {
+                $("#EditUserData").modal("show");
+            }else{
+                console.log(res);
+            }
         };
     }
 
@@ -327,9 +308,10 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-    function RemoveSeans(ID){
+
+    function RemoveSeans(ID) {
         var req = new XMLHttpRequest();
-        req.open("GET","Config/Confirm.php?menu=RemoveSeans&ID="+ID+"");
+        req.open("GET", "Config/Confirm.php?menu=RemoveSeans&ID=" + ID + "");
         req.send();
     }
 </script>

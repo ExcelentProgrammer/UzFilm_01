@@ -26,7 +26,17 @@ class HomeController extends HomeModel
 		$ScaryFilms = $this->ScaryFilm();
 		$FunnyFilms = $this->FunnyFilm();
 		$FantasticFilms = $this->FantastikFilm();
-		$UzbekFilms = $this->GetUzbekFilm();
+
+		$UzFilms = $this->GetUzFilms();
+		$RuFilms = $this->GetRuFilms();
+		$EnFilms = $this->GetEnFilms();
+		$UzMultfilms = $this->GetUzMultfilms();
+		$RuMultfilms = $this ->GetRuMultfilms();
+		$EnMultfilms = $this->GetEnMultfilms();
+		$UzVideos = $this->GetUzVideo();
+		$RuVideos = $this->GetRuVideo();
+		$EnVideos  = $this->GetEnVideo();
+
 		$AllFilms = $this->AllFilm();
 		$WatchFilms = $this->WatchFilm();
 		$Multfilms = $this->MultfilmModel->GetAllMultfilm();

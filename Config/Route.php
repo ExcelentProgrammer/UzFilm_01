@@ -26,6 +26,7 @@ class Rout extends App\Route
             $this->get(MenuAccount, ['HomeController', "account"]);
             $this->get(MenuPlayList, ['HomeController', "MyPlayList"]);
             $this->get(['menu' => MenuRemovePlayList, "video_id", "type"], ['HomeController', "RemovePlayList"]);
+            $this->get(MenuChat,['ChatController',"index"]);
         }
 
         if ($UserRole == RoleAdmin) {

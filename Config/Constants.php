@@ -16,7 +16,7 @@ const MenuPlayList = "playlist";
 const RoleUser = "User";
 const MenuAllFilms = "AllFilms";
 const MenuRemovePlayList = "RemovePlayList";
-
+const MenuChat = "chat";
 
 /**
  * Admin Menularni o'zgartirish uchun constantalar

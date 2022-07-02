@@ -269,7 +269,7 @@
                                 <li class="nav-item">
                                     <div class="nav-account ml-2">
                                         <div class="dropdown">
-                                            <div aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" id="dropdown-account" role="button"><img alt="" class="img-fluid user-icon rounded-circle" src="Assets/images/avatar/user.jpg">
+                                            <div aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" id="dropdown-account" role="button"><img alt="" class="img-fluid user-icon rounded-circle" src="<?php echo 'Assets/images/avatar/'.$AvatarImg ?>">
                                             </div>
                                             <ul class="dropdown-menu dropdown-menu-right fade-up">
                                                 <li>

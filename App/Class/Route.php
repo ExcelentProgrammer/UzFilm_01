@@ -20,6 +20,42 @@ class Route
         }
     }
 
+    public function post($page, array $code)
+    {
+
+
+        $menu = !empty($_POST['menu']) ? $_POST['menu'] : "";
+        if (is_array($page)) {
+            $keys = array_keys($page);
+            $values = $page;
+            $i = 0;
+            $r = 0;
+            foreach ($keys as $key) {
+                $value = !empty($values[$key]) ? $values[$key] : null;
+                if ((!empty($_POST[$key]) ? $_POST[$key] : "qwertyuiopasdfghjklzxcvbnm1234567890") == $value) {
+                    $r++;
+                } elseif (preg_match("/^[0-9]*$/", $key)) {
+                    if (!empty($_POST[$value])) {
+                        $r++;
+                    }
+                }
+                $i++;
+            }
+
+            if (count($page) == $r and $this->routeInfo != true) {
+                require_once ROOT_PATH . "App/Controller/" . $code[0] . ".php";
+                ((new $code[0]())->{$code[1]}());
+                $this->routeInfo = true;
+            }
+        } else {
+            if ($menu == $page and $this->routeInfo != true) {
+                require_once ROOT_PATH . "App/Controller/" . $code[0] . ".php";
+                ((new $code[0]())->{$code[1]}());
+                $this->routeInfo = true;
+            }
+        }
+
+    }
     public function get($page, array $code)
     {
 

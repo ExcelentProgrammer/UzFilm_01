@@ -15,7 +15,7 @@
                             <div class="col-xl-6 col-lg-12 col-md-12">
                                 <h3 data-animation-in="fadeInUp" data-delay-in="1"><?= __Short($TopFilm['FilmName'], 10) ?></h3>
                                 <div class="slide-info" data-animation-in="fadeInUp" data-delay-in="1">
-                                    <span><?= $TopFilm['FilmYear'] ?></span> <span class="radius"><?= $TopFilm['FilmYoung']?></span><span><?= $TopFilm['FilmJanr'] ?></span>
+                                    <span><?= $TopFilm['FilmYear'] ?></span> <span class="radius"><?= $TopFilm['FilmYoung'] ?></span><span><?= $TopFilm['FilmJanr'] ?></span>
                                 </div>
                                 <p data-animation-in="fadeInUp" data-delay-in="1"><?= __Short($TopFilm['FilmCaption'], 10) ?></p>
                                 <div class="slider-buttons d-flex align-items-center" data-animation-in="fadeInUp" data-delay-in="1">
@@ -42,47 +42,8 @@
 <!-- Main Slider End -->
 <!-- Start Main Content -->
 <div class="main-content">
-    <section class="pupular">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="block-title">Yangi Filmlar</h2>
-                    <div class="owl-carousel owl-theme" id="pupular-slider">
-                        <?php /** @var array $AllFilms */
-                        foreach (array_slice($AllFilms, 0, 30) as $AllFilm) { ?>
 
-                            <div class="item">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $AllFilm['FilmImg'] ?>></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href=<?= FilmToWatch($AllFilm['ID']) ?>><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <?= __PlayList($AllFilm['ID']) ?>
-                                                </li>
 
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href=<?= FilmToWatch($AllFilm['ID']) ?>><?= __Short($AllFilm['FilmName'], 10) ?></a>
-                                        </h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year"><?= $AllFilm['FilmYear'] ?></span> <span class="video-age"><?= $AllFilm['FilmYoung'] ?></span> <span class="video-type"><?= $AllFilm['FilmJanr'] ?></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section class="main-tabs">
         <div class="container-fluid">
@@ -355,21 +316,25 @@
                 <!-- Season Header End -->
                 <div class="season-tabs">
                     <ul class="nav nav-pills mb-3 justify-content-center mb-5" id="pills-tab-seasons" role="tablist">
+                        <?php if(!empty($UzFilms)){ ?>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" data-toggle="pill" href="#pills-drama" role="tab" aria-selected="true">O'zbek Tilida</a>
                         </li>
+                        <?php }if(!empty($EnFilms)){ ?>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" data-toggle="pill" href="#pills-action" role="tab" aria-selected="false">Ingliz Tilida</a>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <?php }if(!empty($RuFilms)){ ?>
+                            <li class="nav-item" role="presentation">
                             <a class="nav-link" data-toggle="pill" href="#pills-romance" role="tab" aria-selected="false">Rus Tilida</a>
                         </li>
+                        <?php } ?>
                     </ul>
                     <div class="tab-content" id="pills-tab-Content">
                         <div id="pills-drama" class="tab-pane animated fadeInRight show active">
                             <div class="row">
                                 <?php /** @var array $UzbekFilms */
-                                foreach ($UzbekFilms as $UzbekFilm) { ?>
+                                foreach ($UzFilms as $UzbekFilm) { ?>
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                         <div class="video-block">
                                             <div class="video-thumb position-relative thumb-overlay">
@@ -406,308 +371,97 @@
 
 
                             </div>
-                            <a class="hvr-sweep-to-right y-center btn" href=<?= menu(MenuAllFilms)."&type=Film&p=1" ?> tabindex="0">Barchasi</a>
 
                             <!-- Row End -->
                         </div>
                         <!-- Tab Pane 1 End -->
                         <div id="pills-action" class="tab-pane animated fadeInRight">
                             <div class="row">
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                    <div class="video-block">
-                                        <div class="video-thumb position-relative thumb-overlay">
-                                            <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/01.jpg"></a>
-                                            <div class="box-content">
-                                                <ul class="icon">
-                                                    <li>
-                                                        <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fas fa-plus"></i></a>
-                                                    </li>
+                                <?php /** @var array $UzbekFilms */
+                                foreach ($EnFilms as $UzbekFilm) { ?>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+                                        <div class="video-block">
+                                            <div class="video-thumb position-relative thumb-overlay">
+                                                <a href=<?= FilmToWatch($UzbekFilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $UzbekFilm['FilmImg'] ?>></a>
+                                                <div class="box-content">
+                                                    <ul class="icon">
+                                                        <li>
+                                                            <a href=<?= FilmToWatch($UzbekFilm['ID']) ?>><i class="fas fa-play"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <?= __PlayList($UzbekFilm['ID']) ?>
+                                                        </li>
 
-                                                </ul>
+                                                    </ul>
+                                                </div>
+                                                <!-- Box Content End -->
                                             </div>
-                                            <!-- Box Content End -->
-                                        </div>
-                                        <!-- Video Thumb End -->
-                                        <div class="video-content">
-                                            <h2 class="video-title"><a href="shows-single.html">The End</a></h2>
-                                            <div class="video-info d-flex align-items-center">
-                                                <span class="video-year">2021</span> <span class="video-seasons">4
-                                                    Season</span>
+                                            <!-- Video Thumb End -->
+                                            <div class="video-content">
+                                                <h2 class="video-title"><a href=<?= FilmToWatch($UzbekFilm['ID']) ?>><?= __Short($UzbekFilm['FilmName'], 10) ?></a>
+                                                </h2>
+                                                <div class="video-info d-flex align-items-center">
+                                                    <span class="video-year"><?= $UzbekFilm['FilmYear'] ?></span> <span class="video-seasons"><?= $UzbekFilm['FilmYoung'] ?></span>
+                                                    <span><?= $UzbekFilm['FilmJanr'] ?></span>
+                                                </div>
                                             </div>
+                                            <!-- video Content End -->
                                         </div>
-                                        <!-- video Content End -->
+                                        <!-- video Block End -->
                                     </div>
-                                    <!-- video Block End -->
-                                </div>
-                                <!-- Col End -->
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                    <div class="video-block">
-                                        <div class="video-thumb position-relative thumb-overlay">
-                                            <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/02.jpg"></a>
-                                            <div class="box-content">
-                                                <ul class="icon">
-                                                    <li>
-                                                        <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fas fa-plus"></i></a>
-                                                    </li>
 
-                                                </ul>
-                                            </div>
-                                            <!-- Box Content End -->
-                                        </div>
-                                        <!-- Video Thumb End -->
-                                        <div class="video-content">
-                                            <h2 class="video-title"><a href="shows-single.html">the beginning</a></h2>
-                                            <div class="video-info d-flex align-items-center">
-                                                <span class="video-year">2021</span> <span class="video-seasons">4
-                                                    Season</span>
-                                            </div>
-                                        </div>
-                                        <!-- video Content End -->
-                                    </div>
-                                    <!-- video Block End -->
-                                </div>
-                                <!-- Col End -->
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                    <div class="video-block">
-                                        <div class="video-thumb position-relative thumb-overlay">
-                                            <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/03.jpg"></a>
-                                            <div class="box-content">
-                                                <ul class="icon">
-                                                    <li>
-                                                        <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fas fa-plus"></i></a>
-                                                    </li>
+                                <?php } ?>
 
-                                                </ul>
-                                            </div>
-                                            <!-- Box Content End -->
-                                        </div>
-                                        <!-- Video Thumb End -->
-                                        <div class="video-content">
-                                            <h2 class="video-title"><a href="shows-single.html">The Search</a></h2>
-                                            <div class="video-info d-flex align-items-center">
-                                                <span class="video-year">2021</span> <span class="video-seasons">4
-                                                    Season</span>
-                                            </div>
-                                        </div>
-                                        <!-- video Content End -->
-                                    </div>
-                                    <!-- video Block End -->
-                                </div>
-                                <!-- Col End -->
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                    <div class="video-block">
-                                        <div class="video-thumb position-relative thumb-overlay">
-                                            <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/04.jpg"></a>
-                                            <div class="box-content">
-                                                <ul class="icon">
-                                                    <li>
-                                                        <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fas fa-plus"></i></a>
-                                                    </li>
 
-                                                </ul>
-                                            </div>
-                                            <!-- Box Content End -->
-                                        </div>
-                                        <!-- Video Thumb End -->
-                                        <div class="video-content">
-                                            <h2 class="video-title"><a href="shows-single.html">The Treasures</a></h2>
-                                            <div class="video-info d-flex align-items-center">
-                                                <span class="video-year">2021</span> <span class="video-seasons">4
-                                                    Season</span>
-                                            </div>
-                                        </div>
-                                        <!-- video Content End -->
-                                    </div>
-                                    <!-- video Block End -->
-                                </div>
-                                <!-- Col End -->
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                    <div class="video-block">
-                                        <div class="video-thumb position-relative thumb-overlay">
-                                            <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/05.jpg"></a>
-                                            <div class="box-content">
-                                                <ul class="icon">
-                                                    <li>
-                                                        <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fas fa-plus"></i></a>
-                                                    </li>
 
-                                                </ul>
-                                            </div>
-                                            <!-- Box Content End -->
-                                        </div>
-                                        <!-- Video Thumb End -->
-                                        <div class="video-content">
-                                            <h2 class="video-title"><a href="shows-single.html">Problems</a></h2>
-                                            <div class="video-info d-flex align-items-center">
-                                                <span class="video-year">2021</span> <span class="video-seasons">4
-                                                    Season</span>
-                                            </div>
-                                        </div>
-                                        <!-- video Content End -->
-                                    </div>
-                                    <!-- video Block End -->
-                                </div>
-                                <!-- Col End -->
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                    <div class="video-block">
-                                        <div class="video-thumb position-relative thumb-overlay">
-                                            <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/06.jpg"></a>
-                                            <div class="box-content">
-                                                <ul class="icon">
-                                                    <li>
-                                                        <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fas fa-plus"></i></a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                            <!-- Box Content End -->
-                                        </div>
-                                        <!-- Video Thumb End -->
-                                        <div class="video-content">
-                                            <h2 class="video-title">
-                                            </h2>
-                                            <div class="video-info d-flex align-items-center">
-                                                <span class="video-year">2021</span> <span class="video-seasons">4
-                                                    Season</span>
-                                            </div>
-                                        </div>
-                                        <!-- video Content End -->
-                                    </div>
-                                    <!-- video Block End -->
-                                </div>
-                                <!-- Col End -->
                             </div>
                             <!-- Row End -->
                         </div>
                         <!-- Tab Pane 2 End -->
                         <div id="pills-romance" class="tab-pane animated fadeInRight">
                             <div class="row">
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                    <div class="video-block">
-                                        <div class="video-thumb position-relative thumb-overlay">
-                                            <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-romance/01.jpg"></a>
-                                            <div class="box-content">
-                                                <ul class="icon">
-                                                    <li>
-                                                        <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fas fa-plus"></i></a>
-                                                    </li>
+                                <?php /** @var array $UzbekFilms */
+                                foreach ($RuFilms as $UzbekFilm) { ?>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+                                        <div class="video-block">
+                                            <div class="video-thumb position-relative thumb-overlay">
+                                                <a href=<?= FilmToWatch($UzbekFilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $UzbekFilm['FilmImg'] ?>></a>
+                                                <div class="box-content">
+                                                    <ul class="icon">
+                                                        <li>
+                                                            <a href=<?= FilmToWatch($UzbekFilm['ID']) ?>><i class="fas fa-play"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <?= __PlayList($UzbekFilm['ID']) ?>
+                                                        </li>
 
-                                                </ul>
+                                                    </ul>
+                                                </div>
+                                                <!-- Box Content End -->
                                             </div>
-                                            <!-- Box Content End -->
-                                        </div>
-                                        <!-- Video Thumb End -->
-                                        <div class="video-content">
-                                            <h2 class="video-title"><a href="shows-single.html">End of Sorrows</a></h2>
-                                            <div class="video-info d-flex align-items-center">
-                                                <span class="video-year">2021</span> <span class="video-seasons">4
-                                                    Season</span>
+                                            <!-- Video Thumb End -->
+                                            <div class="video-content">
+                                                <h2 class="video-title"><a href=<?= FilmToWatch($UzbekFilm['ID']) ?>><?= __Short($UzbekFilm['FilmName'], 10) ?></a>
+                                                </h2>
+                                                <div class="video-info d-flex align-items-center">
+                                                    <span class="video-year"><?= $UzbekFilm['FilmYear'] ?></span> <span class="video-seasons"><?= $UzbekFilm['FilmYoung'] ?></span>
+                                                    <span><?= $UzbekFilm['FilmJanr'] ?></span>
+                                                </div>
                                             </div>
+                                            <!-- video Content End -->
                                         </div>
-                                        <!-- video Content End -->
+                                        <!-- video Block End -->
                                     </div>
-                                    <!-- video Block End -->
-                                </div>
-                                <!-- Col End -->
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                    <div class="video-block">
-                                        <div class="video-thumb position-relative thumb-overlay">
-                                            <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-romance/02.jpg"></a>
-                                            <div class="box-content">
-                                                <ul class="icon">
-                                                    <li>
-                                                        <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fas fa-plus"></i></a>
-                                                    </li>
 
-                                                </ul>
-                                            </div>
-                                            <!-- Box Content End -->
-                                        </div>
-                                        <!-- Video Thumb End -->
-                                        <div class="video-content">
-                                            <h2 class="video-title"><a href="shows-single.html">the thief</a></h2>
-                                            <div class="video-info d-flex align-items-center">
-                                                <span class="video-year">2021</span> <span class="video-seasons">4
-                                                    Season</span>
-                                            </div>
-                                        </div>
-                                        <!-- video Content End -->
-                                    </div>
-                                    <!-- video Block End -->
-                                </div>
-                                <!-- Col End -->
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                    <div class="video-block">
-                                        <div class="video-thumb position-relative thumb-overlay">
-                                            <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-romance/03.jpg"></a>
-                                            <div class="box-content">
-                                                <ul class="icon">
-                                                    <li>
-                                                        <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fas fa-plus"></i></a>
-                                                    </li>
+                                <?php } ?>
 
-                                                </ul>
-                                            </div>
-                                            <!-- Box Content End -->
-                                        </div>
-                                        <!-- Video Thumb End -->
-                                        <div class="video-content">
-                                            <h2 class="video-title"><a href="shows-single.html">Millionaire</a></h2>
-                                            <div class="video-info d-flex align-items-center">
-                                                <span class="video-year">2021</span> <span class="video-seasons">4
-                                                    Season</span>
-                                            </div>
-                                        </div>
-                                        <!-- video Content End -->
-                                    </div>
-                                    <!-- video Block End -->
-                                </div>
-                                <!-- Col End -->
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                    <div class="video-block">
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">The Ocean</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
+
+
                             </div>
                             <!-- Col End -->
                         </div>
+                        <a class="hvr-sweep-to-right y-center btn" href=<?= menu(MenuAllFilms) . "&type=Film&p=1" ?> tabindex="0">Barchasi</a>
+
                         <!-- Row End -->
                     </div>
                     <!-- Tab Pane 3 End -->
@@ -730,24 +484,28 @@
             <!-- Season Header End -->
             <div class="season-tabs">
                 <ul class="nav nav-pills mb-3 justify-content-center mb-5" id="pills-tab-seasons" role="tablist">
+                <?php if(!empty($UzMultfilms)){ ?>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" data-toggle="pill" href="#mult-uz" role="tab" aria-selected="true">O'zbek
                             Tilida</a>
                     </li>
+                    <?php }if(!empty($EnMultfilms)){ ?>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" data-toggle="pill" href="#mult-en" role="tab" aria-selected="false">Ingliz
                             Tilida</a>
                     </li>
+                    <?php }if(!empty($RuMultfilms)){ ?>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" data-toggle="pill" href="#mult-ru" role="tab" aria-selected="false">Rus
                             Tilida</a>
                     </li>
+                    <?php } ?>
                 </ul>
                 <div class="tab-content" id="pills-tab-Content">
                     <div id="mult-uz" class="tab-pane animated fadeInRight show active">
                         <div class="row">
                             <?php /** @var array $Multfilms */
-                            foreach ($Multfilms as $Multfilm) { ?>
+                            foreach ($UzMultfilms as $Multfilm) { ?>
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                     <div class="video-block">
                                         <div class="video-thumb position-relative thumb-overlay">
@@ -784,383 +542,97 @@
                             <!-- Col End -->
 
                         </div>
-                        <a class="hvr-sweep-to-right y-center btn" href=<?= menu(MenuAllFilms)."&type=Multfilm&p=1" ?> tabindex="0">Barchasi</a>
 
                         <!-- Row End -->
                     </div>
                     <!-- Tab Pane 1 End -->
                     <div id="mult-en" class="tab-pane animated fadeInRight">
                         <div class="row">
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/01.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
+                            <?php /** @var array $Multfilms */
+                            foreach ($EnMultfilms as $Multfilm) { ?>
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+                                    <div class="video-block">
+                                        <div class="video-thumb position-relative thumb-overlay">
+                                            <a href=<?= MultfilmToWatch($Multfilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $Multfilm['FilmImg'] ?>></a>
+                                            <div class="box-content">
+                                                <ul class="icon">
+                                                    <li>
+                                                        <a href=<?= MultfilmToWatch($Multfilm['ID']) ?>><i class="fas fa-play"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <?= __PlayList($Multfilm['ID'], "", "Multfilm") ?>
 
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">The End</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/02.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
+                                                    </li>
 
-                                            </ul>
+                                                </ul>
+                                            </div>
+                                            <!-- Box Content End -->
                                         </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">the beginning</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
+                                        <!-- Video Thumb End -->
+                                        <div class="video-content">
+                                            <h2 class="video-title"><a href=<?= MultfilmToWatch($Multfilm['ID']) ?>><?= __Short($Multfilm['FilmName'], 10) ?></a>
+                                            </h2>
+                                            <div class="video-info d-flex align-items-center">
+                                                <span class="video-year"><?= $Multfilm['FilmYear'] ?></span> <span class="video-seasons"><?= $Multfilm['FilmYoung'] ?></span>
+                                                <span><?= $Multfilm['FilmJanr'] ?></span>
+                                            </div>
                                         </div>
+                                        <!-- video Content End -->
                                     </div>
-                                    <!-- video Content End -->
+                                    <!-- video Block End -->
                                 </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/03.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
 
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">The Search</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
+                            <?php } ?>
                             <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/04.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
 
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">The Treasures</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/05.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">Problems</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/06.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">life is Beautiful</a>
-                                        </h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
                         </div>
                         <!-- Row End -->
                     </div>
                     <!-- Tab Pane 2 End -->
                     <div id="mult-ru" class="tab-pane animated fadeInRight">
                         <div class="row">
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-romance/01.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
+                            <?php /** @var array $Multfilms */
+                            foreach ($RuMultfilms as $Multfilm) { ?>
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+                                    <div class="video-block">
+                                        <div class="video-thumb position-relative thumb-overlay">
+                                            <a href=<?= MultfilmToWatch($Multfilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $Multfilm['FilmImg'] ?>></a>
+                                            <div class="box-content">
+                                                <ul class="icon">
+                                                    <li>
+                                                        <a href=<?= MultfilmToWatch($Multfilm['ID']) ?>><i class="fas fa-play"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <?= __PlayList($Multfilm['ID'], "", "Multfilm") ?>
 
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title">End of Sorrows</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-romance/02.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
+                                                    </li>
 
-                                            </ul>
+                                                </ul>
+                                            </div>
+                                            <!-- Box Content End -->
                                         </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">the thief</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
+                                        <!-- Video Thumb End -->
+                                        <div class="video-content">
+                                            <h2 class="video-title"><a href=<?= MultfilmToWatch($Multfilm['ID']) ?>><?= __Short($Multfilm['FilmName'], 10) ?></a>
+                                            </h2>
+                                            <div class="video-info d-flex align-items-center">
+                                                <span class="video-year"><?= $Multfilm['FilmYear'] ?></span> <span class="video-seasons"><?= $Multfilm['FilmYoung'] ?></span>
+                                                <span><?= $Multfilm['FilmJanr'] ?></span>
+                                            </div>
                                         </div>
+                                        <!-- video Content End -->
                                     </div>
-                                    <!-- video Content End -->
+                                    <!-- video Block End -->
                                 </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-romance/03.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
 
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">Millionaire</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
+                            <?php } ?>
                             <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-romance/04.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
 
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">The Dreams</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-romance/05.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">Black Color</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-romance/06.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">The Ocean</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
                         </div>
                         <!-- Row End -->
                     </div>
+                    <a class="hvr-sweep-to-right y-center btn" href=<?= menu(MenuAllFilms) . "&type=Multfilm&p=1" ?> tabindex="0">Barchasi</a>
+
                     <!-- Tab Pane 3 End -->
                 </div>
                 <!-- Tab Content End -->
@@ -1181,24 +653,28 @@
             <!-- Season Header End -->
             <div class="season-tabs">
                 <ul class="nav nav-pills mb-3 justify-content-center mb-5" id="pills-tab-seasons" role="tablist">
+                    <?php if(!empty($UzVideos)){ ?>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" data-toggle="pill" href="#video-uz" role="tab" aria-selected="true">O'zbek
                             Tilida</a>
                     </li>
+                    <?php }if(!empty($EnVideos)){ ?>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" data-toggle="pill" href="#video-en" role="tab" aria-selected="false">Ingliz
                             Tilida</a>
                     </li>
+                    <?php }if(!empty($RuVideos)){ ?>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" data-toggle="pill" href="#video-ru" role="tab" aria-selected="false">Rus
                             Tilida</a>
                     </li>
+                    <?php } ?>
                 </ul>
                 <div class="tab-content" id="pills-tab-Content">
                     <div id="video-uz" class="tab-pane animated fadeInRight show active">
                         <div class="row">
                             <?php /** @var array $Videos */
-                            foreach ($Videos as $Video) { ?>
+                            foreach ($UzVideos as $Video) { ?>
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                     <div class="video-block">
                                         <div class="video-thumb position-relative thumb-overlay">
@@ -1235,383 +711,99 @@
                             <!-- Col End -->
 
                         </div>
-                        <a class="hvr-sweep-to-right y-center btn" href=<?= menu(MenuAllFilms)."&type=Video&p=1" ?> tabindex="0">Barchasi</a>
 
                         <!-- Row End -->
                     </div>
                     <!-- Tab Pane 1 End -->
                     <div id="video-en" class="tab-pane animated fadeInRight">
                         <div class="row">
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/01.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
+                            <?php /** @var array $Videos */
+                            foreach ($EnVideos as $Video) { ?>
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+                                    <div class="video-block">
+                                        <div class="video-thumb position-relative thumb-overlay">
+                                            <a href=<?= VideoToWatch($Video['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $Video['FilmImg'] ?>></a>
+                                            <div class="box-content">
+                                                <ul class="icon">
+                                                    <li>
+                                                        <a href=<?= VideoToWatch($Video['ID']) ?>><i class="fas fa-play"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <?= __PlayList($Video['ID'], "", "Video") ?>
 
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">The End</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/02.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
+                                                    </li>
 
-                                            </ul>
+                                                </ul>
+                                            </div>
+                                            <!-- Box Content End -->
                                         </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">the beginning</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
+                                        <!-- Video Thumb End -->
+                                        <div class="video-content">
+                                            <h2 class="video-title"><a href=<?= VideoToWatch($Video['ID']) ?>><?= __Short($Video['FilmName'], 10) ?></a>
+                                            </h2>
+                                            <div class="video-info d-flex align-items-center">
+                                                <span class="video-year"><?= $Video['FilmYear'] ?></span> <span class="video-seasons"><?= $Video['FilmYoung'] ?></span>
+                                                <span><?= $Video['FilmJanr'] ?></span>
+                                            </div>
                                         </div>
+                                        <!-- video Content End -->
                                     </div>
-                                    <!-- video Content End -->
+                                    <!-- video Block End -->
                                 </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/03.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
 
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">The Search</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
+                            <?php } ?>
                             <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/04.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
 
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">The Treasures</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/05.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">Problems</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-action/06.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title">
-                                        </h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
                         </div>
+
                         <!-- Row End -->
                     </div>
                     <!-- Tab Pane 2 End -->
                     <div id="video-ru" class="tab-pane animated fadeInRight">
                         <div class="row">
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-romance/01.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
+                            <?php /** @var array $Videos */
+                            foreach ($RuVideos as $Video) { ?>
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+                                    <div class="video-block">
+                                        <div class="video-thumb position-relative thumb-overlay">
+                                            <a href=<?= VideoToWatch($Video['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $Video['FilmImg'] ?>></a>
+                                            <div class="box-content">
+                                                <ul class="icon">
+                                                    <li>
+                                                        <a href=<?= VideoToWatch($Video['ID']) ?>><i class="fas fa-play"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <?= __PlayList($Video['ID'], "", "Video") ?>
 
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">End of Sorrows</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-romance/02.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
+                                                    </li>
 
-                                            </ul>
+                                                </ul>
+                                            </div>
+                                            <!-- Box Content End -->
                                         </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
+                                        <!-- Video Thumb End -->
+                                        <div class="video-content">
+                                            <h2 class="video-title"><a href=<?= VideoToWatch($Video['ID']) ?>><?= __Short($Video['FilmName'], 10) ?></a>
+                                            </h2>
+                                            <div class="video-info d-flex align-items-center">
+                                                <span class="video-year"><?= $Video['FilmYear'] ?></span> <span class="video-seasons"><?= $Video['FilmYoung'] ?></span>
+                                                <span><?= $Video['FilmJanr'] ?></span>
+                                            </div>
                                         </div>
+                                        <!-- video Content End -->
                                     </div>
-                                    <!-- video Content End -->
+                                    <!-- video Block End -->
                                 </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-romance/03.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
 
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">Millionaire</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
+                            <?php } ?>
                             <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-romance/04.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
 
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">The Dreams</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-romance/05.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">Black Color</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                <div class="video-block">
-                                    <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid" src="Assets/images/best-romance/06.jpg"></a>
-                                        <div class="box-content">
-                                            <ul class="icon">
-                                                <li>
-                                                    <a href="watch-show.html"><i class="fas fa-play"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-plus"></i></a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                        <!-- Box Content End -->
-                                    </div>
-                                    <!-- Video Thumb End -->
-                                    <div class="video-content">
-                                        <h2 class="video-title"><a href="shows-single.html">The Ocean</a></h2>
-                                        <div class="video-info d-flex align-items-center">
-                                            <span class="video-year">2021</span> <span class="video-seasons">4
-                                                Season</span>
-                                        </div>
-                                    </div>
-                                    <!-- video Content End -->
-                                </div>
-                                <!-- video Block End -->
-                            </div>
-                            <!-- Col End -->
                         </div>
+
                         <!-- Row End -->
                     </div>
+                    <a class="hvr-sweep-to-right y-center btn" href=<?= menu(MenuAllFilms) . "&type=Video&p=1" ?> tabindex="0">Barchasi</a>
+
                     <!-- Tab Pane 3 End -->
                 </div>
                 <!-- Tab Content End -->

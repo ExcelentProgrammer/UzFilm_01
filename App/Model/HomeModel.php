@@ -77,18 +77,6 @@ class HomeModel extends DB
 
     /**
      * @return array
-     * o'zbekcha filmlarni olish
-     */
-    function GetUzbekFilm()
-    {
-        $res = mysqli_query($this->con(), "SELECT * FROM films WHERE FilmLanguage='O\'zbek Tilida' ORDER BY ID DESC");
-        if (mysqli_num_rows($res) == 0) {
-            return [];
-        }
-        return mysqli_fetch_all($res, MYSQLI_ASSOC);
-    }
-    /**
-     * @return array
      * qanday janrda ekanligi haqida malumot yo'q bo'lgan filmlar
      */
     function NotJanr()
@@ -128,8 +116,8 @@ class HomeModel extends DB
         $Watch = $res['FilmWatch'];
         $Watch++;
         mysqli_query($this->con(), "UPDATE films SET FilmWatch='$Watch' WHERE ID='$id';");
-        if(mysqli_num_rows($row) == 0)
-            echo "<script>location.href='".menu(Menu404)."'</script>";
+        if (mysqli_num_rows($row) == 0)
+            echo "<script>location.href='" . menu(Menu404) . "'</script>";
         return $res;
     }
 
@@ -176,9 +164,9 @@ class HomeModel extends DB
         $Films = [];
         $Multfilm = [];
         $video = [];
-/**
- * Foydalanuvchi saqlab qo'ygan Filmlarni malumotlar bazasidan olish
- * */
+        /**
+         * Foydalanuvchi saqlab qo'ygan Filmlarni malumotlar bazasidan olish
+         * */
         $res = mysqli_query($con, "SELECT * FROM playlist WHERE UserID='$UserID' AND Type='Film'");
         if (mysqli_num_rows($res) != 0) {
             $VideoIDs = mysqli_fetch_all($res, MYSQLI_ASSOC);
@@ -215,16 +203,109 @@ class HomeModel extends DB
                 $video[] = $res;
             }
         }
-        $r = ["Film"=>$Films,"Multfilm"=>$Multfilm,"Video"=>$video];
+        $r = ["Film" => $Films, "Multfilm" => $Multfilm, "Video" => $video];
         return $r;
     }
-    function Shows(){
-        $res = mysqli_query($this->con(),"SELECT SUM(FilmWatch) as Watchs FROM films");
-        return mysqli_fetch_all($res,MYSQLI_ASSOC)['0']['Watchs'];
+    function Shows()
+    {
+        $res = mysqli_query($this->con(), "SELECT SUM(FilmWatch) as Watchs FROM films");
+        return mysqli_fetch_all($res, MYSQLI_ASSOC)['0']['Watchs'];
     }
-    function RemovePlayListFilm($UserID,$VideoID,$Type){
-        $res = mysqli_query($this->con(),"DELETE FROM playlist WHERE UserID='$UserID' AND VideoID='$VideoID' AND Type='$Type'");
+    function RemovePlayListFilm($UserID, $VideoID, $Type)
+    {
+        $res = mysqli_query($this->con(), "DELETE FROM playlist WHERE UserID='$UserID' AND VideoID='$VideoID' AND Type='$Type'");
     }
-   
 
+
+    /**
+     *  Filmlar
+     */
+
+    /**
+     * @return array
+     * o'zbekcha filmlarni olish
+     */
+    function GetUzFilms()
+    {
+        $res = mysqli_query($this->con(), "SELECT * FROM films WHERE FilmLanguage='O\'zbek Tilida' ORDER BY ID DESC");
+        if (mysqli_num_rows($res) == 0) {
+            return [];
+        }
+        return mysqli_fetch_all($res, MYSQLI_ASSOC);
+    }
+
+    function GetRuFilms()
+    {
+        $res = mysqli_query($this->con(), "SELECT * FROM films WHERE FilmLanguage='Rus Tilida' ORDER BY ID DESC");
+        if (mysqli_num_rows($res) == 0) {
+            return [];
+        }
+        return mysqli_fetch_all($res, MYSQLI_ASSOC);
+    }
+    function GetEnFilms()
+    {
+        $res = mysqli_query($this->con(), "SELECT * FROM films WHERE FilmLanguage='Ingliz Tilida' ORDER BY ID DESC");
+        if (mysqli_num_rows($res) == 0) {
+            return [];
+        }
+        return mysqli_fetch_all($res, MYSQLI_ASSOC);
+    }
+
+
+    /**
+     * Videolar
+     * 
+     */
+    function GetEnVideo()
+    {
+        $res = mysqli_query($this->con(), "SELECT * FROM video WHERE FilmLanguage='Ingliz Tilida' ORDER BY ID DESC");
+        if (mysqli_num_rows($res) == 0) {
+            return [];
+        }
+        return mysqli_fetch_all($res, MYSQLI_ASSOC);
+    }
+    function GetRuVideo()
+    {
+        $res = mysqli_query($this->con(), "SELECT * FROM video WHERE FilmLanguage='Rus Tilida' ORDER BY ID DESC");
+        if (mysqli_num_rows($res) == 0) {
+            return [];
+        }
+        return mysqli_fetch_all($res, MYSQLI_ASSOC);
+    }
+    function GetUzVideo()
+    {
+        $res = mysqli_query($this->con(), "SELECT * FROM video WHERE FilmLanguage='O\'zbek Tilida' ORDER BY ID DESC");
+        if (mysqli_num_rows($res) == 0) {
+            return [];
+        }
+        return mysqli_fetch_all($res, MYSQLI_ASSOC);
+    }
+
+     /**
+      * Multfilmlar
+      */
+    function GetEnMultfilms()
+    {
+        $res = mysqli_query($this->con(), "SELECT * FROM multfilm WHERE FilmLanguage='Ingliz Tilida' ORDER BY ID DESC");
+        if (mysqli_num_rows($res) == 0) {
+            return [];
+        }
+        return mysqli_fetch_all($res, MYSQLI_ASSOC);
+    }
+    function GetRuMultfilms()
+    {
+        $res = mysqli_query($this->con(), "SELECT * FROM multfilm WHERE FilmLanguage='Rus Tilida' ORDER BY ID DESC");
+        if (mysqli_num_rows($res) == 0) {
+            return [];
+        }
+        return mysqli_fetch_all($res, MYSQLI_ASSOC);
+    }
+    function GetUzMultfilms()
+    {
+        $res = mysqli_query($this->con(), "SELECT * FROM multfilm WHERE FilmLanguage='O\'zbek Tilida' ORDER BY ID DESC");
+        if (mysqli_num_rows($res) == 0) {
+            return [];
+        }
+        return mysqli_fetch_all($res, MYSQLI_ASSOC);
+    }
 }

@@ -44,9 +44,12 @@ class UserData extends DB
             $C->NewCookie("ID",$ID);
             $C->NewCookie("ONCE","false");
         }
+        $ID = $_SESSION['ID'];
+        $this->AvatarImg = mysqli_fetch_all(mysqli_query($this->con(),"SELECT Avatar FROM users WHERE ID='$ID'"),MYSQLI_ASSOC)[0]['Avatar'];
+
     }
 }
 
-(new UserData());
-?>
-
+ 
+$UserData = new UserData();
+$AvatarImg = $UserData->AvatarImg;

@@ -42,6 +42,9 @@ class Confirm extends DB
             case 'RemoveSeans':
                 $this->RemoveSeans();
                 break;
+            case 'SendMsg':
+                $this->SendMsg();
+                break;
 
 
             default:
@@ -63,10 +66,29 @@ class Confirm extends DB
         $ID = $_POST['ID'];
         $res = mysqli_query($con, "SELECT * FROM users WHERE UserName='$UserName'");
         $DbUserName = mysqli_fetch_all($res, MYSQLI_ASSOC)[0]['UserName'];
+        $UserData =  mysqli_query($con, "SELECT * FROM users WHERE ID='$ID'");
+        $AvatarOrginalName = mysqli_fetch_all($UserData,MYSQLI_ASSOC)[0]['Avatar'];
         if (mysqli_num_rows($res) != 0 and $UserName != $DbUserName)
-            echo "UserName Ooldin ishlatilgan";
+            echo "UserName Oldin ishlatilgan";
         else {
-            $res = mysqli_query($con, "UPDATE users SET Username='$UserName',LastName='$LastName',FirstName='$FirstName' WHERE ID='$ID'");
+            
+            if (!empty($_FILES['avatar'])) {
+                $File = $_FILES['avatar'];
+                $TmpName = $File['tmp_name'];
+                $Error = $File['error'];
+                if ($Error == 0) {
+                    $AvatarName = RandString() . ".jpg";
+                    $res = move_uploaded_file($TmpName, "../Assets/images/avatar/" . $AvatarName);
+                    if($res){
+                        unlink("../Assets/images/avatar/".$AvatarOrginalName);
+                    }  else{
+                        $AvatarName = $AvatarOrginalName;
+                    }
+                }
+            }else{
+                $AvatarName = $AvatarOrginalName;
+            }
+            $res = mysqli_query($con, "UPDATE users SET Username='$UserName',LastName='$LastName',FirstName='$FirstName',Avatar='$AvatarName' WHERE ID='$ID'");
             if ($res)
                 echo "ok";
             else
@@ -105,10 +127,10 @@ class Confirm extends DB
                     $res = mysqli_query($con, "SELECT * FROM `users` WHERE `ID` = '" . mysqli_insert_id($con) . "'");
                     if (mysqli_num_rows($res) > 0) {
                         $UserAgent = $_SERVER["HTTP_USER_AGENT"];
-                        $token = sha1($UserName.time());
+                        $token = sha1($UserName . time());
                         $UserData = mysqli_fetch_all($res, MYSQLI_ASSOC)[0];
                         $ID = $UserData['ID'];
-                        mysqli_query($con,"INSERT INTO token(Token,UserID,UserAgent,Date) VALUES('$token','$ID','$UserAgent',NOW());");
+                        mysqli_query($con, "INSERT INTO token(Token,UserID,UserAgent,Date) VALUES('$token','$ID','$UserAgent',NOW());");
                         $this->session->NewSession("FirstName", $UserData['FirstName']);
                         $this->session->NewSession("LastName", $UserData['LastName']);
                         $this->session->NewSession("UserName", $UserData['UserName']);
@@ -151,8 +173,8 @@ class Confirm extends DB
                 if ($_POST['SavePassword'] == "on") {
                     $UserAgent = $_SERVER["HTTP_USER_AGENT"];
                     $ID = $UserData['ID'];
-                    $token = sha1($UserData['UserName'].time());
-                    mysqli_query($con,"INSERT INTO token(Token,UserID,UserAgent,Date) VALUES('$token','$ID','$UserAgent',NOW());");
+                    $token = sha1($UserData['UserName'] . time());
+                    mysqli_query($con, "INSERT INTO token(Token,UserID,UserAgent,Date) VALUES('$token','$ID','$UserAgent',NOW());");
                     $this->cookie->NewCookie("Token", $token);
                 }
                 echo "login_ok";
@@ -357,8 +379,8 @@ class Confirm extends DB
     function PlayList()
     {
         $con = $this->con();
-        $UserID = $_POST['UserID'];
-        $VideoID = $_POST['VideoID'];
+        $UserID = mysqli_real_escape_string($con,$_POST['UserID']);
+        $VideoID = mysqli_real_escape_string($con,$_POST['VideoID']);
         $Type = $_POST['Type'];
         $res = mysqli_query($con, "SELECT * FROM playlist WHERE UserID = '$UserID' AND VideoID='$VideoID' AND Type='$Type'");
         if (mysqli_num_rows($res) == 0) {
@@ -366,9 +388,22 @@ class Confirm extends DB
             echo "ok";
         }
     }
-    function RemoveSeans(){
+    function RemoveSeans()
+    {
         $ID = $_GET['ID'];
-        mysqli_query($this->con(),"DELETE FROM token WHERE ID='$ID'");
+        mysqli_query($this->con(), "DELETE FROM token WHERE ID='$ID'");
+    }
+    function SendMsg(){
+        $con = $this->con();
+        $Title = $_POST['Title'];
+        $Msg = $_POST['Message'];
+        $ID = $_SESSION['ID'];
+        $res = mysqli_query($con,"INSERT INTO adminmsg(FromUserID,Msg,Title,Date) VALUES('$ID','$Msg','$Title',NOW())");
+        if($res){
+            echo "ok";
+        }else{
+            print_r(mysqli_error($con));
+        }
     }
 }
 
