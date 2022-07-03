@@ -22,6 +22,7 @@ class Rout extends App\Route
         $this->get(MenuAbout, ['HomeController', "about"]);
         $this->get(Menu404, ['ErrorController', "error_404"]);
         $this->get(MenuLogin, ['RegisterController', "login"]);
+        $this->get(MenuSearch,['SearchController',"show"]);
         if ($_SESSION['ID']) {
             $this->get(MenuAccount, ['HomeController', "account"]);
             $this->get(MenuPlayList, ['HomeController', "MyPlayList"]);

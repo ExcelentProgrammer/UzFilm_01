@@ -139,6 +139,10 @@ function __Short($text, $size=10){
 function __AllGo($type,$p){
     return menu(MenuAllFilms)."&type=".$type."&p=".$p."";
 }
+function __Search($text,$p){
+    return menu(MenuSearch)."&p=".$p.""."&s=".$text;
+
+}
 function __location($menu){
     echo "<script>location.href='".$menu."'</script>";
 }

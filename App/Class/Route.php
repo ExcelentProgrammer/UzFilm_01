@@ -13,11 +13,12 @@ class Route
 {
     function __construct()
     {
-
         $this->routeInfo = false;
         if (empty($_GET)) {
             echo "<script>location.href='/?menu=home'</script>";
-        }
+        }elseif(empty($_GET['menu']) AND !empty($_GET['s']))
+            echo "<script>location.href='".menu(MenuSearch)."&p=1&s=".$_GET["s"]."'</script>";
+
     }
 
     public function post($page, array $code)

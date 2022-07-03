@@ -160,13 +160,13 @@ class HomeController extends HomeModel
 		$PP = ($_GET['p']-1)*$PageFilms;
 		if ($type == "Film"){
 			$a = $this->AllFilm();
-			$AllFilms = array_slice($a,$PP,18);
+			$AllFilms = array_slice($a,$PP,$PageFilms);
 		}elseif ($type == "Multfilm"){
 			$a = $this->MultfilmModel->GetAllMultfilm();
-			$AllFilms = array_slice($a,$PP,18);
+			$AllFilms = array_slice($a,$PP,$PageFilms);
 		}elseif ($type == "Video"){
 			$a = $this->VideoModel->GetAllVideo();
-			$AllFilms = array_slice($a,$PP,18);
+			$AllFilms = array_slice($a,$PP,$PageFilms);
 		}
 		$pages = ceil(count($a) / $PageFilms);
 		$apages = $pages;
@@ -191,6 +191,7 @@ class HomeController extends HomeModel
 		$type = strtolower($type);
 		require_once ROOT_PATH . "/App/View/User/All.php";
 	}
+
 	function RemovePlayList(){
 		$FilmID = $_GET['video_id'];
 		$UserID = $_SESSION['ID'];

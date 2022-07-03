@@ -13,17 +13,24 @@ const Menu404 = "404";
 const MenuAccount = "account";
 const MenuContcts = "contacts";
 const MenuPlayList = "playlist";
-const RoleUser = "User";
 const MenuAllFilms = "AllFilms";
 const MenuRemovePlayList = "RemovePlayList";
 const MenuChat = "chat";
+const MenuSearch = "Search";
 
 /**
  * Admin Menularni o'zgartirish uchun constantalar
  */
 const HomeAdmin = "home";
 const AdminMenu = "admin";
-const RoleAdmin = "Admin";
 const Dashboard = "Dashboard";
 const Buttons = "Buttons";
 const NewFilm = "NewFilm";
+
+/**
+ * rollarni boshqarish uchun constantalar
+ */
+
+const RoleUser = "User";
+const RoleAdmin = "Admin";
+

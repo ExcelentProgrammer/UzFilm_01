@@ -44,80 +44,7 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
-    <style>
-        .close-btn {
-            background-color: green !important;
-            width: 100%;
-        }
-
-        .img-h {
-            height: 17rem !important;
-        }
-
-        .ok-btn {
-            width: 100%;
-        }
-
-        .img-tab {
-            cursor:pointer;
-        }
-
-        .bg-black {
-            background-color: #202020;
-        }
-
-        .border-radius-10 {
-            border-radius: 10px;
-        }
-
-        .MyPlayList {
-            border-radius: 20px;
-            background-color: greenyellow;
-        }
-
-        .MyPlayList:hover {
-            border-radius: 20px !important;
-            background-color: green !important;
-        }
-
-        .y-center {
-            margin: 0rem 40%;
-        }
-
-        .pointer {
-            cursor: pointer;
-        }
-
-        .remove-btn-click {
-            color: red !important;
-            background-color: rgba(0, 0, 0, 0) !important;
-        }
-
-        /* width */
-        ::-webkit-scrollbar {
-            width: 20px;
-        }
-
-        /* Track */
-        ::-webkit-scrollbar-track {
-            box-shadow: inset 0 0 5px grey;
-            border-radius: 10px;
-        }
-
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: red;
-            border-radius: 10px;
-        }
-
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            background: #b30000;
-        }
-        html{
-            width: 98%;
-        }
-    </style>
+    <link rel="stylesheet" href="Assets/css/My.css">
 </head>
 
 <body>
@@ -196,58 +123,7 @@
                                 </div>
                                 <!-- Search Icon End -->
                             </li>
-                            <li class="nav-item dropdown">
-                                <div class="nav-notification">
-                                    <a class="nav-link menu-dropdown" data-toggle="dropdown" href="#"><i class="icofont-notification"></i></a>
-                                    <ul class="dropdown-menu dropdown-menu-right fade-up" role="menu">
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                <div class="notification-card media">
-                                                    <div class="notification-thumb"><img alt="" class="img-fluid" src="Assets/images/notify/thumb-1.jpg">
-                                                    </div>
-                                                    <!-- Notification thumb end -->
-                                                    <div class="notification-content media-body">
-                                                        <h2 class="notification-title">Iron Door</h2><span class="date"><i class="far fa-clock"></i> 1 min ago</span>
-                                                    </div>
-                                                    <!-- Notification Content end -->
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <!-- Li 1 end -->
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                <div class="notification-card media">
-                                                    <div class="notification-thumb"><img alt="" class="img-fluid" src="Assets/images/notify/thumb-2.jpg">
-                                                    </div>
-                                                    <!-- Notification thumb end -->
-                                                    <div class="notification-content media-body">
-                                                        <h2 class="notification-title">The Earth</h2><span class="date"><i class="far fa-clock"></i> 3 min ago</span>
-                                                    </div>
-                                                    <!-- Notification Content end -->
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <!-- Li 2 end -->
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                <div class="notification-card media">
-                                                    <div class="notification-thumb"><img alt="" class="img-fluid" src="Assets/images/notify/thumb-3.jpg">
-                                                    </div>
-                                                    <!-- Notification thumb end -->
-                                                    <div class="notification-content media-body">
-                                                        <h2 class="notification-title">City Dreams</h2><span class="date"><i class="far fa-clock"></i> 10 min ago</span>
-                                                    </div>
-                                                    <!-- Notification Content end -->
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <!-- Li 3 end -->
-                                    </ul>
-                                    <!-- Notification List End -->
-                                </div>
-                                <!-- Notification End -->
-                            </li>
-                            <!-- Nav Item 4 End -->
+
                             <?php
                             if (empty($_SESSION['ID'])) {
                             ?>
@@ -376,8 +252,7 @@
                                 <div class="footer-logo"><img alt="" class="img-fluid" src="Assets/images/footer-logo.png">
                                 </div>
                                 <div class="footer-about-text">
-                                    <p class="text-muted">Here , write the complete address of the Registered office address
-                                        along with telephone number.</p>
+                                    <p class="text-muted">Eng sifatli Filmlarni Bizning saytda tomosha qiling </p>
                                 </div>
                                 <div class="footer-social-icons">
                                     <ul class="list-inline">
@@ -410,21 +285,21 @@
                         <div class="footer-widget">
                             <div class="widget">
                                 <div class="widget-header">
-                                    <h2 class="widget-title">Display Type</h2>
+                                    <h2 class="widget-title">Filmlar</h2>
                                 </div>
                                 <div class="widget-content footer-menu">
                                     <ul class="f-link list-unstyled mb-0">
                                         <li>
-                                            <a href="#">Action</a>
+                                            <a href="<?= __AllGo("Film",1) ?>">Kino</a>
                                         </li>
                                         <li>
-                                            <a href="#">Comedy</a>
+                                            <a href="<?= __AllGo("Multfilm",1) ?>">Multfilm</a>
                                         </li>
                                         <li>
-                                            <a href="#">Drama</a>
+                                            <a href="<?= __AllGo("Video",1) ?>">Video</a>
                                         </li>
                                         <li>
-                                            <a href="#">Horror</a>
+                                            <a href="<?= __AllGo("Video",1) ?>">Komedia</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -439,21 +314,21 @@
                         <div class="footer-widget">
                             <div class="widget">
                                 <div class="widget-header">
-                                    <h2 class="widget-title">Production</h2>
+                                    <h2 class="widget-title">Sahifalar</h2>
                                 </div>
                                 <div class="widget-content footer-menu">
                                     <ul class="f-link list-unstyled mb-0">
                                         <li>
-                                            <a href="#">2018 Year</a>
+                                            <a href="<?= menu(MenuHome)?>">Bosh Sahifa</a>
                                         </li>
                                         <li>
-                                            <a href="#">2019 Year</a>
+                                            <a href="<?= menu(MenuContcts)?>">Xabar Qoldirish</a>
                                         </li>
                                         <li>
-                                            <a href="#">2020 Year</a>
+                                            <a href="<?= menu(MenuAbout)?>">Biz Xaqimizda</a>
                                         </li>
                                         <li>
-                                            <a href="#">2021 Year</a>
+                                            <a href="<?= menu(MenuHelp)?>">Yordam</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -468,21 +343,21 @@
                         <div class="footer-widget">
                             <div class="widget">
                                 <div class="widget-header">
-                                    <h2 class="widget-title">Display Quality</h2>
+                                    <h2 class="widget-title">Account</h2>
                                 </div>
                                 <div class="widget-content footer-menu">
                                     <ul class="f-link list-unstyled mb-0">
                                         <li>
-                                            <a href="#">720p HDTV</a>
+                                            <a href="<?= menu(MenuAccount) ?>">Hisob Sozlamalari</a>
                                         </li>
                                         <li>
-                                            <a href="#">1080p BluRay</a>
+                                            <a href="<?= menu(MenuPlayList) ?>">Play List</a>
                                         </li>
                                         <li>
-                                            <a href="#">720p BluRay</a>
+                                            <a href="<?= menu(MenuAccount) ?>">Parolni o'zgartirish</a>
                                         </li>
                                         <li>
-                                            <a href="#">1080p WEB-DL</a>
+                                            <a href="<?= menu(MenuLogout) ?>">Chiqish</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -504,23 +379,9 @@
             <div class="container-fluid">
                 <div class="row justify-content-between">
                     <div class="col-md-6">
-                        <p>© Copyright 2021, All Rights Reserved</p>
+                        <p>© UzFilm 2022</p>
                     </div>
-                    <!-- Col End -->
-                    <div class="col-md-6">
-                        <div class="copyright-menu text-right">
-                            <ul>
-                                <li>
-                                    <a href="terms.html">Terms of Service</a>
-                                </li>
-                                <li>
-                                    <a href="privacy.html">Privacy Policy</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- Copyrights Menu End -->
-                    </div>
-                    <!-- Col End -->
+
                 </div>
                 <!-- Row End -->
             </div>
@@ -541,10 +402,10 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="search-panel">
-                    <form class="search-group">
+                    <form method="GET" action="<?= menu(MenuSearch) ?>" class="search-group">
                         <div class="input-group">
                             <input class="form-control" name="s" placeholder="Search" type="search" value="">
-                            <button class="input-group-btn search-button"><i class="fas fa-search"></i></button>
+                            <button class="input-group-btn search-button"><i cMenuSerachlass="fas fa-search"></i></button>
                         </div>
                     </form>
                 </div>
@@ -559,7 +420,7 @@
             <div class="card">
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
-                        <button aria-controls="type" aria-expanded="false" class="d-flex align-items-center justify-content-between btn btn-link collapsed" data-target="#type" data-toggle="collapse">Display Type <span class="icofont-circled-down"></span></button>
+                        <button aria-controls="type" aria-expanded="false" class="d-flex align-items-center justify-content-between btn btn-link collapsed" data-target="#type" data-toggle="collapse">Film Turlari<span class="icofont-circled-down"></span></button>
                     </h2>
                 </div>
                 <!-- Card Header End -->
@@ -578,7 +439,7 @@
                         <!-- Row End -->
                         <div class="row">
                             <div class="col-6 col-xl mb-xl-0">
-                                <a class="btn d-block" href="#">Action</a>
+                                <a class="btn d-block" href="">Kino</a>
                             </div>
                             <!-- Col End -->
                             <div class="col-6 col-xl mb-xl-0">
@@ -600,7 +461,7 @@
                         <!-- Row End -->
                         <div class="row">
                             <div class="col-6 col-xl mb-xl-0">
-                                <a class="btn d-block" href="#">Comedy</a>
+                                <a class="btn d-block" href="">Multfilm</a>
                             </div>
                             <!-- Col End -->
                             <div class="col-6 col-xl mb-xl-0">

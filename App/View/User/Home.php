@@ -460,7 +460,7 @@
                             </div>
                             <!-- Col End -->
                         </div>
-                        <a class="hvr-sweep-to-right y-center btn" href=<?= menu(MenuAllFilms) . "&type=Film&p=1" ?> tabindex="0">Barchasi</a>
+                        <a class="hvr-sweep-to-right y-center btn" href=<?= __AllGo("Film",1) ?> tabindex="0">Barchasi</a>
 
                         <!-- Row End -->
                     </div>
@@ -631,7 +631,7 @@
                         </div>
                         <!-- Row End -->
                     </div>
-                    <a class="hvr-sweep-to-right y-center btn" href=<?= menu(MenuAllFilms) . "&type=Multfilm&p=1" ?> tabindex="0">Barchasi</a>
+                    <a class="hvr-sweep-to-right y-center btn" href=<?= __AllGo("Multfilm",1) ?> tabindex="0">Barchasi</a>
 
                     <!-- Tab Pane 3 End -->
                 </div>
@@ -802,7 +802,7 @@
 
                         <!-- Row End -->
                     </div>
-                    <a class="hvr-sweep-to-right y-center btn" href=<?= menu(MenuAllFilms) . "&type=Video&p=1" ?> tabindex="0">Barchasi</a>
+                    <a class="hvr-sweep-to-right y-center btn" href=<?= __AllGo("Video",1) ?> tabindex="0">Barchasi</a>
 
                     <!-- Tab Pane 3 End -->
                 </div>
