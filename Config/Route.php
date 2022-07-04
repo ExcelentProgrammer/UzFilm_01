@@ -2,7 +2,6 @@
 require_once ROOT_PATH . "App/Class/Route.php";
 
 
-
 /** router tizimini boshqarish uchun class*/
 class Rout extends App\Route
 {
@@ -21,13 +20,14 @@ class Rout extends App\Route
         $this->get(MenuContcts, ['HomeController', "contacts"]);
         $this->get(MenuAbout, ['HomeController', "about"]);
         $this->get(Menu404, ['ErrorController', "error_404"]);
-        $this->get(MenuLogin, ['RegisterController', "login"]);
-        $this->get(MenuSearch,['SearchController',"show"]);
+        $this->get(MenuSearch, ['SearchController', "show"]);
         if ($_SESSION['ID']) {
             $this->get(MenuAccount, ['HomeController', "account"]);
             $this->get(MenuPlayList, ['HomeController', "MyPlayList"]);
             $this->get(['menu' => MenuRemovePlayList, "video_id", "type"], ['HomeController', "RemovePlayList"]);
-            $this->get(MenuChat,['ChatController',"index"]);
+            $this->get(MenuChat, ['ChatController', "index"]);
+        } else {
+            $this->get(MenuLogin, ['RegisterController', "login"]);
         }
 
         if ($UserRole == RoleAdmin) {

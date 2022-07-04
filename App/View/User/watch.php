@@ -1,13 +1,32 @@
 <!-- Start Video Player -->
 <?php
 
+/** @var array $FilmAbout */
 $url = $FilmAbout['FilmUrl'];
 $S = "";
 if (!empty($Serials)) {
     foreach ($Serials as $Serial) {
+        $q = explode(".", $Serial['FilmUrl']);
+        $q = end($q);
+        if ($q == "txt") {
+            $file = file_get_contents($Serial['FilmUrl']);
+            $file = str_replace("\n", "", $file);
+            $file = str_replace("\t", "", $file);
+            $file = str_replace("\r", "", $file);
+            $file = str_replace(" ", "%20", $file);
+            $s = json_decode($file, true);
+            $i=0;
+            foreach ($s as $Film) {
+                $Serials[$i]["FilmSection"] = $Film['title'];
+                $Serials[$i]["FilmUrl"] = $Film['file'];
+                $i++;
+            }
+        }
+    }
+    foreach ($Serials as $Serial) {
         $Language = str_replace("'", "\'", $FilmAbout['FilmLanguage']);
         $Url = str_replace("'", "\'", $Serial['FilmUrl']);
-        $S .= '{"title":"' . $Serial['FilmSection'] . " - Qism || " . $Language . '","file":"' . $Url . '"}';
+        $S .= '{"title":"' . $Serial['FilmSection'] . " - Qism " . $Language . '","file":"' . $Url . '"}';
         if (end($Serials)['FilmSection'] != $Serial['FilmSection']) {
             $S .= ",";
         }
@@ -19,7 +38,14 @@ if (!empty($Serials)) {
 
 
 ?>
-<?php if (!empty($Serials)) { ?>
+<?php if (isset($file)) { ?>
+
+    <script>
+        var S = decodeURIComponent('<?php echo $file ?>');
+        console.log(S);
+    </script>
+
+<?php } elseif (!empty($Serials)) { ?>
     <script>
         var S = decodeURIComponent('<?php echo $S ?>');
     </script>
@@ -88,7 +114,6 @@ if (!empty($Serials)) {
 </div>
 
 
-
 <!-- Video Player End -->
 <!-- Start Main Content -->
 <div class="main-content">
@@ -100,7 +125,8 @@ if (!empty($Serials)) {
                     <div class="row">
                         <div class="col-md-12">
                             <div class="play-thumb mb-4">
-                                <img style="width: 230px;height:300px;" class="img-fluid" src=<?= "Assets/images/FilmImg/" . $FilmAbout['FilmImg'] ?> alt="">
+                                <img style="width: 230px;height:300px;" class="img-fluid"
+                                     src=<?= $FilmAbout['FilmImg'] ?> alt="">
                                 <div class="top-badge">
                                     <div class="video-badge">
                                         <img class="img-fluid" src="Assets/images/top-movies.png" alt="">
@@ -113,33 +139,45 @@ if (!empty($Serials)) {
                                 <span><?= $FilmAbout['FilmSize'] ?></span>
                                 <span>7.1</span>
                                 <div class="col-6 col-xl mb-xl-0 mb-3">
-                                    <a id="trailer" class="btn d-block hvr-sweep-to-right download-button" tabindex="0" data-toggle="modal" data-target="#download-modal" aria-hidden="true"><i class="icofont-ui-movie mr-2" aria-hidden="true"></i>Yuklab olish</a>
+                                    <a id="trailer" class="btn d-block hvr-sweep-to-right download-button" tabindex="0"
+                                       data-toggle="modal" data-target="#download-modal" aria-hidden="true"><i
+                                                class="icofont-ui-movie mr-2" aria-hidden="true"></i>Yuklab olish</a>
                                 </div>
 
-                                <div class="modal fade" id="download-modal" tabindex="0" role="dialog" aria-labelledby="trailer-modal" aria-hidden="true">
+                                <div class="modal fade" id="download-modal" tabindex="0" role="dialog"
+                                     aria-labelledby="trailer-modal" aria-hidden="true">
                                     <div class="modal-dialog modal-lg" role="document" id="DownloadModel">
                                         <!-- Modal Content -->
                                         <div class="modal-content">
                                             <!-- modal header -->
                                             <div class="modal-header">
                                                 <h5 class="modal-title">yuklab olish</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
                                                     <span aria-hidden="true"><i class="fas fa-times"></i></span>
                                                 </button>
                                             </div>
                                             <!-- Modal Body -->
 
                                             <div id="download-link">
-                                                <?php
-                                                if (!empty($Serials)) {
+                                                <?php if (!empty($Serials)) {
                                                     foreach ($Serials as $Serial) {
-                                                ?>
-                                                        <a id="MyList" style="background-color: #5f665f;" class="btn d-block hvr-sweep-to-right" href=<?= $Serial['FilmUrl'] ?> tabindex="0"><i class="icofont-plus mr-2" aria-hidden="true"></i><?= $Serial['FilmSection'] ?>
+                                                        ?>
+                                                        <a id="MyList" style="background-color: #5f665f;"
+                                                           class="btn d-block hvr-sweep-to-right"
+                                                           href=<?= $Serial['FilmUrl'] ?> tabindex="0"><i
+                                                                    class="icofont-plus mr-2"
+                                                                    aria-hidden="true"></i><?= $Serial['FilmSection'] ?>
                                                             - Qism</a>
                                                         <br>
                                                     <?php }
                                                 } else { ?>
-                                                    <a id="MyList" style="background-color: #5f665f;" class="btn d-block hvr-sweep-to-right" href=<?= $FilmAbout['FilmUrl'] ?> tabindex="0"><i class="icofont-plus mr-2" aria-hidden="true"></i><?= $FilmAbout['FilmHeight'] ?></a>
+                                                    <a id="MyList" style="background-color: #5f665f;"
+                                                       class="btn d-block hvr-sweep-to-right"
+                                                       href=<?= $FilmAbout['FilmUrl'] ?> tabindex="0"><i
+                                                                class="icofont-plus mr-2"
+                                                                aria-hidden="true"></i><?= $FilmAbout['FilmHeight'] ?>
+                                                    </a>
                                                 <?php } ?>
 
                                             </div>
@@ -168,10 +206,14 @@ if (!empty($Serials)) {
                         </div>
                         <!-- Title Block -->
                         <div class="details-info mb-4">
-                            <span><i class="icofont-user mr-2" aria-hidden="true"></i><?= $FilmAbout['FilmYoung'] ?></span>
-                            <span><i class="icofont-simple-smile mr-2" aria-hidden="true"></i><?= $FilmAbout['FilmYear'] ?></span>
-                            <span><i class="icofont-movie mr-2" aria-hidden="true"></i><?= $FilmAbout['FilmJanr'] ?></span>
-                            <span><i class="icofont-world mr-2" aria-hidden="true"></i><?= $FilmAbout["FilmState"] ?></span>
+                            <span><i class="icofont-user mr-2"
+                                     aria-hidden="true"></i><?= $FilmAbout['FilmYoung'] ?></span>
+                            <span><i class="icofont-simple-smile mr-2"
+                                     aria-hidden="true"></i><?= $FilmAbout['FilmYear'] ?></span>
+                            <span><i class="icofont-movie mr-2"
+                                     aria-hidden="true"></i><?= $FilmAbout['FilmJanr'] ?></span>
+                            <span><i class="icofont-world mr-2"
+                                     aria-hidden="true"></i><?= $FilmAbout["FilmState"] ?></span>
 
                         </div>
                         <!-- Details Info -->
@@ -185,28 +227,36 @@ if (!empty($Serials)) {
                         <div class="details-buttons">
                             <div class="row d-flex align-items-center">
                                 <div class="col-6 col-xl mb-xl-0 mb-3">
-                                    <a href="watch-movie.html" class="btn d-block hvr-sweep-to-right" tabindex="0"><i class="icofont-ui-play mr-2" aria-hidden="true"></i>Play</a>
+                                    <a href="watch-movie.html" class="btn d-block hvr-sweep-to-right" tabindex="0"><i
+                                                class="icofont-ui-play mr-2" aria-hidden="true"></i>Play</a>
                                 </div>
                                 <!-- Col End -->
                                 <div class="col-6 col-xl mb-xl-0 mb-3">
                                     <?php if ($MyList) { ?>
-                                        <a id="MyList" style="background-color: green;" class="btn d-block hvr-sweep-to-right" onclick="PlayList()" tabindex="0"><i class="icofont-plus mr-2" aria-hidden="true"></i>MY List</a>
+                                        <a id="MyList" style="background-color: green;"
+                                           class="btn d-block hvr-sweep-to-right" onclick="PlayList()" tabindex="0"><i
+                                                    class="icofont-plus mr-2" aria-hidden="true"></i>MY List</a>
                                     <?php } else { ?>
-                                        <a id="MyList" class="btn d-block hvr-sweep-to-right" onclick="PlayList()" tabindex="0"><i class="icofont-plus mr-2" aria-hidden="true"></i>MY List</a>
+                                        <a id="MyList" class="btn d-block hvr-sweep-to-right" onclick="PlayList()"
+                                           tabindex="0"><i class="icofont-plus mr-2" aria-hidden="true"></i>MY List</a>
                                     <?php } ?>
                                 </div>
                                 <!-- Col End -->
                                 <div class="col-6 col-xl mb-xl-0 mb-3">
-                                    <a id="trailer" class="btn d-block hvr-sweep-to-right" tabindex="0" data-toggle="modal" data-target="#trailer-modal" aria-hidden="true"><i class="icofont-ui-movie mr-2" aria-hidden="true"></i>Trailer</a>
+                                    <a id="trailer" class="btn d-block hvr-sweep-to-right" tabindex="0"
+                                       data-toggle="modal" data-target="#trailer-modal" aria-hidden="true"><i
+                                                class="icofont-ui-movie mr-2" aria-hidden="true"></i>Trailer</a>
                                     <!-- Modal Trailer -->
-                                    <div class="modal fade" id="trailer-modal" tabindex="0" role="dialog" aria-labelledby="trailer-modal" aria-hidden="true">
+                                    <div class="modal fade" id="trailer-modal" tabindex="0" role="dialog"
+                                         aria-labelledby="trailer-modal" aria-hidden="true">
                                         <div class="modal-dialog modal-lg" role="document" id="trailerModal">
                                             <!-- Modal Content -->
                                             <div class="modal-content">
                                                 <!-- modal header -->
                                                 <div class="modal-header">
                                                     <h5 class="modal-title">Trailer</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                         <span aria-hidden="true"><i class="fas fa-times"></i></span>
                                                     </button>
                                                 </div>
@@ -222,31 +272,38 @@ if (!empty($Serials)) {
                                 </div>
                                 <!-- Col End -->
                                 <div class="col-6 col-xl mb-xl-0">
-                                    <a id="share" class="btn hvr-sweep-to-right d-block" tabindex="0" data-toggle="modal" data-target="#share-modal">
+                                    <a id="share" class="btn hvr-sweep-to-right d-block" tabindex="0"
+                                       data-toggle="modal" data-target="#share-modal">
                                         <i class="icofont-share mr-2" aria-hidden="true"></i>Share</a>
                                     <!-- Modal Share -->
-                                    <div class="modal fade" id="share-modal" tabindex="0" role="dialog" aria-labelledby="share-modal" aria-hidden="true">
+                                    <div class="modal fade" id="share-modal" tabindex="0" role="dialog"
+                                         aria-labelledby="share-modal" aria-hidden="true">
                                         <div class="modal-dialog modal-lg" role="document" id="sharemodal">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title">Share</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                         <span aria-hidden="true"><i class="fas fa-times"></i></span>
                                                     </button>
                                                 </div>
                                                 <!-- modal header End -->
                                                 <div class="modal-body">
                                                     <div class="icon-container d-flex">
-                                                        <div class="icon-block"><i class="social-icon fab fa-twitter fa-2x"></i>
+                                                        <div class="icon-block"><i
+                                                                    class="social-icon fab fa-twitter fa-2x"></i>
                                                             <p>Twitter</p>
                                                         </div>
-                                                        <div class="icon-block"><i class="social-icon fab fa-facebook fa-2x"></i>
+                                                        <div class="icon-block"><i
+                                                                    class="social-icon fab fa-facebook fa-2x"></i>
                                                             <p>Facebook</p>
                                                         </div>
-                                                        <div class="icon-block"><i class="social-icon fab fa-instagram fa-2x"></i>
+                                                        <div class="icon-block"><i
+                                                                    class="social-icon fab fa-instagram fa-2x"></i>
                                                             <p>Instagram</p>
                                                         </div>
-                                                        <div class="icon-block"><i class="social-icon fab fa-telegram fa-2x"></i>
+                                                        <div class="icon-block"><i
+                                                                    class="social-icon fab fa-telegram fa-2x"></i>
                                                             <p>Telegram</p>
                                                         </div>
                                                     </div>
@@ -287,11 +344,13 @@ if (!empty($Serials)) {
                             <div class="item">
                                 <div class="video-block">
                                     <div class="video-thumb position-relative thumb-overlay">
-                                        <a href="#"><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $AllFilm['FilmImg'] ?>></a>
+                                        <a href="#"><img alt="" class="img-fluid img-tab"
+                                                         src=<?= $AllFilm['FilmImg'] ?>></a>
                                         <div class="box-content">
                                             <ul class="icon">
                                                 <li>
-                                                    <a href=<?= FilmToWatch($AllFilm['ID']) ?>><i class="fas fa-play"></i></a>
+                                                    <a href=<?= FilmToWatch($AllFilm['ID']) ?>><i
+                                                                class="fas fa-play"></i></a>
                                                 </li>
                                                 <li>
                                                     <?= __PlayList($AllFilm['ID']) ?>
@@ -301,10 +360,13 @@ if (!empty($Serials)) {
                                         </div>
                                     </div>
                                     <div class="video-content">
-                                        <h2 class="video-title"><a href=<?= FilmToWatch($AllFilm['ID']) ?>><?= __Short($AllFilm['FilmName'], 10) ?></a>
+                                        <h2 class="video-title"><a
+                                                    href=<?= FilmToWatch($AllFilm['ID']) ?>><?= __Short($AllFilm['FilmName'], 10) ?></a>
                                         </h2>
                                         <div class="video-info d-flex align-items-center">
-                                            <span class="video-year"><?= $AllFilm['FilmYear'] ?></span> <span class="video-age"><?= $AllFilm['FilmYoung'] ?></span> <span class="video-type"><?= $AllFilm['FilmJanr'] ?></span>
+                                            <span class="video-year"><?= $AllFilm['FilmYear'] ?></span> <span
+                                                    class="video-age"><?= $AllFilm['FilmYoung'] ?></span> <span
+                                                    class="video-type"><?= $AllFilm['FilmJanr'] ?></span>
                                         </div>
                                     </div>
                                 </div>

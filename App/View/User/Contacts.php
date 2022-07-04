@@ -11,7 +11,9 @@
                             <a href=<?= menu(MenuHome) ?>>Bosh sahifa</a>
                             <i class="fa fa-angle-right"></i>
                         </li>
+
                         <li><a href=<?= menu(MenuContcts) ?>>Xabar Yuborish</a></li>
+
                     </ol>
                 </nav>
                 <!-- Breadcrumb End -->
@@ -66,8 +68,14 @@
                                               placeholder="To'liq Xabar matni" required></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <input name="Submit" onclick="MsgSend()" type="button" class="btn btn-success"
-                                           value="Yuborish">
+                                    <?php if (!empty($_SESSION['ID'])) { ?>
+                                        <input name="Submit" onclick="MsgSend()" type="button" class="btn btn-success"
+                                               value="Yuborish">
+                                    <?php } else { ?>
+                                            <p class="pt-2 pb-2 pl-2 pr-2 bg-danger">Xabar Yuborish uchun Ro'yhatdan o'ting</p><br>
+                                        <a href="<?= menu(MenuLogin) ?>" type="button" class="btn btn-success"
+                                           >Ro'yhatdan o'tish</a>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <!-- end form element -->
@@ -113,8 +121,8 @@
                 res = Req.response;
                 if (res == "ok") {
                     MsgContainer("Xabar Adminga yuborildi tez orada -- Aloqaga chiqamiz!");
-                    MsgBody.value="";
-                    MsgTitle.value="";
+                    MsgBody.value = "";
+                    MsgTitle.value = "";
                 } else {
                     MsgContainer(res);
                 }

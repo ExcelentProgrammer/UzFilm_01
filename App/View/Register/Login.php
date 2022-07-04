@@ -80,7 +80,6 @@
                                 </div>
                             </form>
                             <!-- Form End -->
-                            <div class="text-center">Avval ro'yhatdan o'tganmisiz ? <a href=<?= menu(MenuLogin) ?>>Login</a></div>
                         </div>
                         <!-- Col End -->
                     </div>
@@ -114,11 +113,10 @@
 
                             </div>
                             <!-- Row End -->
-                            <p class="text-center">Don't have an account? <a href="sign-up.html">Sign up here!</a></p>
                         </div>
                         <!-- Col End -->
                         <div class="col-lg-6">
-                            <img class="img-fluid" src="https://www.freepik.com/premium-vector/online-registration-sign-up-concept-with-man-character_10312229.htm#query=login%20page&position=20&from_view=keyword" alt="">
+                            <img class="img-fluid" src="https://www.afya-pharmacy.bg/files/160977037720412.jpg" alt="">
                         </div>
                         <!-- Col End -->
                     </div>

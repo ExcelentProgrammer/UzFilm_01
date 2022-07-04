@@ -8,7 +8,7 @@
         foreach (array_slice($TopFilms, 0, 10) as $TopFilm) {
             $ID = $TopFilm['ID'] ?>
 
-            <div class="slide slick-bg bg-1" style="background-image: url(Assets/images/FilmImg/<?= $TopFilm['FilmImg'] ?>);">
+            <div class="slide slick-bg bg-1" style="background-image: url(<?= $TopFilm['FilmImg'] ?>);">
                 <div class="container-fluid position-relative h-100">
                     <div class="slider-content h-100">
                         <div class="row align-items-center h-100">
@@ -71,7 +71,7 @@
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                         <div class="video-block">
                                             <div class="video-thumb position-relative thumb-overlay">
-                                                <a href="#"><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $FantasticFilm['FilmImg'] ?>></a>
+                                                <a href="#"><img alt="" class="img-fluid img-tab" src=<?=  $FantasticFilm['FilmImg'] ?>></a>
                                                 <div class="box-content">
                                                     <ul class="icon">
                                                         <li>
@@ -113,7 +113,7 @@
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                         <div class="video-block">
                                             <div class="video-thumb position-relative thumb-overlay">
-                                                <a href="#"><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $ScaryFilm['FilmImg'] ?>></a>
+                                                <a href="#"><img alt="" class="img-fluid img-tab" src=<?=  $ScaryFilm['FilmImg'] ?>></a>
                                                 <div class="box-content">
                                                     <ul class="icon">
                                                         <li>
@@ -155,7 +155,7 @@
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                         <div class="video-block">
                                             <div class="video-thumb position-relative thumb-overlay">
-                                                <a href="#"><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $FunnyFilm['FilmImg'] ?>></a>
+                                                <a href="#"><img alt="" class="img-fluid img-tab" src=<?= $FunnyFilm['FilmImg'] ?>></a>
                                                 <div class="box-content">
                                                     <ul class="icon">
                                                         <li>
@@ -218,8 +218,8 @@
                         <div class="swiper-wrapper">
 
                             <?php foreach (array_slice($TopFilms, 0, 10) as $TopFilm) { ?>
-                                <div class="swiper-slide swiper-bg" style=<?= "background-image:url(Assets/images/FilmImg/" . $TopFilm['FilmImg'] . ")" ?>>
-                                    <img alt="" class="entity-img" src=<?= "Assets/images/FilmImg/" . $TopFilm['FilmImg'] ?>>
+                                <div class="swiper-slide swiper-bg" style=<?= "background-image:url(" . $TopFilm['FilmImg'] . ")" ?>>
+                                    <img alt="" class="entity-img" src=<?= $TopFilm['FilmImg'] ?>>
                                     <div class="top-badge">
                                         <div class="video-badge"><img alt="" class="img-fluid" src="Assets/images/top-movies.png">
                                         </div>
@@ -268,7 +268,7 @@
                             <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                 <div class="video-block">
                                     <div class="video-thumb position-relative thumb-overlay">
-                                        <a href=<?= FilmToWatch($WatchFilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $WatchFilm['FilmImg'] ?>></a>
+                                        <a href=<?= FilmToWatch($WatchFilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?=  $WatchFilm['FilmImg'] ?>></a>
                                         <div class="box-content">
                                             <ul class="icon">
                                                 <li>
@@ -338,7 +338,7 @@
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                         <div class="video-block">
                                             <div class="video-thumb position-relative thumb-overlay">
-                                                <a href=<?= FilmToWatch($UzbekFilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $UzbekFilm['FilmImg'] ?>></a>
+                                                <a href=<?= FilmToWatch($UzbekFilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?=  $UzbekFilm['FilmImg'] ?>></a>
                                                 <div class="box-content">
                                                     <ul class="icon">
                                                         <li>
@@ -382,7 +382,7 @@
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                         <div class="video-block">
                                             <div class="video-thumb position-relative thumb-overlay">
-                                                <a href=<?= FilmToWatch($UzbekFilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $UzbekFilm['FilmImg'] ?>></a>
+                                                <a href=<?= FilmToWatch($UzbekFilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?=  $UzbekFilm['FilmImg'] ?>></a>
                                                 <div class="box-content">
                                                     <ul class="icon">
                                                         <li>
@@ -425,7 +425,7 @@
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                         <div class="video-block">
                                             <div class="video-thumb position-relative thumb-overlay">
-                                                <a href=<?= FilmToWatch($UzbekFilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $UzbekFilm['FilmImg'] ?>></a>
+                                                <a href=<?= FilmToWatch($UzbekFilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?=  $UzbekFilm['FilmImg'] ?>></a>
                                                 <div class="box-content">
                                                     <ul class="icon">
                                                         <li>
@@ -509,7 +509,7 @@
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                     <div class="video-block">
                                         <div class="video-thumb position-relative thumb-overlay">
-                                            <a href=<?= MultfilmToWatch($Multfilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $Multfilm['FilmImg'] ?>></a>
+                                            <a href=<?= MultfilmToWatch($Multfilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?=  $Multfilm['FilmImg'] ?>></a>
                                             <div class="box-content">
                                                 <ul class="icon">
                                                     <li>
@@ -553,7 +553,7 @@
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                     <div class="video-block">
                                         <div class="video-thumb position-relative thumb-overlay">
-                                            <a href=<?= MultfilmToWatch($Multfilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $Multfilm['FilmImg'] ?>></a>
+                                            <a href=<?= MultfilmToWatch($Multfilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?=  $Multfilm['FilmImg'] ?>></a>
                                             <div class="box-content">
                                                 <ul class="icon">
                                                     <li>
@@ -596,7 +596,7 @@
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                     <div class="video-block">
                                         <div class="video-thumb position-relative thumb-overlay">
-                                            <a href=<?= MultfilmToWatch($Multfilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $Multfilm['FilmImg'] ?>></a>
+                                            <a href=<?= MultfilmToWatch($Multfilm['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?=  $Multfilm['FilmImg'] ?>></a>
                                             <div class="box-content">
                                                 <ul class="icon">
                                                     <li>
@@ -678,7 +678,7 @@
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                     <div class="video-block">
                                         <div class="video-thumb position-relative thumb-overlay">
-                                            <a href=<?= VideoToWatch($Video['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $Video['FilmImg'] ?>></a>
+                                            <a href=<?= VideoToWatch($Video['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?=  $Video['FilmImg'] ?>></a>
                                             <div class="box-content">
                                                 <ul class="icon">
                                                     <li>
@@ -722,7 +722,7 @@
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                     <div class="video-block">
                                         <div class="video-thumb position-relative thumb-overlay">
-                                            <a href=<?= VideoToWatch($Video['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $Video['FilmImg'] ?>></a>
+                                            <a href=<?= VideoToWatch($Video['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?=  $Video['FilmImg'] ?>></a>
                                             <div class="box-content">
                                                 <ul class="icon">
                                                     <li>
@@ -766,7 +766,7 @@
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                     <div class="video-block">
                                         <div class="video-thumb position-relative thumb-overlay">
-                                            <a href=<?= VideoToWatch($Video['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?= "Assets/images/FilmImg/" . $Video['FilmImg'] ?>></a>
+                                            <a href=<?= VideoToWatch($Video['ID']) ?>><img alt="" class="img-fluid img-tab" src=<?=  $Video['FilmImg'] ?>></a>
                                             <div class="box-content">
                                                 <ul class="icon">
                                                     <li>

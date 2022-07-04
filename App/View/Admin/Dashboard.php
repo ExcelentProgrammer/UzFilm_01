@@ -1,3 +1,14 @@
+<?php
+/**
+ *@var array $NumberOfSerial
+ *@var array $NumberOfFilms
+ *@var array $NumberOfMultfilms
+ *@var array $NumberOfVideos
+ *@var array $NumberOfUsers
+ *@var array $guests
+ */
+?>
+
 <!-- Sale & Revenue Start -->
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
@@ -43,39 +54,21 @@
 
     <!-- users -->
     <div class="row g-4 mt-3">
-        <div class="col-sm-6 col-xl-3" >
+        <div class="col-sm-12 col-xl-6" >
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4 height-100">
                 <i class="fa fa-chart-line fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-1 font-size-15">Ro'yhatdan o'tganlar</p>
+                    <p class="mb-1 font-size-15">Ro'yhatdan o'tgan Foydalanuvchilar</p>
                     <h6 class="mb-0"><?= $NumberOfUsers ?></h6>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-xl-3">
+        <div class="col-sm-12 col-xl-6">
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4 height-100">
                 <i class="fa fa-chart-bar fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2 font-size-15">Ro'yhatdan o'tmaganlar</p>
+                    <p class="mb-2 font-size-15">Ro'yhatdan o'tmagan Foydalanuvchilar</p>
                     <h6 class="mb-0"><?= $guests ?></h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4 height-100">
-                <i class="fa fa-chart-area fa-3x text-primary"></i>
-                <div class="ms-3">
-                    <p class="mb-2 font-size-15">Bugun Qo'shilganlar</p>
-                    <h6 class="mb-0"><?= $NumberOfMultfilms ?></h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4 height-100">
-                <i class="fa fa-chart-pie fa-3x text-primary"></i>
-                <div class="ms-3">
-                    <p class="mb-2 font-size-15">Jami</p>
-                    <h6 class="mb-0"><?= $NumberOfVideos ?></h6>
                 </div>
             </div>
         </div>

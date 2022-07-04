@@ -56,15 +56,8 @@
 
                         <div class="row">
                             <!-- select  -->
-                            <div class="col-6">
-                                <select id="NewFilmAbout" class="form-select form-select-sm mb-3"
-                                        aria-label=".form-select-sm example">
-                                    <option selected>Yangi Film Haqida Hammaga Habar Berish</option>
-                                    <option value="Ha">Ha</option>
-                                    <option value="Yo'q">Yo'q</option>
-                                </select>
-                            </div>
-                            <div class="col-6">
+
+                            <div class="col-sm-12 col-xl-12">
                                 <select id="FilmType" class="form-select form-select-sm mb-3"
                                         aria-label=".form-select-sm example">
                                     <option selected>Video Turi</option>
@@ -121,19 +114,23 @@
                                 </select>
                             </div>
                         </div>
+
                         <div class="row">
-                            <div class="col-12 mb-3">
-                                <input name="FilmImg" class="form-control bg-dark h-100" type="file" id="formFile">
+
+                            <div class="col-sm-12 col-xl-12">
+                                <div class="form-floating mb-3 h-25">
+                                    <input type="text" class="form-control" name="FilmImg" id="floatingInput"
+                                           placeholder="">
+                                    <label for="floatingInput">Film Rasmi || Url || https.example.com/image.jpg</label>
+                                </div>
                             </div>
-
                         </div>
-
 
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-floating mb-3">
                                     <input type="number" class="form-control" name="FilmDate" id="floatingInput"
-                                           placeholder="Flesh | O'zbek Tilida">
+                                           placeholder="">
                                     <label for="floatingInput">Film Davomiyligi</label>
                                 </div>
                             </div>
@@ -157,7 +154,7 @@
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="FilmUrl" id="floatingInput"
                                    placeholder="Flesh | O'zbek Tilida">
-                            <label for="floatingInput">Film Url</label>
+                            <label for="floatingInput">Film || Url || https://example.com/video.mp4</label>
                         </div>
 
                         <div class="form-floating">
@@ -199,7 +196,7 @@
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" name="SerialUrl" id="floatingInput"
                                            placeholder="Flesh | O'zbek Tilida">
-                                    <label for="floatingInput">Serial Url (http://example.com/video.mp4)</label>
+                                    <label for="floatingInput">Serial Url || http://example.com/video.mp4 || https://example.com/flash.txt</label>
                                 </div>
                             </div>
 
@@ -210,7 +207,6 @@
                                     <label for="floatingInput">Serial Qism (1 || 2 || 10)</label>
                                 </div>
                             </div>
-
                         </div>
 
                         <!-- button -->
@@ -234,6 +230,21 @@
     </div>
 </div>
 <script>
+    function NewFilmClear(){
+        document.querySelector("input[name='FilmUrl']").value = "";
+        document.querySelector("input[name='FilmImg']").value = "";
+        document.querySelector("#FilmHeight").value = "Film Sifati";
+        document.querySelector("input[name='FilmName']").value = "";
+        document.querySelector("textarea[name='FilmCaption']").value = '';
+        document.querySelector("#FilmYoung").value = "Film Yosh chagarasini tanlang";
+        document.querySelector("#FilmState").value = "Film Olingan davlatni tanlang";
+        document.querySelector("#FilmJanr").value = "Film Janrini Tanlang";
+        document.querySelector("#FilmRating").value = "Film Rating darajasini tanlang";
+        document.querySelector("input[name='FilmDate']").value = "";
+        document.querySelector("#FilmLanguage").value = "Film Tili";
+        document.querySelector("#FilmType").value = "Video Turi";
+        document.querySelector("input[name='FilmYear']").value = "";
+    }
     function NewSerial() {
         var ErrorContainer = document.querySelector("#ErrorContainer");
         var ErrorText = document.querySelector("#ErrorText");
@@ -269,7 +280,7 @@
 
     function NewFilm() {
         var FilmUrl = document.querySelector("input[name='FilmUrl']").value;
-        var FilmImg = document.querySelector("input[name='FilmImg']").files[0];
+        var FilmImg = document.querySelector("input[name='FilmImg']").value;
         var FilmHeight = document.querySelector("#FilmHeight").value;
         var FilmYear = document.querySelector("input[name='FilmYear']").value;
         var FilmName = document.querySelector("input[name='FilmName']").value;
@@ -281,7 +292,6 @@
         var FilmDate = document.querySelector("input[name='FilmDate']").value;
         var FilmLanguage = document.querySelector("#FilmLanguage").value;
         var FilmType = document.querySelector("#FilmType").value;
-        var NewFilmAbout = document.querySelector("#NewFilmAbout").value;
 
 
         let req = new XMLHttpRequest();
@@ -301,7 +311,6 @@
         formData.append("FilmRating", FilmRating);
         formData.append("FilmDate", FilmDate);
         formData.append("FilmLanguage", FilmLanguage);
-        formData.append("NewFilmAbout", NewFilmAbout);
         formData.append("FilmType", FilmType);
         req.open("POST", 'Config/Confirm.php?menu=NewFilm');
         req.send(formData);
@@ -312,20 +321,7 @@
                 ErrorContainer.style.background = "pink";
                 ErrorContainer.style.color = "red";
             } else {
-                document.querySelector("input[name='FilmUrl']").value = "";
-                document.querySelector("input[name='FilmImg']").value = "";
-                document.querySelector("#FilmHeight").value = "Film Sifati";
-                document.querySelector("input[name='FilmName']").value = "";
-                document.querySelector("textarea[name='FilmCaption']").value = '';
-                document.querySelector("#FilmYoung").value = "Film Yosh chagarasini tanlang";
-                document.querySelector("#FilmState").value = "Film Olingan davlatni tanlang";
-                document.querySelector("#FilmJanr").value = "Film Janrini Tanlang";
-                document.querySelector("#FilmRating").value = "Film Rating darajasini tanlang";
-                document.querySelector("input[name='FilmDate']").value = "";
-                document.querySelector("#FilmLanguage").value = "Film Tili";
-                document.querySelector("#NewFilmAbout").value = "Yangi Film Haqida Hammaga Habar Berish";
-                document.querySelector("#FilmType").value = "Video Turi";
-                document.querySelector("input[name='FilmYear']").value="";
+                NewFilmClear();
 
 
                 ErrorContainer.style.display = "inline-block";

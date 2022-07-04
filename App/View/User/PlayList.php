@@ -18,7 +18,7 @@
                             <div class="video-block">
                                 <div class="video-thumb position-relative thumb-overlay">
                                     <a href="#"><img class="img-fluid img-tab"
-                                                     src=<?= "Assets/images/FilmImg/" . $Film['FilmImg'] ?> alt=""></a>
+                                                     src=<?= $Film['FilmImg'] ?> alt=""></a>
                                     <div class="box-content">
                                         <ul class="icon">
                                             <li><a href=<?= menu(MenuWatch) . "&video_id=" . $Film['ID'] ?>><i
@@ -81,7 +81,7 @@
                             <div class="video-block">
                                 <div class="video-thumb position-relative thumb-overlay">
                                     <a href="#"><img class="img-fluid img-tab"
-                                                     src=<?= "Assets/images/FilmImg/" . $Film['FilmImg'] ?> alt=""></a>
+                                                     src=<?= $Film['FilmImg'] ?> alt=""></a>
                                     <div class="box-content">
                                         <ul class="icon">
                                             <li>
@@ -146,7 +146,7 @@
                             <div class="video-block">
                                 <div class="video-thumb position-relative thumb-overlay">
                                     <a href="#"><img class="img-fluid img-tab"
-                                                     src=<?= "Assets/images/FilmImg/" . $Film['FilmImg'] ?> alt=""></a>
+                                                     src=<?=  $Film['FilmImg'] ?> alt=""></a>
                                     <div class="box-content">
                                         <ul class="icon">
                                             <li>

@@ -1557,17 +1557,17 @@ ul.navbar-nav > li.active a::before {
 }
 
 /* Slider Images Background */
-.slick-bg.bg-1 {
-    background-image: url(../images/slider/slider1.jpg);
-}
+/*.slick-bg.bg-1 {*/
+/*    background-image: url(../images/slider/slider1.jpg);*/
+/*}*/
 
-.slick-bg.bg-2 {
-    background-image: url(../images/slider/slider2.jpg);
-}
+/*.slick-bg.bg-2 {*/
+/*    background-image: url(../images/slider/slider2.jpg);*/
+/*}*/
 
-.slick-bg.bg-3 {
-    background-image: url(../images/slider/slider3.jpg);
-}
+/*.slick-bg.bg-3 {*/
+/*    background-image: url(../images/slider/slider3.jpg);*/
+/*}*/
 
 /* Slider Content */
 .main-slider h1 {
