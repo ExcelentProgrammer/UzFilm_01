@@ -1,45 +1,50 @@
 <?php
+
+
 require_once ROOT_PATH . "App/Class/Route.php";
 
+use App\Route;
 
-/** router tizimini boshqarish uchun class*/
-class Rout extends App\Route
+Route::Start();
+
+/** Route tizimini boshqarish uchun class*/
+class Rout
 {
     /**
-     * router tizimini boshqarish uchun function
+     * Route tizimini boshqarish uchun function
      */
     public function route()
     {
-        $UserRole = !empty($_SESSION['UserRole']) ? $_SESSION['UserRole'] : "";
-        $this->get(['menu' => MenuAllFilms, "type", "p"], ['HomeController', "All"]);
-        $this->get(["menu" => MenuWatch, "video_id", "type" => "multfilm"], ['VideoController', "MultfilmWatch"]);
-        $this->get(["menu" => MenuWatch, "video_id", "type" => "video"], ['VideoController', "VideoWatch"]);
-        $this->get(["menu" => MenuWatch, "video_id"], ['HomeController', "watch"]);
-        $this->get(MenuHome, ['HomeController', "home"]);
-        $this->get(MenuHelp, ['HomeController', "help"]);
-        $this->get(MenuContcts, ['HomeController', "contacts"]);
-        $this->get(MenuAbout, ['HomeController', "about"]);
-        $this->get(Menu404, ['ErrorController', "error_404"]);
-        $this->get(MenuSearch, ['SearchController', "show"]);
-        if ($_SESSION['ID']) {
-            $this->get(MenuAccount, ['HomeController', "account"]);
-            $this->get(MenuPlayList, ['HomeController', "MyPlayList"]);
-            $this->get(['menu' => MenuRemovePlayList, "video_id", "type"], ['HomeController', "RemovePlayList"]);
-            $this->get(MenuChat, ['ChatController', "index"]);
+        Route::get(['menu' => MenuAllFilms, "type", "p"], ['HomeController', "All"]);
+        Route::get(["menu" => MenuWatch, "video_id", "type" => "multfilm"], ['VideoController', "MultfilmWatch"]);
+        Route::get(["menu" => MenuWatch, "video_id", "type" => "video"], ['VideoController', "VideoWatch"]);
+        Route::get(["menu" => MenuWatch, "video_id"], ['HomeController', "watch"]);
+        Route::get(MenuHome, ['HomeController', "home"]);
+        Route::get(MenuHelp, ['HomeController', "help"]);
+        Route::get(MenuContcts, ['HomeController', "contacts"]);
+        Route::get(MenuAbout, ['HomeController', "about"]);
+        Route::get(Menu404, ['ErrorController', "error_404"]);
+        Route::get(MenuSearch, ['SearchController', "show"]);
+        if (User::Check()) {
+            Route::get(MenuAccount, ['HomeController', "account"]);
+            Route::get(MenuPlayList, ['HomeController', "MyPlayList"]);
+            Route::get(['menu' => MenuRemovePlayList, "video_id", "type"], ['HomeController', "RemovePlayList"]);
+            Route::get(MenuChat, ['ChatController', "index"]);
         } else {
-            $this->get(MenuLogin, ['RegisterController', "login"]);
+            Route::get(MenuLogin, ['RegisterController', "login"]);
         }
 
-        if ($UserRole == RoleAdmin) {
-            $this->get(['menu' => AdminMenu, "page" => Dashboard], ['AdminController', "Dashboard"]);
-            $this->get(['menu' => AdminMenu, "page" => Buttons], ['AdminController', "Buttons"]);
-            $this->get(['menu' => AdminMenu, "page" => NewFilm], ['AdminController', "NewFilm"]);
+        if (User::UserData()->UserRole == RoleAdmin) {
+            Route::get(['menu' => AdminMenu, "page" => Dashboard], ['AdminController', "Dashboard"]);
+            Route::get(['menu' => AdminMenu, "page" => Users], ['AdminController', "Users"]);
+            Route::get(['menu' => AdminMenu, "page" => Buttons], ['AdminController', "Buttons"]);
+            Route::get(['menu' => AdminMenu, "page" => NewFilm], ['AdminController', "NewFilm"]);
         }
     }
 
 
     function __destruct()
     {
-        $this->default(['ErrorController', "error_404"]);
+        Route::default(['ErrorController', "error_404"]);
     }
 }

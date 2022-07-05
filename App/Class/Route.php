@@ -1,63 +1,32 @@
 <?php
 
 namespace App;
-if ($_GET['menu'] == "logout") {
-    $db = new \DB();
-    session_destroy();
-    $token = $_COOKIE['Token'];
-    setcookie("Token", "", time() - 1, "/");
-    mysqli_query($db->con(),"DELETE FROM token WHERE Token='$token'");
-    header("location: /");
-}
+
+
 class Route
 {
-    function __construct()
+    public static function Start()
     {
-        $this->routeInfo = false;
+        DataAdd("routeInfo",false);
         if (empty($_GET)) {
             echo "<script>location.href='/?menu=home'</script>";
-        }elseif(empty($_GET['menu']) AND !empty($_GET['s']))
-            echo "<script>location.href='".menu(MenuSearch)."&p=1&s=".$_GET["s"]."'</script>";
-
-    }
-
-    public function post($page, array $code)
-    {
-
-
-        $menu = !empty($_POST['menu']) ? $_POST['menu'] : "";
-        if (is_array($page)) {
-            $keys = array_keys($page);
-            $values = $page;
-            $i = 0;
-            $r = 0;
-            foreach ($keys as $key) {
-                $value = !empty($values[$key]) ? $values[$key] : null;
-                if ((!empty($_POST[$key]) ? $_POST[$key] : "qwertyuiopasdfghjklzxcvbnm1234567890") == $value) {
-                    $r++;
-                } elseif (preg_match("/^[0-9]*$/", $key)) {
-                    if (!empty($_POST[$value])) {
-                        $r++;
-                    }
-                }
-                $i++;
-            }
-
-            if (count($page) == $r and $this->routeInfo != true) {
-                require_once ROOT_PATH . "App/Controller/" . $code[0] . ".php";
-                ((new $code[0]())->{$code[1]}());
-                $this->routeInfo = true;
-            }
-        } else {
-            if ($menu == $page and $this->routeInfo != true) {
-                require_once ROOT_PATH . "App/Controller/" . $code[0] . ".php";
-                ((new $code[0]())->{$code[1]}());
-                $this->routeInfo = true;
-            }
+        }elseif(empty($_GET['menu']) AND !empty($_GET['s'])){
+            $s = str_replace("'","%27",$_GET["s"]);
+            echo "<script>location.href='".menu(MenuSearch)."&p=1&s=".$s."'</script>";
+        }
+        if ($_GET['menu'] == "logout") {
+            $db = new \DB();
+            session_destroy();
+            $token = $_COOKIE['Token'];
+            setcookie("Token", "", time() - 1, "/");
+            mysqli_query($db->con(),"DELETE FROM token WHERE Token='$token'");
+            header("location: /");
         }
 
     }
-    public function get($page, array $code)
+
+  
+    static public function get($page, array $code)
     {
 
 
@@ -79,26 +48,66 @@ class Route
                 $i++;
             }
 
-            if (count($page) == $r and $this->routeInfo != true) {
+            if (count($page) == $r and DataGet("routeInfo") != true) {
                 require_once ROOT_PATH . "App/Controller/" . $code[0] . ".php";
                 ((new $code[0]())->{$code[1]}());
-                $this->routeInfo = true;
+                DataAdd("routeInfo",true);
             }
         } else {
-            if ($menu == $page and $this->routeInfo != true) {
+            if ($menu == $page and DataGet("routeInfo") != true) {
                 require_once ROOT_PATH . "App/Controller/" . $code[0] . ".php";
                 ((new $code[0]())->{$code[1]}());
-                $this->routeInfo = true;
+                DataAdd("routeInfo",true);
             }
         }
 
     }
-    public function default($code)
+    static public function default($code)
     {
-        if ($this->routeInfo != true) {
+        if (DataGet("routeInfo") != true) {
             require_once ROOT_PATH . "App/Controller/" . $code[0] . ".php";
             ((new $code[0]())->{$code[1]}());
         }
 
     }
 }
+
+
+
+
+  // public function post($page, array $code)
+    // {
+
+
+    //     $menu = !empty($_POST['menu']) ? $_POST['menu'] : "";
+    //     if (is_array($page)) {
+    //         $keys = array_keys($page);
+    //         $values = $page;
+    //         $i = 0;
+    //         $r = 0;
+    //         foreach ($keys as $key) {
+    //             $value = !empty($values[$key]) ? $values[$key] : null;
+    //             if ((!empty($_POST[$key]) ? $_POST[$key] : "qwertyuiopasdfghjklzxcvbnm1234567890") == $value) {
+    //                 $r++;
+    //             } elseif (preg_match("/^[0-9]*$/", $key)) {
+    //                 if (!empty($_POST[$value])) {
+    //                     $r++;
+    //                 }
+    //             }
+    //             $i++;
+    //         }
+
+    //         if (count($page) == $r and $this->routeInfo != true) {
+    //             require_once ROOT_PATH . "App/Controller/" . $code[0] . ".php";
+    //             ((new $code[0]())->{$code[1]}());
+    //             $this->routeInfo = true;
+    //         }
+    //     } else {
+    //         if ($menu == $page and $this->routeInfo != true) {
+    //             require_once ROOT_PATH . "App/Controller/" . $code[0] . ".php";
+    //             ((new $code[0]())->{$code[1]}());
+    //             $this->routeInfo = true;
+    //         }
+    //     }
+
+    // }

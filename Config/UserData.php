@@ -30,26 +30,61 @@ class UserData extends DB
                 $this->Password = $res['Email'];
                 $this->Password = $res['Password'];
                 $this->UserRole = $res['UserRole'];
-            }else{
+            } else {
                 session_destroy();
-                setcookie("Token","",time()-1);
-                echo "<script>location.href='".menu(MenuHome)."'</script>";
+                setcookie("Token", "", time() - 1);
+                echo "<script>location.href='" . menu(MenuHome) . "'</script>";
             }
-        }elseif(empty($_COOKIE['ONCE'])){
+        } elseif (empty($_COOKIE['ONCE'])) {
             $con = $this->con();
             $UserAgent = $_SERVER['HTTP_USER_AGENT'];
-            mysqli_query($con,"INSERT INTO guest(UserAgent) VALUES('$UserAgent');");
+            mysqli_query($con, "INSERT INTO guest(UserAgent) VALUES('$UserAgent');");
             $ID = mysqli_insert_id($con);
             $C = new Cookie();
-            $C->NewCookie("ID",$ID);
-            $C->NewCookie("ONCE","false");
+            $C->NewCookie("ID", $ID);
+            $C->NewCookie("ONCE", "false");
         }
         $ID = $_SESSION['ID'];
-        $this->AvatarImg = mysqli_fetch_all(mysqli_query($this->con(),"SELECT Avatar FROM users WHERE ID='$ID'"),MYSQLI_ASSOC)[0]['Avatar'];
-
+        $this->AvatarImg = mysqli_fetch_all(mysqli_query($this->con(), "SELECT Avatar FROM users WHERE ID='$ID'"), MYSQLI_ASSOC)[0]['Avatar'];
     }
 }
 
- 
+
 $UserData = new UserData();
 $AvatarImg = $UserData->AvatarImg;
+
+class User
+{
+    public static function ID()
+    {
+        if (!empty($_SESSION['ID']))
+            return $_SESSION['ID'];
+        return false;
+    }
+    public static function UserData()
+    {
+        if (!empty($_SESSION['ID'])) {
+            $ID = $_SESSION['ID'];
+            $res = mysqli_query(DB::DCon(), "SELECT * FROM users WHERE ID='$ID'");
+            if (mysqli_num_rows($res) > 0)
+                return json_decode(json_encode(mysqli_fetch_all($res, MYSQLI_ASSOC)[0]));
+        } else
+            return false;
+    }
+    public static function Role()
+    {
+        if (!empty($_SESSION['ID'])) {
+            $ID = $_SESSION['ID'];
+            $res = mysqli_query(DB::DCon(), "SELECT * FROM users WHERE ID='$ID'");
+            if (mysqli_num_rows($res) > 0)
+                return mysqli_fetch_all($res, MYSQLI_ASSOC)[0]['UserRole'];
+        } else
+            return false;
+    }
+    public static function Check()
+    {
+        if (!empty($_SESSION['ID']))
+            return true;
+        return false;
+    }
+}

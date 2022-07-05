@@ -24,4 +24,7 @@ class AdminController extends AdminModel{
     function NewFilm(){
         require_once ROOT_PATH."/App/View/Admin/NewFilm.php";
     }
+    public function Users(){
+        require_once ROOT_PATH."/App/View/Admin/Users.php";
+    }
 }

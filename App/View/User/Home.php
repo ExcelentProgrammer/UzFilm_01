@@ -5,7 +5,7 @@
     <div class="slider big-slider slider-wrap">
 
         <?php /** @var array $TopFilms */
-        foreach (array_slice($TopFilms, 0, 10) as $TopFilm) {
+        foreach (array_slice($WatchFilms, 0, 10) as $TopFilm) {
             $ID = $TopFilm['ID'] ?>
 
             <div class="slide slick-bg bg-1" style="background-image: url(<?= $TopFilm['FilmImg'] ?>);">
@@ -334,7 +334,7 @@
                         <div id="pills-drama" class="tab-pane animated fadeInRight show active">
                             <div class="row">
                                 <?php /** @var array $UzbekFilms */
-                                foreach ($UzFilms as $UzbekFilm) { ?>
+                                foreach (array_slice($UzFilms,0,30) as $UzbekFilm) { ?>
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                         <div class="video-block">
                                             <div class="video-thumb position-relative thumb-overlay">
@@ -378,7 +378,7 @@
                         <div id="pills-action" class="tab-pane animated fadeInRight">
                             <div class="row">
                                 <?php /** @var array $UzbekFilms */
-                                foreach ($EnFilms as $UzbekFilm) { ?>
+                                foreach (array_slice($EnFilms,0,30) as $UzbekFilm) { ?>
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                         <div class="video-block">
                                             <div class="video-thumb position-relative thumb-overlay">
@@ -421,7 +421,7 @@
                         <div id="pills-romance" class="tab-pane animated fadeInRight">
                             <div class="row">
                                 <?php /** @var array $UzbekFilms */
-                                foreach ($RuFilms as $UzbekFilm) { ?>
+                                foreach (array_slice($RuFilms,0,30) as $UzbekFilm) { ?>
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                         <div class="video-block">
                                             <div class="video-thumb position-relative thumb-overlay">
@@ -505,7 +505,7 @@
                     <div id="mult-uz" class="tab-pane animated fadeInRight show active">
                         <div class="row">
                             <?php /** @var array $Multfilms */
-                            foreach ($UzMultfilms as $Multfilm) { ?>
+                            foreach (array_slice($UzMultfilms,0,30) as $Multfilm) { ?>
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                     <div class="video-block">
                                         <div class="video-thumb position-relative thumb-overlay">
@@ -549,7 +549,7 @@
                     <div id="mult-en" class="tab-pane animated fadeInRight">
                         <div class="row">
                             <?php /** @var array $Multfilms */
-                            foreach ($EnMultfilms as $Multfilm) { ?>
+                            foreach (array_slice($EnMultfilms,0,30) as $Multfilm) { ?>
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                     <div class="video-block">
                                         <div class="video-thumb position-relative thumb-overlay">
@@ -592,7 +592,7 @@
                     <div id="mult-ru" class="tab-pane animated fadeInRight">
                         <div class="row">
                             <?php /** @var array $Multfilms */
-                            foreach ($RuMultfilms as $Multfilm) { ?>
+                            foreach (array_slice($RuMultfilms,0,30) as $Multfilm) { ?>
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                     <div class="video-block">
                                         <div class="video-thumb position-relative thumb-overlay">
@@ -674,7 +674,7 @@
                     <div id="video-uz" class="tab-pane animated fadeInRight show active">
                         <div class="row">
                             <?php /** @var array $Videos */
-                            foreach ($UzVideos as $Video) { ?>
+                            foreach (array_slice($UzVideos,0,30) as $Video) { ?>
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                     <div class="video-block">
                                         <div class="video-thumb position-relative thumb-overlay">
@@ -718,7 +718,7 @@
                     <div id="video-en" class="tab-pane animated fadeInRight">
                         <div class="row">
                             <?php /** @var array $Videos */
-                            foreach ($EnVideos as $Video) { ?>
+                            foreach (array_slice($EnVideos,0,30) as $Video) { ?>
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                     <div class="video-block">
                                         <div class="video-thumb position-relative thumb-overlay">
@@ -762,7 +762,7 @@
                     <div id="video-ru" class="tab-pane animated fadeInRight">
                         <div class="row">
                             <?php /** @var array $Videos */
-                            foreach ($RuVideos as $Video) { ?>
+                            foreach (array_slice($RuVideos,0,30) as $Video) { ?>
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
                                     <div class="video-block">
                                         <div class="video-thumb position-relative thumb-overlay">

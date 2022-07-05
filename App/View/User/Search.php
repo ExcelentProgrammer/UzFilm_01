@@ -39,7 +39,7 @@ if (empty($AllFilms)) { ?>
                                             <div class="video-thumb position-relative thumb-overlay">
                                                 <a href=<?= __Watch($AllFilm['ID'], $type) ?>><img alt=""
                                                                                                    class="img-fluid img-tab"
-                                                                                                   src=<?= "Assets/images/FilmImg/" . $AllFilm['FilmImg'] ?>></a>
+                                                                                                   src=<?=  $AllFilm['FilmImg'] ?>></a>
                                                 <div class="box-content">
                                                     <ul class="icon">
                                                         <li>

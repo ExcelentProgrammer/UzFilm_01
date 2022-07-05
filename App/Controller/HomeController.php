@@ -90,8 +90,7 @@ class HomeController extends HomeModel
 	public function account()
 	{
 		$AccountModel = new AccountModel();
-		$UserData = $AccountModel->UserData();
-		$Seanslar = $AccountModel->Seans($_SESSION['ID']);
+		$Seanslar = $AccountModel->Seans(User::ID());
 		require_once ROOT_PATH . "/App/View/User/Account.php";
 	}
 

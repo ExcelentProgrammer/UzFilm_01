@@ -45,6 +45,13 @@
     <script src="js/respond.min.js"></script>
     <![endif]-->
     <link rel="stylesheet" href="Assets/css/My.css">
+    <style>
+        .img-tab {
+            cursor: pointer;
+            min-height: 15rem !important;
+        }
+      
+    </style>
 </head>
 
 <body>
@@ -55,7 +62,7 @@
         <div class="loader-section section-right"></div>
     </div>
     <!-- Preloader End -->
-    <div class="main" id ="main">
+    <div class="main" id="main">
         <!-- Start Mobile Header -->
         <header class="mobile-header">
             <div class="mobile-header-content">
@@ -145,7 +152,7 @@
                                 <li class="nav-item">
                                     <div class="nav-account ml-2">
                                         <div class="dropdown">
-                                            <div aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" id="dropdown-account" role="button"><img alt="" class="img-fluid user-icon rounded-circle" src="<?php echo 'Assets/images/avatar/'.$AvatarImg ?>">
+                                            <div aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" id="dropdown-account" role="button"><img alt="" class="img-fluid user-icon rounded-circle" src="<?php echo 'Assets/images/avatar/' . User::UserData()->Avatar ?>">
                                             </div>
                                             <ul class="dropdown-menu dropdown-menu-right fade-up">
                                                 <li>
@@ -290,16 +297,16 @@
                                 <div class="widget-content footer-menu">
                                     <ul class="f-link list-unstyled mb-0">
                                         <li>
-                                            <a href="<?= __AllGo("Film",1) ?>">Kino</a>
+                                            <a href="<?= __AllGo("Film", 1) ?>">Kino</a>
                                         </li>
                                         <li>
-                                            <a href="<?= __AllGo("Multfilm",1) ?>">Multfilm</a>
+                                            <a href="<?= __AllGo("Multfilm", 1) ?>">Multfilm</a>
                                         </li>
                                         <li>
-                                            <a href="<?= __AllGo("Video",1) ?>">Video</a>
+                                            <a href="<?= __AllGo("Video", 1) ?>">Video</a>
                                         </li>
                                         <li>
-                                            <a href="<?= __AllGo("Video",1) ?>">Komedia</a>
+                                            <a href="<?= __AllGo("Video", 1) ?>">Komedia</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -319,16 +326,16 @@
                                 <div class="widget-content footer-menu">
                                     <ul class="f-link list-unstyled mb-0">
                                         <li>
-                                            <a href="<?= menu(MenuHome)?>">Bosh Sahifa</a>
+                                            <a href="<?= menu(MenuHome) ?>">Bosh Sahifa</a>
                                         </li>
                                         <li>
-                                            <a href="<?= menu(MenuContcts)?>">Xabar Qoldirish</a>
+                                            <a href="<?= menu(MenuContcts) ?>">Xabar Qoldirish</a>
                                         </li>
                                         <li>
-                                            <a href="<?= menu(MenuAbout)?>">Biz Xaqimizda</a>
+                                            <a href="<?= menu(MenuAbout) ?>">Biz Xaqimizda</a>
                                         </li>
                                         <li>
-                                            <a href="<?= menu(MenuHelp)?>">Yordam</a>
+                                            <a href="<?= menu(MenuHelp) ?>">Yordam</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -876,7 +883,7 @@
 
     <script>
         function List(VideoID, Type) {
-            var UserID = decodeURIComponent("<?php echo $_SESSION['ID'] ?>");
+            var UserID = decodeURIComponent("<?php echo User::ID() ?>");
             var req = new XMLHttpRequest();
             var Data = new FormData();
             Data.append("VideoID", VideoID);

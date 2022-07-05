@@ -93,7 +93,7 @@
                                 <div class="container">
                                     <div class="picture-container">
                                         <div class="picture">
-                                            <img src=<?= "Assets/images/avatar/" . $UserData['Avatar'] ?> class="picture-src" id="wizardPicturePreview" title="">
+                                            <img src=<?= "Assets/images/avatar/" . user::UserData()->Avatar ?> class="picture-src" id="wizardPicturePreview" title="">
                                             <input type="file" name="avatar" id="wizard-picture" class="">
                                         </div>
                                         <h6 class="mt-2">Avatar</h6>
@@ -107,8 +107,8 @@
                 <!-- Col End -->
                 <div class="col-md -10">
                     <h2><?=
-                        /** @var array $UserData */
-                        $UserData['FirstName'] ?></h2>
+                    
+                        User::UserData()->FirstName ?></h2>
                 </div>
                 <!-- Col End -->
             </div>
@@ -142,7 +142,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Username</label>
-                                                <input class="form-control form-control-name" name="UserName" id="username" type="text" placeholder="UserName" value=<?= $UserData['UserName'] ?>>
+                                                <input class="form-control form-control-name" name="UserName" id="username" type="text" placeholder="UserName" value=<?= User::UserData()->UserName ?>>
                                             </div>
                                         </div>
 
@@ -153,7 +153,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Ism</label>
-                                                <input class="form-control form-control-name" name="FirstName" id="first-name" type="text" placeholder="Ism" value=<?= $UserData['FirstName'] ?>>
+                                                <input class="form-control form-control-name" name="FirstName" id="first-name" type="text" placeholder="Ism" value=<?= User::UserData()->FirstName ?>>
                                             </div>
                                         </div>
                                         <!-- Col End -->
@@ -161,7 +161,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Familya</label>
-                                                <input class="form-control form-control-name" name="LastName" id="last-name" type="text" placeholder="Familya" value=<?= $UserData['LastName'] ?>>
+                                                <input class="form-control form-control-name" name="LastName" id="last-name" type="text" placeholder="Familya" value=<?= User::UserData()->LastName ?>>
                                             </div>
                                         </div>
                                         <!-- Col End -->
@@ -273,7 +273,7 @@
         var LastName = document.querySelector("input[name='LastName']").value;
         var FirstName = document.querySelector("input[name='FirstName']").value;
         var avatar = document.querySelector("input[name='avatar']").files[0];
-        var ID = decodeURIComponent("<?php echo $UserData['ID'] ?>");
+        var ID = decodeURIComponent("<?php echo User::ID() ?>");
         Data.append("ID", ID);
         Data.append("UserName", UserName);
         Data.append("LastName", LastName);

@@ -2,6 +2,11 @@
 
 const ROOT_PATH = __DIR__ . "/"; //fayil joylashuvini olish uchun contanta
 
+require_once ROOT_PATH."/App/Class/Data.php"; // Malumotlarni saqlash uchun class
+
+
+require_once ROOT_PATH."/App/Class/File.php"; //Fayilarni boshqarish uchu section || yield || extends
+
 
 require_once ROOT_PATH . "/Config/GetEnv.php"; //.env faylidagi o'zgaruvchilarni $_ENV supper global o'zgaruvchisiga o'zlashtirish
 
@@ -33,7 +38,7 @@ require_once ROOT_PATH . "Config/Route.php"; //Route tizimini boshqarish uchun c
  */
 if ($_GET['menu'] == MenuChat) (new Rout())->route();
 else {
-  if ($_GET['menu'] == AdminMenu and $_SESSION['UserRole'] == RoleAdmin) {
+  if ($_GET['menu'] == AdminMenu and User::Role() == RoleAdmin) {
     require_once ROOT_PATH . "/App/View/Layout/Admin/index.php"; //Admin Template
   } else {
     require_once ROOT_PATH . "/App/View/Layout/User/index.php"; //User Temlpate

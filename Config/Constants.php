@@ -24,6 +24,7 @@ const MenuSearch = "Search";
 const HomeAdmin = "home";
 const AdminMenu = "admin";
 const Dashboard = "Dashboard";
+const Users = "Users";
 const Buttons = "Buttons";
 const NewFilm = "NewFilm";
 

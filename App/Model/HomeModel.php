@@ -160,7 +160,7 @@ class HomeModel extends DB
     function GetPlayList()
     {
         $con = $this->con();
-        $UserID = $_SESSION['ID'];
+        $UserID = User::ID();
         $Films = [];
         $Multfilm = [];
         $video = [];

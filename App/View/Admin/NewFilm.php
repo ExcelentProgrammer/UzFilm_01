@@ -34,19 +34,19 @@
                             <div class="col-6">
                                 <select id="FilmHeight" class="form-select form-select-sm mb-3"
                                         aria-label=".form-select-sm example">
-                                    <option selected>Film Sifati</option>
+                                    <option >Film Sifati</option>
                                     <option value="240p">240p</option>
                                     <option value="320p">320p</option>
                                     <option value="480p">480p</option>
-                                    <option value="720p">720p</option>
+                                    <option selected value="720p">720p</option>
                                     <option value="1080p">1080p</option>
                                 </select>
                             </div>
                             <div class="col-6">
                                 <select id="FilmLanguage" class="form-select form-select-sm mb-3"
                                         aria-label=".form-select-sm example">
-                                    <option selected>Film Tili</option>
-                                    <option value="O'zbek Tilida">O'zbek Tilida</option>
+                                    <option >Film Tili</option>
+                                    <option selected value="O'zbek Tilida">O'zbek Tilida</option>
                                     <option value="Ingliz Tilida">Ingliz Tilida</option>
                                     <option value="Rus Tilida">Rus Tilida</option>
                                 </select>
@@ -60,8 +60,8 @@
                             <div class="col-sm-12 col-xl-12">
                                 <select id="FilmType" class="form-select form-select-sm mb-3"
                                         aria-label=".form-select-sm example">
-                                    <option selected>Video Turi</option>
-                                    <option value="Film">Film</option>
+                                    <option >Video Turi</option>
+                                    <option selected value="Film">Film</option>
                                     <option value="Video">Video || Korsert</option>
                                     <option value="MultFilm">MultFilm</option>
                                 </select>
@@ -74,8 +74,8 @@
                             <div class="col-6">
                                 <select id="FilmRating" class="form-select form-select-sm mb-3"
                                         aria-label=".form-select-sm example">
-                                    <option selected>Film Rating darajasini tanlang</option>
-                                    <option value="1">1</option>
+                                    <option >Film Rating darajasini tanlang</option>
+                                    <option selected value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                 </select>
@@ -83,9 +83,11 @@
                             <div class="col-6">
                                 <select id="FilmJanr" class="form-select form-select-sm mb-3"
                                         aria-label=".form-select-sm example">
-                                    <option selected>Film Janrini Tanlang</option>
-                                    <option value="Fantastik">Fantastik</option>
+                                    <option >Film Janrini Tanlang</option>
+                                    <option selected value="Fantastik">Fantastik</option>
                                     <option value="Kamedia">Kamedia</option>
+                                    <option value="Badiy Film">Badiy Film</option>
+                                    <option value="Multfilm">Multfilm</option>
                                     <option value="Qo'rqinchli">Qo'rqinchli</option>
                                     <option value="Nomalum">Nomalum</option>
                                 </select>
@@ -95,21 +97,23 @@
                             <div class="col-6">
                                 <select id="FilmState" class="form-select form-select-sm mb-3"
                                         aria-label=".form-select-sm example">
-                                    <option selected>Film Olingan davlatni tanlang</option>
-                                    <option value="Amerika">Amerika</option>
+                                    <option >Film Olingan davlatni tanlang</option>
+                                    <option selected value="Amerika">Amerika</option>
                                     <option value="Yevropa">Yevropa</option>
                                     <option value="Rossiya">Rossiya</option>
+                                    <option value="Hindiston">Hindiston</option>
+                                    <option value="Turkia">Turkia</option>
                                     <option value="O'zbekiston">O'zbekiston</option>
                                 </select>
                             </div>
                             <div class="col-6">
                                 <select id="FilmYoung" class="form-select form-select-sm mb-3"
                                         aria-label=".form-select-sm example">
-                                    <option selected>Film Yosh chagarasini tanlang</option>
+                                    <option >Film Yosh chagarasini tanlang</option>
                                     <option value="0+">0+</option>
                                     <option value="7+">7+</option>
                                     <option value="12+">12+</option>
-                                    <option value="16+">16+</option>
+                                    <option selected value="16+">16+</option>
                                     <option value="18+">18+</option>
                                 </select>
                             </div>
@@ -233,16 +237,16 @@
     function NewFilmClear(){
         document.querySelector("input[name='FilmUrl']").value = "";
         document.querySelector("input[name='FilmImg']").value = "";
-        document.querySelector("#FilmHeight").value = "Film Sifati";
+        document.querySelector("#FilmHeight").value = "720p";
         document.querySelector("input[name='FilmName']").value = "";
         document.querySelector("textarea[name='FilmCaption']").value = '';
-        document.querySelector("#FilmYoung").value = "Film Yosh chagarasini tanlang";
-        document.querySelector("#FilmState").value = "Film Olingan davlatni tanlang";
-        document.querySelector("#FilmJanr").value = "Film Janrini Tanlang";
-        document.querySelector("#FilmRating").value = "Film Rating darajasini tanlang";
+        document.querySelector("#FilmYoung").value = "16+";
+        document.querySelector("#FilmState").value = "Amerika";
+        document.querySelector("#FilmJanr").value = "Fantastik";
+        document.querySelector("#FilmRating").value = "1";
         document.querySelector("input[name='FilmDate']").value = "";
-        document.querySelector("#FilmLanguage").value = "Film Tili";
-        document.querySelector("#FilmType").value = "Video Turi";
+        document.querySelector("#FilmLanguage").value = "O'zbek Tilida";
+        document.querySelector("#FilmType").value = "Film";
         document.querySelector("input[name='FilmYear']").value = "";
     }
     function NewSerial() {

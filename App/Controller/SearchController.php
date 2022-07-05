@@ -6,7 +6,7 @@ class SearchController extends SearchModel
 {
     function show()
     {
-        $Search = $_GET['s'];
+        $Search = mysqli_real_escape_string(DB::DCon(),$_GET['s']);
         $PageFilms = 18;
         $type = $_GET['type'];
         $PP = !empty($_GET['p']) ? ($_GET['p'] - 1) * $PageFilms : 1;

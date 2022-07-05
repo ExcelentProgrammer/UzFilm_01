@@ -154,3 +154,9 @@ function __Watch($id,$type)
 {
     return menu(MenuWatch) . "&type=$type&video_id=" . $id . "";
 }
+function __File($file){
+    return "App/View/".$file;
+}
+function __Asset($file){
+    return "Assets/".$file;
+}
