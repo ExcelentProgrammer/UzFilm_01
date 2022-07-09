@@ -66,8 +66,10 @@ class User
         if (!empty($_SESSION['ID'])) {
             $ID = $_SESSION['ID'];
             $res = mysqli_query(DB::DCon(), "SELECT * FROM users WHERE ID='$ID'");
-            if (mysqli_num_rows($res) > 0)
-                return json_decode(json_encode(mysqli_fetch_all($res, MYSQLI_ASSOC)[0]));
+            if (mysqli_num_rows($res) > 0){
+                $UserData = mysqli_fetch_all($res, MYSQLI_ASSOC)[0];
+                return json_decode(json_encode($UserData));
+            }
         } else
             return false;
     }

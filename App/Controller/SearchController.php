@@ -1,6 +1,8 @@
 <?php
 
 require_once ROOT_PATH . "/App/Model/SearchModel.php";
+require_once ROOT_PATH."/App/Model/Films.php";
+use App\Models\Films;
 
 class SearchController extends SearchModel
 {
@@ -10,7 +12,7 @@ class SearchController extends SearchModel
         $PageFilms = 18;
         $type = $_GET['type'];
         $PP = !empty($_GET['p']) ? ($_GET['p'] - 1) * $PageFilms : 1;
-        $a = $this->SearchFilm($Search, $PP);
+        $a = Films::like("FilmName",$Search);
         $AllFilms = array_slice($a, $PP, $PageFilms);
         $pages = ceil(count($a) / $PageFilms);
         $apages = $pages;

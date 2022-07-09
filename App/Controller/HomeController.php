@@ -1,9 +1,22 @@
 <?php
+
+use App\Models\Films;
+use App\Models\Video;
+use App\Models\Multfilm;
+use App\Models\Token;
+use App\Models\UsersModel as Users;
+
 require_once ROOT_PATH . "App/Model/HomeModel.php";
 require_once ROOT_PATH . "App/Model/AccountModel.php";
 require_once ROOT_PATH . "App/Model/MultfilmModel.php";
 require_once ROOT_PATH . "App/Model/VideoModel.php";
 require_once ROOT_PATH . "App/Model/AdminModel.php";
+require_once ROOT_PATH."/App/Model/Films.php";
+require_once ROOT_PATH."/App/Model/Video.php";
+require_once ROOT_PATH."/App/Model/Multfilm.php";
+require_once ROOT_PATH."/App/Model/Users.php";
+require_once ROOT_PATH."/App/Model/Token.php";
+
 
 class HomeController extends HomeModel
 {
@@ -22,25 +35,25 @@ class HomeController extends HomeModel
 	 */
 	public function home()
 	{
-		$TopFilms = $this->TopFilm();
-		$ScaryFilms = $this->ScaryFilm();
-		$FunnyFilms = $this->FunnyFilm();
-		$FantasticFilms = $this->FantastikFilm();
+		$TopFilms = Films::where("FilmRating","=","3");
+		$ScaryFilms = Films::where("FilmJanr","=","Qo'rqinchli");
+		$FunnyFilms = Films::where("FilmJanr","=","Kamedia");
+		$FantasticFilms = Films::where("FilmJanr","=","Fantastik");
 
-		$UzFilms = $this->GetUzFilms();
-		$RuFilms = $this->GetRuFilms();
-		$EnFilms = $this->GetEnFilms();
-		$UzMultfilms = $this->GetUzMultfilms();
-		$RuMultfilms = $this ->GetRuMultfilms();
-		$EnMultfilms = $this->GetEnMultfilms();
-		$UzVideos = $this->GetUzVideo();
-		$RuVideos = $this->GetRuVideo();
-		$EnVideos  = $this->GetEnVideo();
+		$UzFilms = Films::where("FilmLanguage","=","O'zbek Tilida");
+		$RuFilms = Films::where("FilmLanguage","=","Rus Tilida");
+		$EnFilms = Films::where("FilmLanguage","=","Ingliz Tilida");
+		$UzMultfilms = Multfilm::where("FilmLanguage","=","O'zbek Tilida");
+		$RuMultfilms = Multfilm::where("FilmLanguage",'=',"Rus Tilida");
+		$EnMultfilms = Multfilm::where("FilmLanguage",'=',"Ingliz Tilida");
+		$UzVideos = Video::where("FilmLanguage","=","O'zbek Tilida");
+		$RuVideos = Video::where("FilmLanguage",'=',"Rus Tilida");
+		$EnVideos = Video::where("FilmLanguage",'=',"Ingliz Tilida");
 
-		$AllFilms = $this->AllFilm();
+		$AllFilms = Films::all();
 		$WatchFilms = $this->WatchFilm();
-		$Multfilms = $this->MultfilmModel->GetAllMultfilm();
-		$Videos = $this->VideoModel->GetAllVideo();
+		$Multfilms = Multfilm::all();
+		$Videos = Video::all();
 
 
 		require_once ROOT_PATH . "App/View/User/Home.php";
@@ -54,8 +67,8 @@ class HomeController extends HomeModel
 	 */
 	public function watch()
 	{
-		$FilmAbout = $this->FilmAbout($_GET['video_id']);
-		$TopFilms = $this->TopFilm();
+		$FilmAbout = Films::where("ID","=",$_GET['id']);
+		$TopFilms = Films::where("FilmRating","=","3");
 		$Serials = $this->GetSerial($_GET['video_id']);
 		$MyList = $this->GetFilmMyListInfo($_GET['video_id']);
 		require_once ROOT_PATH . "App/View/User/watch.php";
@@ -89,8 +102,7 @@ class HomeController extends HomeModel
 
 	public function account()
 	{
-		$AccountModel = new AccountModel();
-		$Seanslar = $AccountModel->Seans(User::ID());
+		$Seanslar =	Token::where("UserID","=",User::ID());
 		require_once ROOT_PATH . "/App/View/User/Account.php";
 	}
 

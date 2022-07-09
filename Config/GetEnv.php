@@ -2,7 +2,7 @@
 /** .Env faylidagi malumotlarni olish uchun class */
 class GetEnv
 {
-    function __construct()
+    static public function get()
     {
         global $dotenv;
         require_once ROOT_PATH . "vendor/autoload.php";
@@ -12,4 +12,4 @@ class GetEnv
     }
 }
 
-(new GetEnv());
+GetEnv::get();
