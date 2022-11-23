@@ -35,6 +35,9 @@ class UserData extends DB
                 setcookie("Token", "", time() - 1);
                 echo "<script>location.href='" . menu(MenuHome) . "'</script>";
             }
+            $ID = $_SESSION['ID'];
+            $this->AvatarImg = mysqli_fetch_all(mysqli_query($this->con(), "SELECT Avatar FROM users WHERE ID='$ID'"), MYSQLI_ASSOC)[0]['Avatar'];
+
         } elseif (empty($_COOKIE['ONCE'])) {
             $con = $this->con();
             $UserAgent = $_SERVER['HTTP_USER_AGENT'];
@@ -45,7 +48,6 @@ class UserData extends DB
             $C->NewCookie("ONCE", "false");
         }
         $ID = $_SESSION['ID'];
-        $this->AvatarImg = mysqli_fetch_all(mysqli_query($this->con(), "SELECT Avatar FROM users WHERE ID='$ID'"), MYSQLI_ASSOC)[0]['Avatar'];
     }
 }
 

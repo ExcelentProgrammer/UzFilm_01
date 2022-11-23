@@ -33,15 +33,16 @@ CREATE TABLE IF NOT EXISTS `films` (
   `FilmCaption` text NOT NULL,
   `FilmHeight` text NOT NULL,
   `FilmSize` text NOT NULL,
-  `FilmYear` text NOT NULL DEFAULT '\'2022\'',
-  `FilmJanr` text NOT NULL DEFAULT 'Fantastik',
-  `FilmState` text NOT NULL DEFAULT 'Amerika',
-  `FilmYoung` text NOT NULL DEFAULT '\'\\\'16\\\'\'',
-  `FilmRating` text NOT NULL DEFAULT '0',
-  `FilmLanguage` text NOT NULL DEFAULT 'O\'zbek Tilida',
+  `FilmYear` varchar(255) NOT NULL DEFAULT '\'2022\'',
+  `FilmJanr` varchar(255) NOT NULL DEFAULT 'Fantastik',
+  `FilmState` varchar(255) NOT NULL DEFAULT 'Amerika',
+  `FilmYoung` varchar(255) NOT NULL DEFAULT '\'\\\'16\\\'\'',
+  `FilmRating` varchar(255) NOT NULL DEFAULT '0',
+  `FilmLanguage` varchar(255) NOT NULL DEFAULT 'O\'zbek Tilida',
   `FilmDate` int(11) NOT NULL,
   `FilmWatch` int(11) NOT NULL DEFAULT 0,
-  `ID` int(11) NOT NULL
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4;
 
 --
@@ -63,8 +64,9 @@ INSERT INTO `films` (`FilmName`, `FilmUrl`, `FilmImg`, `FilmCaption`, `FilmHeigh
 --
 
 CREATE TABLE IF NOT EXISTS `guest` (
-  `ID` int(11) NOT NULL,
-  `UserAgent` text COLLATE utf8mb4_unicode_ci NOT NULL
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `UserAgent` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -92,15 +94,16 @@ CREATE TABLE IF NOT EXISTS `multfilm` (
   `FilmCaption` text NOT NULL,
   `FilmHeight` text NOT NULL,
   `FilmSize` text NOT NULL,
-  `FilmYear` text NOT NULL DEFAULT '\'2022\'',
-  `FilmJanr` text NOT NULL DEFAULT 'Fantastik',
-  `FilmState` text NOT NULL DEFAULT 'Amerika',
-  `FilmYoung` text NOT NULL DEFAULT '\'\\\'16\\\'\'',
-  `FilmRating` text NOT NULL DEFAULT '0',
-  `FilmLanguage` text NOT NULL DEFAULT 'O\'zbek Tilida',
+  `FilmYear` varchar(255) NOT NULL DEFAULT '\'2022\'',
+  `FilmJanr` varchar(255) NOT NULL DEFAULT 'Fantastik',
+  `FilmState` varchar(255) NOT NULL DEFAULT 'Amerika',
+  `FilmYoung` varchar(255) NOT NULL DEFAULT '\'\\\'16\\\'\'',
+  `FilmRating` varchar(255) NOT NULL DEFAULT '0',
+  `FilmLanguage` varchar(255) NOT NULL DEFAULT 'O\'zbek Tilida',
   `FilmDate` int(11) NOT NULL,
   `FilmWatch` int(11) NOT NULL DEFAULT 0,
-  `ID` int(11) NOT NULL
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
@@ -119,10 +122,11 @@ INSERT INTO `multfilm` (`FilmName`, `FilmUrl`, `FilmImg`, `FilmCaption`, `FilmHe
 --
 
 CREATE TABLE IF NOT EXISTS `playlist` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `UserID` int(11) NOT NULL,
   `VideoID` int(11) NOT NULL,
-  `Type` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Film'
+  `Type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Film',
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -145,7 +149,8 @@ CREATE TABLE IF NOT EXISTS `serial` (
   `FilmSize` text NOT NULL,
   `FilmSection` int(11) NOT NULL,
   `FilmID` int(11) NOT NULL,
-  `ID` int(11) NOT NULL
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4;
 
 --
@@ -206,11 +211,12 @@ INSERT INTO `serial` (`FilmUrl`, `FilmSize`, `FilmSection`, `FilmID`, `ID`) VALU
 --
 
 CREATE TABLE IF NOT EXISTS `token` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Token` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `UserAgent` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `Date` datetime NOT NULL,
-  `UserID` int(11) NOT NULL
+  `UserID` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -229,13 +235,14 @@ INSERT INTO `token` (`ID`, `Token`, `UserAgent`, `Date`, `UserID`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `FirstName` text NOT NULL,
   `LastName` text NOT NULL,
   `UserName` text NOT NULL,
   `Email` text NOT NULL,
   `Password` text NOT NULL,
-  `UserRole` text NOT NULL DEFAULT 'User'
+  `UserRole` varchar(255) NOT NULL DEFAULT 'User',
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4;
 
 --
@@ -260,15 +267,16 @@ CREATE TABLE IF NOT EXISTS `video` (
   `FilmCaption` text NOT NULL,
   `FilmHeight` text NOT NULL,
   `FilmSize` text NOT NULL,
-  `FilmYear` text NOT NULL DEFAULT '\'2022\'',
-  `FilmJanr` text NOT NULL DEFAULT 'Fantastik',
-  `FilmState` text NOT NULL DEFAULT 'Amerika',
-  `FilmYoung` text NOT NULL DEFAULT '\'\\\'16\\\'\'',
-  `FilmRating` text NOT NULL DEFAULT '0',
-  `FilmLanguage` text NOT NULL DEFAULT 'O\'zbek Tilida',
+  `FilmYear` varchar(255) NOT NULL DEFAULT '\'2022\'',
+  `FilmJanr` varchar(255) NOT NULL DEFAULT 'Fantastik',
+  `FilmState` varchar(255) NOT NULL DEFAULT 'Amerika',
+  `FilmYoung` varchar(255) NOT NULL DEFAULT '\'\\\'16\\\'\'',
+  `FilmRating` varchar(255) NOT NULL DEFAULT '0',
+  `FilmLanguage` varchar(255) NOT NULL DEFAULT 'O\'zbek Tilida',
   `FilmDate` int(11) NOT NULL,
   `FilmWatch` int(11) NOT NULL DEFAULT 0,
-  `ID` int(11) NOT NULL
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
@@ -282,98 +290,6 @@ INSERT INTO `video` (`FilmName`, `FilmUrl`, `FilmImg`, `FilmCaption`, `FilmHeigh
 -- Индексы сохранённых таблиц
 --
 
---
--- Индексы таблицы `films`
---
-ALTER TABLE `films`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Индексы таблицы `guest`
---
-ALTER TABLE `guest`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Индексы таблицы `multfilm`
---
-ALTER TABLE `multfilm`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Индексы таблицы `playlist`
---
-ALTER TABLE `playlist`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Индексы таблицы `serial`
---
-ALTER TABLE `serial`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Индексы таблицы `token`
---
-ALTER TABLE `token`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Индексы таблицы `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Индексы таблицы `video`
---
-ALTER TABLE `video`
-  ADD PRIMARY KEY (`ID`);
-
---
--- AUTO_INCREMENT для сохранённых таблиц
---
-
---
--- AUTO_INCREMENT для таблицы `films`
---
-ALTER TABLE `films`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
---
--- AUTO_INCREMENT для таблицы `guest`
---
-ALTER TABLE `guest`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT для таблицы `multfilm`
---
-ALTER TABLE `multfilm`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT для таблицы `playlist`
---
-ALTER TABLE `playlist`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=100;
---
--- AUTO_INCREMENT для таблицы `serial`
---
-ALTER TABLE `serial`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=112;
---
--- AUTO_INCREMENT для таблицы `token`
---
-ALTER TABLE `token`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
---
--- AUTO_INCREMENT для таблицы `users`
---
-ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
---
--- AUTO_INCREMENT для таблицы `video`
---
-ALTER TABLE `video`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

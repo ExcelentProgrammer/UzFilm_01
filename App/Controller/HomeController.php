@@ -67,7 +67,7 @@ class HomeController extends HomeModel
 	 */
 	public function watch()
 	{
-		$FilmAbout = Films::where("ID","=",$_GET['id']);
+		$FilmAbout = Films::where("ID","=",$_GET['video_id']);
 		$TopFilms = Films::where("FilmRating","=","3");
 		$Serials = $this->GetSerial($_GET['video_id']);
 		$MyList = $this->GetFilmMyListInfo($_GET['video_id']);

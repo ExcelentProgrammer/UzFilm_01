@@ -8,7 +8,7 @@ class DB
 {
     static public function con()
     {
-        $con = new PDO("mysql:host=localhost;dbname=uzfilm_01", "root", "root", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $con = new PDO("mysql:host=localhost;dbname=uzfilm", "root", "root", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         if ($con)
             return $con;
         return false;
